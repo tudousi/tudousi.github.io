@@ -1,3 +1,4 @@
 markdown: rdiscount
 pygments: true
 redirects: yes
+cdn: http://static.createthink.net
