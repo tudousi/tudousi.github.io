@@ -10,8 +10,8 @@ layout: nil
  <updated>{{ site.time | date_to_xmlschema }}</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
-   <name>Tom Preston-Werner</name>
-   <email>tom@mojombo.com</email>
+   <name>蒋著[tudousi]</name>
+   <email>41871879@qq.com</email>
  </author>
 
  {% for post in site.posts %}
