@@ -1,0 +1,13 @@
+---
+layout: default
+title: JS/JQ插件 - tudousi
+---
+
+<div id="home">
+  <h1>JS/JQ插件</h1>
+  <ul class="posts">
+      {% for post in site.tags.plugin %}
+	  	<li><span>{{ post.date | date: "%Y年%m月%d日" }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+  </ul>
+</div>
