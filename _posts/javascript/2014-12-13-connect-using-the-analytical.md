@@ -47,7 +47,7 @@ Connect 提供了 WEB 开发的常用基本插件。
 - bodyParser	// 请求内容解析中间件
 - multipart		// 文件上传中间件
 - cookieParser	// cookie 解析中间件
-- session		// session 回话中间件
+- session		// session 会话中间件
 - static		// 静态文件处理中间件
 - vhost			// 虚拟二级域名映射中间件
 - favicon		// 网页图标中间件
