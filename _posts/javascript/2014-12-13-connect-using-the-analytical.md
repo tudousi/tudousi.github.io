@@ -124,7 +124,7 @@ function createServer() {
   // 这个函数会给 http.createServer 使用
   function app(req, res, next){ app.handle(req, res, next); }
   utils.merge(app, proto);    // 继承 proto
-  utils.merge(app, EventEmitter.prototype);   // 集成 事件
+  utils.merge(app, EventEmitter.prototype);   // 继承 事件
   app.route = '/';    // 定义默认路由
   app.stack = [];     // 定义处理函数队列
   for (var i = 0; i < arguments.length; ++i) {

@@ -4,7 +4,7 @@
  <title>蒋著[tudousi] - 博客</title>
  <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
  <link href="http://tom.preston-werner.com/"/>
- <updated>2014-12-14T00:05:29+08:00</updated>
+ <updated>2014-12-14T00:13:35+08:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>tudousi</name>
@@ -139,7 +139,7 @@ function createServer() {
   // 这个函数会给 http.createServer 使用
   function app(req, res, next){ app.handle(req, res, next); }
   utils.merge(app, proto);    // 继承 proto
-  utils.merge(app, EventEmitter.prototype);   // 集成 事件
+  utils.merge(app, EventEmitter.prototype);   // 继承 事件
   app.route = '/';    // 定义默认路由
   app.stack = [];     // 定义处理函数队列
   for (var i = 0; i &amp;lt; arguments.length; ++i) {
