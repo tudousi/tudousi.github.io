@@ -65,6 +65,8 @@ function callInfoRun(){
 ```
 #### 实例
 <iframe  frameborder="0" scrolling="no" src="/resource/iframebyvalue/demo2.html" width="600" height="200"></iframe>
+
+ps: 感觉第二种实用性不是太高，有一个 100 毫秒的定时器，耗性能。
  
  测试代码下载 [点击下载](/resource/iframebyvalue/iframe.zip)
  

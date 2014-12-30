@@ -4,7 +4,7 @@
  <title>蒋著[tudousi] - 博客</title>
  <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
  <link href="http://tom.preston-werner.com/"/>
- <updated>2014-12-30T21:59:38+08:00</updated>
+ <updated>2014-12-30T22:03:00+08:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>tudousi</name>
@@ -1827,6 +1827,8 @@ function callInfoRun(){
 
 &lt;iframe  frameborder=&quot;0&quot; scrolling=&quot;no&quot; src=&quot;/resource/iframebyvalue/demo2.html&quot; width=&quot;600&quot; height=&quot;200&quot;&gt;&lt;/iframe&gt;
 
+
+&lt;p&gt;ps: 感觉第二种实用性不是太高，有一个 100 毫秒的定时器，耗性能。&lt;/p&gt;
 
 &lt;p&gt; 测试代码下载 &lt;a href=&quot;/resource/iframebyvalue/iframe.zip&quot;&gt;点击下载&lt;/a&gt;&lt;/p&gt;
 
