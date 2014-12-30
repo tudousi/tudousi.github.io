@@ -1,65 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
- 
- <title>蒋著[tudousi] - 博客</title>
- <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
- <link href="http://tom.preston-werner.com/"/>
- <updated>2014-12-30T21:59:38+08:00</updated>
- <id>http://tom.preston-werner.com/</id>
- <author>
-   <name>tudousi</name>
-   <email>41871879@qq.com</email>
- </author>
-
- 
- <entry>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
    <title>SVN 命令介绍</title>
-   <link href="http://tom.preston-werner.com/2014/12/26/svn-command.html"/>
-   <updated>2014-12-26T00:00:00+08:00</updated>
-   <id>http://tom.preston-werner.com/2014/12/26/svn-command</id>
-   <content type="html">&lt;blockquote&gt;&lt;p&gt;SVN 命令介绍&lt;/p&gt;&lt;/blockquote&gt;
+   <meta name="author" content="tudousi" />
 
-&lt;p&gt;命令索引&lt;/p&gt;
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#svncheckout&quot;&gt;svn checkout&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnadd&quot;&gt;svn add&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnblam&quot;&gt;svn blam&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svncat&quot;&gt;svn cat&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnchangelist&quot;&gt;svn changelist&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svncleanup&quot;&gt;svn cleanup&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svncommit&quot;&gt;svn commit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svncopy&quot;&gt;svn copy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svndelete&quot;&gt;svn delete&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svndiff&quot;&gt;svn diff&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnexport&quot;&gt;svn export&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnimport&quot;&gt;svn import&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svninfo&quot;&gt;svn info&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnlock&quot;&gt;svn lock&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnlog&quot;&gt;svn log&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnmerge&quot;&gt;svn merge&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnmergeinfo&quot;&gt;svn mergeinfo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnmkdir&quot;&gt;svn mkdir&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnmove&quot;&gt;svn move&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnpropdel&quot;&gt;svn propdel&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnpropedit&quot;&gt;svn propedit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnpropget&quot;&gt;svn propget&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnproplist&quot;&gt;svn proplist&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnpropset&quot;&gt;svn propset&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnresolve&quot;&gt;svn resolve&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnresolved&quot;&gt;svn resolved&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnrevert&quot;&gt;svn revert&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnstatus&quot;&gt;svn status&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnswitch&quot;&gt;svn switch&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnunlock&quot;&gt;svn unlock&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#svnupdate&quot;&gt;svn update&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+</head>
+<body>
 
 
-&lt;h4 id=&quot;svncheckout&quot;&gt;svn checkout 从版本库签出工作副本&lt;/h4&gt;
+<div class="site">
+  <div class="title">
+    <a class="extra" href="/">HOME</a>
+    <a class="" href="/javascript.html">JAVASCRIPT</a>
+    <a class="" href="/htmlcss.html">HTML/CSS</a>
+    <a class="" href="/tools.html">开发工具</a>
+    <a class="" href="/plugin.html">JS/JQ插件</a>
+  </div>
+  
+  <div id="post">
+<h1>SVN 命令介绍</h1>
+<div class="copyright">
+	作者: 蒋著 | 可以转载, 但必须以超链接形式标明文章原始出处和作者信息及版权声明<br />
+	网址: http://createthink.net/2014/12/26/svn-command.html
+	</div>
+<blockquote><p>SVN 命令介绍</p></blockquote>
+
+<p>命令索引</p>
+
+<ul>
+<li><a href="#svncheckout">svn checkout</a></li>
+<li><a href="#svnadd">svn add</a></li>
+<li><a href="#svnblam">svn blam</a></li>
+<li><a href="#svncat">svn cat</a></li>
+<li><a href="#svnchangelist">svn changelist</a></li>
+<li><a href="#svncleanup">svn cleanup</a></li>
+<li><a href="#svncommit">svn commit</a></li>
+<li><a href="#svncopy">svn copy</a></li>
+<li><a href="#svndelete">svn delete</a></li>
+<li><a href="#svndiff">svn diff</a></li>
+<li><a href="#svnexport">svn export</a></li>
+<li><a href="#svnimport">svn import</a></li>
+<li><a href="#svninfo">svn info</a></li>
+<li><a href="#svnlock">svn lock</a></li>
+<li><a href="#svnlog">svn log</a></li>
+<li><a href="#svnmerge">svn merge</a></li>
+<li><a href="#svnmergeinfo">svn mergeinfo</a></li>
+<li><a href="#svnmkdir">svn mkdir</a></li>
+<li><a href="#svnmove">svn move</a></li>
+<li><a href="#svnpropdel">svn propdel</a></li>
+<li><a href="#svnpropedit">svn propedit</a></li>
+<li><a href="#svnpropget">svn propget</a></li>
+<li><a href="#svnproplist">svn proplist</a></li>
+<li><a href="#svnpropset">svn propset</a></li>
+<li><a href="#svnresolve">svn resolve</a></li>
+<li><a href="#svnresolved">svn resolved</a></li>
+<li><a href="#svnrevert">svn revert</a></li>
+<li><a href="#svnstatus">svn status</a></li>
+<li><a href="#svnswitch">svn switch</a></li>
+<li><a href="#svnunlock">svn unlock</a></li>
+<li><a href="#svnupdate">svn update</a></li>
+</ul>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;checkout (co): 从版本库签出工作副本。
+<h4 id="svncheckout">svn checkout 从版本库签出工作副本</h4>
+
+
+<pre><code class="javascript">checkout (co): 从版本库签出工作副本。
 使用: checkout URL[@REV]... [PATH]
 
   如果指定 REV，那么它确定了从 URL 首先查找的版本。
@@ -90,22 +102,22 @@
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.取出一个工作拷贝到mine目录：&lt;br&gt;
-$ svn checkout file:///tmp/repos/test mine&lt;/p&gt;
+<p>常用操作<br>
+1.取出一个工作拷贝到mine目录：<br>
+$ svn checkout file:///tmp/repos/test mine</p>
 
-&lt;p&gt;2.检出两个目录到两个单独的工作拷贝：&lt;br&gt;
-$ svn checkout file:///tmp/repos/test file:///tmp/repos/quiz&lt;/p&gt;
+<p>2.检出两个目录到两个单独的工作拷贝：<br>
+$ svn checkout file:///tmp/repos/test file:///tmp/repos/quiz</p>
 
-&lt;p&gt;3.检出两个目录到两个单独的工作拷贝，但是将两个目录都放到working-copies：&lt;br&gt;
-$ svn checkout file:///tmp/repos/test file:///tmp/repos/quiz working-copies&lt;/p&gt;
+<p>3.检出两个目录到两个单独的工作拷贝，但是将两个目录都放到working-copies：<br>
+$ svn checkout file:///tmp/repos/test file:///tmp/repos/quiz working-copies</p>
 
-&lt;h4 id=&quot;svnadd&quot;&gt;svn add 添加到版本库&lt;/h4&gt;
+<h4 id="svnadd">svn add 添加到版本库</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;add: 把文件和目录纳入版本控制，通过调度加到版本库。它们会在下一次提交时加入。
+<pre><code class="javascript">add: 把文件和目录纳入版本控制，通过调度加到版本库。它们会在下一次提交时加入。
 用法: add 路径...
 
 有效选项:
@@ -130,26 +142,26 @@ $ svn checkout file:///tmp/repos/test file:///tmp/repos/quiz working-copies&lt;/
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.添加一个文件到工作拷贝:&lt;br&gt;
-$ svn add foo.c&lt;/p&gt;
+<p>常用操作<br>
+1.添加一个文件到工作拷贝:<br>
+$ svn add foo.c</p>
 
-&lt;p&gt;2.当添加一个目录，svn add缺省的行为方式是递归的：&lt;br&gt;
-$ svn add testdir&lt;/p&gt;
+<p>2.当添加一个目录，svn add缺省的行为方式是递归的：<br>
+$ svn add testdir</p>
 
-&lt;p&gt;3.你可以只添加一个目录而不包括其内容：&lt;br&gt;
-$ svn add –non-recursive otherdir&lt;br&gt;
-$ svn add -N otherdir&lt;/p&gt;
+<p>3.你可以只添加一个目录而不包括其内容：<br>
+$ svn add –non-recursive otherdir<br>
+$ svn add -N otherdir</p>
 
-&lt;p&gt;4.通常情况下，命令svn add *会忽略所有已经在版本控制之下的目录，有时候，你会希望添加所有工作拷贝的未版本化文件，包括那些隐藏在深处的文件，可以使用svn add的–force递归到版本化的目录下：&lt;br&gt;
-$ svn add * –force&lt;/p&gt;
+<p>4.通常情况下，命令svn add *会忽略所有已经在版本控制之下的目录，有时候，你会希望添加所有工作拷贝的未版本化文件，包括那些隐藏在深处的文件，可以使用svn add的–force递归到版本化的目录下：<br>
+$ svn add * –force</p>
 
-&lt;h4 id=&quot;svnblam&quot;&gt;svn blam 追溯内容&lt;/h4&gt;
+<h4 id="svnblam">svn blam 追溯内容</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;blame (praise, annotate, ann): 输出指定文件或URL的追溯内容，包含版本和作者信息。
+<pre><code class="javascript">blame (praise, annotate, ann): 输出指定文件或URL的追溯内容，包含版本和作者信息。
 
 用法: blame 目标[@版本]...
       如果指定了版本，将从指定的版本开始查找。
@@ -192,16 +204,16 @@ $ svn add * –force&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.如果你希望在测试版本库看到blame标记的readme.txt源代码：&lt;br&gt;
-$ svn blame http://svn.red-bean.com/repos/test/readme.txt&lt;/p&gt;
+<p>常用操作<br>
+1.如果你希望在测试版本库看到blame标记的readme.txt源代码：<br>
+$ svn blame http://svn.red-bean.com/repos/test/readme.txt</p>
 
-&lt;h4 id=&quot;svncat&quot;&gt;svn cat 输出文件或内容&lt;/h4&gt;
+<h4 id="svncat">svn cat 输出文件或内容</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;cat: 输出指定文件或URL的内容。
+<pre><code class="javascript">cat: 输出指定文件或URL的内容。
 用法: cat 目标[@版本]...
 
       如果指定了版本，将从指定的版本开始查找。
@@ -227,16 +239,16 @@ $ svn blame http://svn.red-bean.com/repos/test/readme.txt&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.如果你希望不检出而察看版本库的readme.txt的内容：&lt;br&gt;
-$ svn cat foo.c&lt;/p&gt;
+<p>常用操作<br>
+1.如果你希望不检出而察看版本库的readme.txt的内容：<br>
+$ svn cat foo.c</p>
 
-&lt;h4 id=&quot;svnchangelist&quot;&gt;svn changelist 耦合文件与修改列表&lt;/h4&gt;
+<h4 id="svnchangelist">svn changelist 耦合文件与修改列表</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;changelist (cl): 耦合(或解耦)文件与修改列表 CLNAME。
+<pre><code class="javascript">changelist (cl): 耦合(或解耦)文件与修改列表 CLNAME。
 使用: 1. changelist CLNAME TARGET...
       2. changelist --remove TARGET...
 
@@ -260,12 +272,12 @@ $ svn cat foo.c&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;h4 id=&quot;svncleanup&quot;&gt;svn cleanup 递归清理工作副本&lt;/h4&gt;
+<h4 id="svncleanup">svn cleanup 递归清理工作副本</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;cleanup: 递归清理工作副本，删除锁，继续未完成操作，等等。
+<pre><code class="javascript">cleanup: 递归清理工作副本，删除锁，继续未完成操作，等等。
 
 用法: cleanup [路径...]
 
@@ -283,17 +295,17 @@ $ svn cat foo.c&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.svn cleanup没有输出，没有太多的例子，如果你没有传递PATH，会使用“.”。&lt;br&gt;
-$ svn cleanup&lt;br&gt;
-$ svn cleanup /path/to/working-copy&lt;/p&gt;
+<p>常用操作<br>
+1.svn cleanup没有输出，没有太多的例子，如果你没有传递PATH，会使用“.”。<br>
+$ svn cleanup<br>
+$ svn cleanup /path/to/working-copy</p>
 
-&lt;h4 id=&quot;svncommit&quot;&gt;svn commit 提交到版本库&lt;/h4&gt;
+<h4 id="svncommit">svn commit 提交到版本库</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;commit (ci): 把工作副本的修改提交到版本库。
+<pre><code class="javascript">commit (ci): 把工作副本的修改提交到版本库。
 用法: commit [路径...]
 
      必须提供日志消息，但它可以是空的。如果没有指定 --message 或 --file
@@ -328,37 +340,37 @@ $ svn cleanup /path/to/working-copy&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.使用命令行提交一个包含日志信息的文件修改，当前目录（“.”）是没有说明的目标路径：&lt;br&gt;
-$ svn commit -m “added howto section.”&lt;/p&gt;
+<p>常用操作<br>
+1.使用命令行提交一个包含日志信息的文件修改，当前目录（“.”）是没有说明的目标路径：<br>
+$ svn commit -m “added howto section.”</p>
 
-&lt;p&gt;2.提交一个修改到foo.c（在命令行明确指明），并且msg文件中保存了提交信息：&lt;br&gt;
-$ svn commit -F msg foo.c&lt;/p&gt;
+<p>2.提交一个修改到foo.c（在命令行明确指明），并且msg文件中保存了提交信息：<br>
+$ svn commit -F msg foo.c</p>
 
-&lt;p&gt;3.如果你希望使用在–file选项中使用在版本控制之下的文件作为参数，你需要使用–force-log选项：&lt;br&gt;
-$ svn commit –file file_under_vc.txt foo.c&lt;/p&gt;
+<p>3.如果你希望使用在–file选项中使用在版本控制之下的文件作为参数，你需要使用–force-log选项：<br>
+$ svn commit –file file_under_vc.txt foo.c</p>
 
-&lt;p&gt;4.提交一个已经预定要删除的文件：&lt;br&gt;
-$ svn commit -m “removed file ‘c’.”&lt;/p&gt;
+<p>4.提交一个已经预定要删除的文件：<br>
+$ svn commit -m “removed file ‘c’.”</p>
 
-&lt;h4 id=&quot;svncopy&quot;&gt;svn copy 版本库中复制数据&lt;/h4&gt;
+<h4 id="svncopy">svn copy 版本库中复制数据</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;copy (cp): 在工作副本或版本库中复制数据，保留历史。
+<pre><code class="javascript">copy (cp): 在工作副本或版本库中复制数据，保留历史。
 用法: copy SRC[@REV]... DST
 
 当复制多个源时，它们作为 DST 的子节点增加, DST 必须是目录。
 
   SRC 和 DST 可以是工作副本路径(WC)或版本库地址(URL):
-    WC   -&amp;gt; WC:  复制和调度增加(包含历史)
-    WC   -&amp;gt; URL: 立即提交工作副本到版本库
-    URL  -&amp;gt; WC:  检出 URL 到工作副本，调度增加
-    URL  -&amp;gt; URL: 完全服务器端复制；一般用于分支和标签
+    WC   -&gt; WC:  复制和调度增加(包含历史)
+    WC   -&gt; URL: 立即提交工作副本到版本库
+    URL  -&gt; WC:  检出 URL 到工作副本，调度增加
+    URL  -&gt; URL: 完全服务器端复制；一般用于分支和标签
   所有 SRC 必须是同一类型。
 
-警告：为了与旧版本的 Subversion 兼容，使用两个工作副本复制(WC -&amp;gt; WC)的
+警告：为了与旧版本的 Subversion 兼容，使用两个工作副本复制(WC -&gt; WC)的
 操作不会与版本库通信。同样地，在缺省情况下，不能从复制源到目的地传播合
 并跟踪信息。
 
@@ -393,25 +405,25 @@ $ svn commit -m “removed file ‘c’.”&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.拷贝工作拷贝的一个项目（只是预定要拷贝—在提交之前不会影响版本库）：&lt;br&gt;
-$ svn copy foo.txt bar.txt&lt;/p&gt;
+<p>常用操作<br>
+1.拷贝工作拷贝的一个项目（只是预定要拷贝—在提交之前不会影响版本库）：<br>
+$ svn copy foo.txt bar.txt</p>
 
-&lt;p&gt;2.拷贝你的工作拷贝的一个项目到版本库的URL（直接的提交，所以需要提供一个提交信息）：&lt;br&gt;
-$ svn copy near.txt file:///tmp/repos/test/far-away.txt -m “Remote copy.”&lt;/p&gt;
+<p>2.拷贝你的工作拷贝的一个项目到版本库的URL（直接的提交，所以需要提供一个提交信息）：<br>
+$ svn copy near.txt file:///tmp/repos/test/far-away.txt -m “Remote copy.”</p>
 
-&lt;p&gt;3.拷贝版本库的一个项目到你的工作拷贝（只是预定要拷贝—在提交之前不会影响版本库）：&lt;br&gt;
-$ svn copy file:///tmp/repos/test/far-away near-here&lt;/p&gt;
+<p>3.拷贝版本库的一个项目到你的工作拷贝（只是预定要拷贝—在提交之前不会影响版本库）：<br>
+$ svn copy file:///tmp/repos/test/far-away near-here</p>
 
-&lt;p&gt;4.在URL之间拷贝：&lt;br&gt;
-$ svn copy file:///tmp/repos/test/far-away file:///tmp/repos/test/over-there -m “remote copy.”&lt;/p&gt;
+<p>4.在URL之间拷贝：<br>
+$ svn copy file:///tmp/repos/test/far-away file:///tmp/repos/test/over-there -m “remote copy.”</p>
 
-&lt;h4 id=&quot;svndelete&quot;&gt;svn delete 删除文件和目录&lt;/h4&gt;
+<h4 id="svndelete">svn delete 删除文件和目录</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;delete (del, remove, rm): 从版本库中删除文件和目录。
+<pre><code class="javascript">delete (del, remove, rm): 从版本库中删除文件和目录。
 用法: 1、delete PATH...
       2、delete URL...
 
@@ -446,22 +458,22 @@ $ svn copy file:///tmp/repos/test/far-away file:///tmp/repos/test/over-there -m 
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.使用svn从工作拷贝删除文件只是预定要删除，当你提交，文件才会从版本库删除。&lt;br&gt;
-$ svn delete myfile&lt;/p&gt;
+<p>常用操作<br>
+1.使用svn从工作拷贝删除文件只是预定要删除，当你提交，文件才会从版本库删除。<br>
+$ svn delete myfile</p>
 
-&lt;p&gt;2.然而直接删除一个URL，你需要提供一个日志信息：&lt;br&gt;
-$ svn delete -m “Deleting file ‘yourfile’” file:///tmp/repos/test/yourfile&lt;/p&gt;
+<p>2.然而直接删除一个URL，你需要提供一个日志信息：<br>
+$ svn delete -m “Deleting file ‘yourfile’” file:///tmp/repos/test/yourfile</p>
 
-&lt;p&gt;3.强制删除本地已修改文件的例子：&lt;br&gt;
-$ svn delete –force over-there&lt;/p&gt;
+<p>3.强制删除本地已修改文件的例子：<br>
+$ svn delete –force over-there</p>
 
-&lt;h4 id=&quot;svndiff&quot;&gt;svn diff 对比查看&lt;/h4&gt;
+<h4 id="svndiff">svn diff 对比查看</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;diff (di): 显示两个版本或路径的差异。
+<pre><code class="javascript">diff (di): 显示两个版本或路径的差异。
 用法: 1. diff [-c M | -r N[:M]] [TARGET[@REV]...]
       2. diff [-r N[:M]] --old=OLD-TGT[@OLDREV] [--new=NEW-TGT[@NEWREV]] \
                [PATH...]
@@ -527,37 +539,37 @@ $ svn delete –force over-there&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.比较BASE和你的工作拷贝（svn diff最经常的用法）：&lt;br&gt;
-$ svn diff COMMITTERS&lt;/p&gt;
+<p>常用操作<br>
+1.比较BASE和你的工作拷贝（svn diff最经常的用法）：<br>
+$ svn diff COMMITTERS</p>
 
-&lt;p&gt;2.查看文件COMMITTERS在修订版本9115修改的内容：&lt;br&gt;
-$ svn diff -c 9115 COMMITTERS&lt;/p&gt;
+<p>2.查看文件COMMITTERS在修订版本9115修改的内容：<br>
+$ svn diff -c 9115 COMMITTERS</p>
 
-&lt;p&gt;3.察看你的工作拷贝对旧的修订版本的修改：&lt;br&gt;
-$ svn diff -r 3900 COMMITTERS&lt;/p&gt;
+<p>3.察看你的工作拷贝对旧的修订版本的修改：<br>
+$ svn diff -r 3900 COMMITTERS</p>
 
-&lt;p&gt;4.使用“@”语法与修订版本3000和35000比较：&lt;br&gt;
-$ svn diff http://svn.collab.net/repos/svn/trunk/COMMITTERS@3000 http://svn.collab.net/repos/svn/trunk/COMMITTERS@3500&lt;/p&gt;
+<p>4.使用“@”语法与修订版本3000和35000比较：<br>
+$ svn diff http://svn.collab.net/repos/svn/trunk/COMMITTERS@3000 http://svn.collab.net/repos/svn/trunk/COMMITTERS@3500</p>
 
-&lt;p&gt;5.使用范围符号来比较修订版本3000和3500（在这种情况下只能传递一个URL）：&lt;br&gt;
-$ svn diff -r 3000:3500 http://svn.collab.net/repos/svn/trunk/COMMITTERS&lt;/p&gt;
+<p>5.使用范围符号来比较修订版本3000和3500（在这种情况下只能传递一个URL）：<br>
+$ svn diff -r 3000:3500 http://svn.collab.net/repos/svn/trunk/COMMITTERS</p>
 
-&lt;p&gt;6.使用范围符号比较修订版本3000和3500trunk中的所有文件：&lt;br&gt;
-$ svn diff -r 3000:3500 http://svn.collab.net/repos/svn/trunk&lt;/p&gt;
+<p>6.使用范围符号比较修订版本3000和3500trunk中的所有文件：<br>
+$ svn diff -r 3000:3500 http://svn.collab.net/repos/svn/trunk</p>
 
-&lt;p&gt;7.使用范围符号比较修订版本3000和3500trunk中的三个文件：&lt;br&gt;
-$ svn diff -r 3000:3500 –old http://svn.collab.net/repos/svn/trunk COMMITTERS README HACKING&lt;/p&gt;
+<p>7.使用范围符号比较修订版本3000和3500trunk中的三个文件：<br>
+$ svn diff -r 3000:3500 –old http://svn.collab.net/repos/svn/trunk COMMITTERS README HACKING</p>
 
-&lt;p&gt;8.如果你有工作拷贝，你不必输入这么长的URL：&lt;br&gt;
-$ svn diff -r 3000:3500 COMMITTERS&lt;/p&gt;
+<p>8.如果你有工作拷贝，你不必输入这么长的URL：<br>
+$ svn diff -r 3000:3500 COMMITTERS</p>
 
-&lt;h4 id=&quot;svnexport&quot;&gt;svn export 导出&lt;/h4&gt;
+<h4 id="svnexport">svn export 导出</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;export: 产生一个无版本控制的目录树副本。
+<pre><code class="javascript">export: 产生一个无版本控制的目录树副本。
 用法: 1、export [-r REV] URL[@PEGREV] [PATH]
       2、export [-r REV] PATH1[@PEGREV] [PATH2]
 
@@ -602,19 +614,19 @@ $ svn diff -r 3000:3500 COMMITTERS&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.从你的工作拷贝导出（不会打印每一个文件和目录）：&lt;br&gt;
-$ svn export a-wc my-export&lt;/p&gt;
+<p>常用操作<br>
+1.从你的工作拷贝导出（不会打印每一个文件和目录）：<br>
+$ svn export a-wc my-export</p>
 
-&lt;p&gt;2.从版本库导出目录（打印所有的文件和目录）：&lt;br&gt;
-$ svn export file:///tmp/repos my-export&lt;/p&gt;
+<p>2.从版本库导出目录（打印所有的文件和目录）：<br>
+$ svn export file:///tmp/repos my-export</p>
 
-&lt;h4 id=&quot;svnimport&quot;&gt;svn import 纳入版本控制&lt;/h4&gt;
+<h4 id="svnimport">svn import 纳入版本控制</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;import: 将未纳入版本控制的文件或目录树提交到版本库。
+<pre><code class="javascript">import: 将未纳入版本控制的文件或目录树提交到版本库。
 用法: import [PATH] URL
 
   递归地提交 PATH 的副本至 URL。
@@ -650,19 +662,19 @@ $ svn export file:///tmp/repos my-export&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.这将本地目录myproj导入到版本库的trunk/misc，trunk/misc在导入之前不需要存在—svn import会递归的为你创建目录。&lt;br&gt;
-$ svn import -m “New import” myproj http://svn.red-bean.com/repos/trunk/misc&lt;/p&gt;
+<p>常用操作<br>
+1.这将本地目录myproj导入到版本库的trunk/misc，trunk/misc在导入之前不需要存在—svn import会递归的为你创建目录。<br>
+$ svn import -m “New import” myproj http://svn.red-bean.com/repos/trunk/misc</p>
 
-&lt;p&gt;2.需要知道这样不会在版本库创建目录myproj，如果你希望这样，请在URL后添加myproj：&lt;br&gt;
-$ svn import -m “New import” myproj http://svn.red-bean.com/repos/trunk/misc/myproj&lt;/p&gt;
+<p>2.需要知道这样不会在版本库创建目录myproj，如果你希望这样，请在URL后添加myproj：<br>
+$ svn import -m “New import” myproj http://svn.red-bean.com/repos/trunk/misc/myproj</p>
 
-&lt;h4 id=&quot;svninfo&quot;&gt;svn info 显示本地或远程条目的信息&lt;/h4&gt;
+<h4 id="svninfo">svn info 显示本地或远程条目的信息</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;info: 显示本地或远程条目的信息。
+<pre><code class="javascript">info: 显示本地或远程条目的信息。
 用法: info [TARGET[@REV]...]
 
   显示每个 TARGET 的信息 (默认: “.”)。
@@ -697,22 +709,22 @@ $ svn import -m “New import” myproj http://svn.red-bean.com/repos/trunk/misc
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.svn info会展示工作拷贝所有项目的所有有用信息，它会显示文件的信息：&lt;br&gt;
-$ svn info foo.c&lt;/p&gt;
+<p>常用操作<br>
+1.svn info会展示工作拷贝所有项目的所有有用信息，它会显示文件的信息：<br>
+$ svn info foo.c</p>
 
-&lt;p&gt;2.它也会展示目录的信息：&lt;br&gt;
-$ svn info vendors&lt;/p&gt;
+<p>2.它也会展示目录的信息：<br>
+$ svn info vendors</p>
 
-&lt;p&gt;3.svn info也可以针对URL操作：&lt;br&gt;
-$ svn info http://svn.red-bean.com/repos/test/readme.doc&lt;/p&gt;
+<p>3.svn info也可以针对URL操作：<br>
+$ svn info http://svn.red-bean.com/repos/test/readme.doc</p>
 
-&lt;h4 id=&quot;svnlock&quot;&gt;svn lock 锁定版本库中的路径&lt;/h4&gt;
+<h4 id="svnlock">svn lock 锁定版本库中的路径</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;lock: 锁定版本库中的路径，使得其他用户不能向其提交修改。
+<pre><code class="javascript">lock: 锁定版本库中的路径，使得其他用户不能向其提交修改。
 用法: lock TARGET...
 
      使用 --force 选项可以从其他用户或工作副本窃取到锁。
@@ -736,23 +748,23 @@ $ svn info http://svn.red-bean.com/repos/test/readme.doc&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.在工作拷贝锁定两个文件：&lt;br&gt;
-$ svn lock tree.jpg house.jpg&lt;/p&gt;
+<p>常用操作<br>
+1.在工作拷贝锁定两个文件：<br>
+$ svn lock tree.jpg house.jpg</p>
 
-&lt;p&gt;2.锁定工作拷贝的一个被其它用户锁定的文件：&lt;br&gt;
-$ svn lock tree.jpg&lt;br&gt;
-$ svn lock –force tree.jpg&lt;/p&gt;
+<p>2.锁定工作拷贝的一个被其它用户锁定的文件：<br>
+$ svn lock tree.jpg<br>
+$ svn lock –force tree.jpg</p>
 
-&lt;p&gt;3.没有工作拷贝的情况下锁定文件：&lt;br&gt;
-$ svn lock http://svn.red-bean.com/repos/test/tree.jpg&lt;/p&gt;
+<p>3.没有工作拷贝的情况下锁定文件：<br>
+$ svn lock http://svn.red-bean.com/repos/test/tree.jpg</p>
 
-&lt;h4 id=&quot;svnlog&quot;&gt;svn log 查看日志&lt;/h4&gt;
+<h4 id="svnlog">svn log 查看日志</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;log: 显示一组版本与/或文件的提交日志信息。
+<pre><code class="javascript">log: 显示一组版本与/或文件的提交日志信息。
 用法: 1、log [PATH]
       2、log URL[@REV] [PATH...]
 
@@ -795,31 +807,31 @@ $ svn lock http://svn.red-bean.com/repos/test/tree.jpg&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.查看最近3个版本日志&lt;br&gt;
-svn log [PATH] -v -l3&lt;/p&gt;
+<p>常用操作<br>
+1.查看最近3个版本日志<br>
+svn log [PATH] -v -l3</p>
 
-&lt;p&gt;2.查看某两个版本，用来对比&lt;br&gt;
-svn log -r 14:15&lt;/p&gt;
+<p>2.查看某两个版本，用来对比<br>
+svn log -r 14:15</p>
 
-&lt;p&gt;3.日志放入文件&lt;br&gt;
-$ svn log -r 14 &gt; mylog&lt;br&gt;
-$ svn log -r 19 &gt;&gt; mylog&lt;br&gt;
-$ svn log -r 27 &gt;&gt; mylog&lt;br&gt;
-$ cat mylog&lt;/p&gt;
+<p>3.日志放入文件<br>
+$ svn log -r 14 > mylog<br>
+$ svn log -r 19 >> mylog<br>
+$ svn log -r 27 >> mylog<br>
+$ cat mylog</p>
 
-&lt;p&gt;或者&lt;br&gt;
-$ svn log –incremental -r 14 &gt; mylog&lt;br&gt;
-$ svn log –incremental -r 19 &gt;&gt; mylog&lt;br&gt;
-$ svn log –incremental -r 27 &gt;&gt; mylog&lt;br&gt;
-$ cat mylog&lt;/p&gt;
+<p>或者<br>
+$ svn log –incremental -r 14 > mylog<br>
+$ svn log –incremental -r 19 >> mylog<br>
+$ svn log –incremental -r 27 >> mylog<br>
+$ cat mylog</p>
 
-&lt;h4 id=&quot;svnmerge&quot;&gt;svn merge 将两个源差异应用至工作副本&lt;/h4&gt;
+<h4 id="svnmerge">svn merge 将两个源差异应用至工作副本</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;merge: 将两个源差异应用至工作副本。
+<pre><code class="javascript">merge: 将两个源差异应用至工作副本。
 用法:  1. merge sourceURL1[@N] sourceURL2[@M] [WCPATH]
        2. merge sourceWCPATH1@N sourceWCPATH2@M [WCPATH]
        3. merge [-c M[,N...] | -r N:M ...] SOURCE[@REV] [WCPATH]
@@ -892,22 +904,22 @@ $ cat mylog&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.将一个分支合并回主干（假定你有一份主干的工作拷贝，分支在修订版本250创建）：&lt;br&gt;
-$ svn merge -r 250:HEAD http://svn.red-bean.com/repos/branches/my-branch&lt;/p&gt;
+<p>常用操作<br>
+1.将一个分支合并回主干（假定你有一份主干的工作拷贝，分支在修订版本250创建）：<br>
+$ svn merge -r 250:HEAD http://svn.red-bean.com/repos/branches/my-branch</p>
 
-&lt;p&gt;2.如果你的分支在修订版本23，你希望将主干的修改合并到分支，你可以在你的工作拷贝的分支上这样做：&lt;br&gt;
-$ svn merge -r 23:30 file:///tmp/repos/trunk/vendors&lt;/p&gt;
+<p>2.如果你的分支在修订版本23，你希望将主干的修改合并到分支，你可以在你的工作拷贝的分支上这样做：<br>
+$ svn merge -r 23:30 file:///tmp/repos/trunk/vendors</p>
 
-&lt;p&gt;3.合并一个单独文件的修改：&lt;br&gt;
-$ svn merge -r 30:31 thhgttg.txt&lt;/p&gt;
+<p>3.合并一个单独文件的修改：<br>
+$ svn merge -r 30:31 thhgttg.txt</p>
 
-&lt;h4 id=&quot;svnmergeinfo&quot;&gt;svn mergeinfo 显示合并的相关信息&lt;/h4&gt;
+<h4 id="svnmergeinfo">svn mergeinfo 显示合并的相关信息</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;mergeinfo: 显示合并的相关信息。
+<pre><code class="javascript">mergeinfo: 显示合并的相关信息。
 用法: mergeinfo SOURCE[@REV] [TARGET[@REV]]
 
   显示 SOURCE 与 TARGET(默认为 “.”) 之间的合并(或潜在合并)信息。如果没有
@@ -937,16 +949,16 @@ $ svn merge -r 30:31 thhgttg.txt&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.查看分支目录合并信息&lt;br&gt;
-$ svn mergeinfo branches/test&lt;/p&gt;
+<p>常用操作<br>
+1.查看分支目录合并信息<br>
+$ svn mergeinfo branches/test</p>
 
-&lt;h4 id=&quot;svnmkdir&quot;&gt;svn mkdir 创建纳入版本控制的新目录&lt;/h4&gt;
+<h4 id="svnmkdir">svn mkdir 创建纳入版本控制的新目录</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;mkdir: 创建纳入版本控制的新目录。
+<pre><code class="javascript">mkdir: 创建纳入版本控制的新目录。
 用法: 1、mkdir PATH...
       2、mkdir URL...
 
@@ -982,16 +994,16 @@ $ svn mergeinfo branches/test&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.在工作副本创建一个目录：&lt;br&gt;
-$ svn mkdir newdir&lt;/p&gt;
+<p>常用操作<br>
+1.在工作副本创建一个目录：<br>
+$ svn mkdir newdir</p>
 
-&lt;h4 id=&quot;svnmove&quot;&gt;svn move 移动或改名文件或目录&lt;/h4&gt;
+<h4 id="svnmove">svn move 移动或改名文件或目录</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;move (mv, rename, ren): 在工作副本或版本库中移动或改名文件或目录。
+<pre><code class="javascript">move (mv, rename, ren): 在工作副本或版本库中移动或改名文件或目录。
 用法: move SRC... DST
 
 当移动多个源时，它们作为 DST 的子节点增加，DST 必须是目录。
@@ -1000,8 +1012,8 @@ $ svn mkdir newdir&lt;/p&gt;
   注意: 此命令中 --revision 选项没有作用，已经淘汰。
 
   SRC 可同时为工作副本(WC) 路径或 URL:
-    WC  -&amp;gt; WC  :  移动并加入新增调度 (连同历史记录)
-    URL -&amp;gt; URL :  完全是服务器端更名。
+    WC  -&gt; WC  :  移动并加入新增调度 (连同历史记录)
+    URL -&gt; URL :  完全是服务器端更名。
   所有 SRC 必须是同一类型。
 
 有效选项:
@@ -1035,19 +1047,19 @@ $ svn mkdir newdir&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.移动工作拷bede一个文件：&lt;br&gt;
-$ svn move foo.c bar.c&lt;/p&gt;
+<p>常用操作<br>
+1.移动工作拷bede一个文件：<br>
+$ svn move foo.c bar.c</p>
 
-&lt;p&gt;2.移动工作副本的一些文件到子目录：&lt;br&gt;
-$ svn move baz.c bat.c qux.c src&lt;/p&gt;
+<p>2.移动工作副本的一些文件到子目录：<br>
+$ svn move baz.c bat.c qux.c src</p>
 
-&lt;h4 id=&quot;svnpropdel&quot;&gt;svn propdel 删除目录、文件或版本的属性&lt;/h4&gt;
+<h4 id="svnpropdel">svn propdel 删除目录、文件或版本的属性</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;propdel (pdel, pd): 删除目录、文件或版本的属性。
+<pre><code class="javascript">propdel (pdel, pd): 删除目录、文件或版本的属性。
 用法: 1、propdel PROPNAME [PATH...]
       2、propdel PROPNAME --revprop -r REV [URL]
 
@@ -1081,19 +1093,19 @@ $ svn move baz.c bat.c qux.c src&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.删除你的工作副本中一个文件的一个属性：&lt;br&gt;
-$ svn propdel svn:mime-type some-script&lt;/p&gt;
+<p>常用操作<br>
+1.删除你的工作副本中一个文件的一个属性：<br>
+$ svn propdel svn:mime-type some-script</p>
 
-&lt;p&gt;2.删除一个修订版本的属性：&lt;br&gt;
-$ svn propdel –revprop -r 26 release-date&lt;/p&gt;
+<p>2.删除一个修订版本的属性：<br>
+$ svn propdel –revprop -r 26 release-date</p>
 
-&lt;h4 id=&quot;svnpropedit&quot;&gt;svn propedit 编辑属性&lt;/h4&gt;
+<h4 id="svnpropedit">svn propedit 编辑属性</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;propedit (pedit, pe): 使用外部编辑器编辑属性。
+<pre><code class="javascript">propedit (pedit, pe): 使用外部编辑器编辑属性。
 用法: 1、propedit PROPNAME TARGET...
       2、propedit PROPNAME --revprop -r REV [TARGET]
 
@@ -1133,16 +1145,16 @@ $ svn propdel –revprop -r 26 release-date&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.svn propedit对修改多个值的属性非常简单：&lt;br&gt;
-$ svn propedit svn:keywords foo.c&lt;/p&gt;
+<p>常用操作<br>
+1.svn propedit对修改多个值的属性非常简单：<br>
+$ svn propedit svn:keywords foo.c</p>
 
-&lt;h4 id=&quot;svnpropget&quot;&gt;svn propget 显示目录、文件或版本的属性取值&lt;/h4&gt;
+<h4 id="svnpropget">svn propget 显示目录、文件或版本的属性取值</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;propget (pget, pg): 显示目录、文件或版本的属性取值。
+<pre><code class="javascript">propget (pget, pg): 显示目录、文件或版本的属性取值。
 用法:  1、propget PROPNAME [TARGET[@REV]...]
        2、propget PROPNAME --revprop -r REV [URL]
 
@@ -1184,19 +1196,19 @@ $ svn propedit svn:keywords foo.c&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.检查工作副本的一个文件的一个属性：&lt;br&gt;
-$ svn propget svn:keywords foo.c&lt;/p&gt;
+<p>常用操作<br>
+1.检查工作副本的一个文件的一个属性：<br>
+$ svn propget svn:keywords foo.c</p>
 
-&lt;p&gt;2.对于修订版本属性相同：&lt;br&gt;
-$ svn propget svn:log –revprop -r 20&lt;/p&gt;
+<p>2.对于修订版本属性相同：<br>
+$ svn propget svn:log –revprop -r 20</p>
 
-&lt;h4 id=&quot;svnproplist&quot;&gt;svn proplist 列出目录、文件或版本的所有属性&lt;/h4&gt;
+<h4 id="svnproplist">svn proplist 列出目录、文件或版本的所有属性</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;proplist (plist, pl): 列出目录、文件或版本的所有属性。
+<pre><code class="javascript">proplist (plist, pl): 列出目录、文件或版本的所有属性。
 用法:  1、proplist [TARGET[@REV]...]
        2、proplist --revprop -r REV [TARGET]
 
@@ -1232,19 +1244,19 @@ $ svn propget svn:log –revprop -r 20&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.你可以使用proplist看到你工作拷贝的属性：&lt;br&gt;
-$ svn proplist foo.c&lt;/p&gt;
+<p>常用操作<br>
+1.你可以使用proplist看到你工作拷贝的属性：<br>
+$ svn proplist foo.c</p>
 
-&lt;p&gt;2.使用 –verbose参数，将更清楚的显示工作拷贝的属性：&lt;br&gt;
-$ svn proplist –verbose foo.c&lt;/p&gt;
+<p>2.使用 –verbose参数，将更清楚的显示工作拷贝的属性：<br>
+$ svn proplist –verbose foo.c</p>
 
-&lt;h4 id=&quot;svnpropset&quot;&gt;svn propset 设定目录、文件或版本的属性&lt;/h4&gt;
+<h4 id="svnpropset">svn propset 设定目录、文件或版本的属性</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;propset (pset, ps): 设定目录、文件或版本的属性。
+<pre><code class="javascript">propset (pset, ps): 设定目录、文件或版本的属性。
 用法: 1. propset PROPNAME PROPVAL PATH...
       2. propset PROPNAME --revprop -r REV PROPVAL [TARGET]
 
@@ -1327,25 +1339,25 @@ $ svn proplist –verbose foo.c&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.给文件设置MIME type属性:&lt;br&gt;
-$ svn propset svn:mime-type image/jpeg foo.jpg&lt;/p&gt;
+<p>常用操作<br>
+1.给文件设置MIME type属性:<br>
+$ svn propset svn:mime-type image/jpeg foo.jpg</p>
 
-&lt;p&gt;2.在UNIX系统，如果你希望一个文件设置执行权限：&lt;br&gt;
-$ svn propset svn:executable ON somescript&lt;/p&gt;
+<p>2.在UNIX系统，如果你希望一个文件设置执行权限：<br>
+$ svn propset svn:executable ON somescript</p>
 
-&lt;p&gt;3.或许为了合作者的利益你有一个内部的属性设置：&lt;br&gt;
-$ svn propset owner sally foo.c&lt;/p&gt;
+<p>3.或许为了合作者的利益你有一个内部的属性设置：<br>
+$ svn propset owner sally foo.c</p>
 
-&lt;p&gt;4.如果你在特定修订版本的日志信息里有一些错误，并且希望修改，可以使用–revprop设置svn:log为新的日志信息： &lt;br&gt;
-$ svn propset –revprop -r 25 svn:log “Journaled about trip to New York.”&lt;/p&gt;
+<p>4.如果你在特定修订版本的日志信息里有一些错误，并且希望修改，可以使用–revprop设置svn:log为新的日志信息： <br>
+$ svn propset –revprop -r 25 svn:log “Journaled about trip to New York.”</p>
 
-&lt;h4 id=&quot;svnresolve&quot;&gt;svn resolve 解决工作副本中目录或文件的冲突&lt;/h4&gt;
+<h4 id="svnresolve">svn resolve 解决工作副本中目录或文件的冲突</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;resolve: 解决工作副本中目录或文件的冲突。
+<pre><code class="javascript">resolve: 解决工作副本中目录或文件的冲突。
 用法: resolve --accept=ARG [PATH...]
 
   注意:  当前需要选项 --accept 。
@@ -1370,28 +1382,28 @@ $ svn propset –revprop -r 25 svn:log “Journaled about trip to New York.”&l
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1、svn update后，1.txt文件出现冲突，选择base版本，即1.txt.rOld作为最后提交的版本&lt;br&gt;
-$ svn resolve –accept base&lt;/p&gt;
+<p>常用操作<br>
+1、svn update后，1.txt文件出现冲突，选择base版本，即1.txt.rOld作为最后提交的版本<br>
+$ svn resolve –accept base</p>
 
-&lt;p&gt;2.手工修改1.txt文件，然后将当前拷贝即1.txt作为最后提交的版本&lt;br&gt;
-$ svn resolve –accept working 1.txt&lt;/p&gt;
+<p>2.手工修改1.txt文件，然后将当前拷贝即1.txt作为最后提交的版本<br>
+$ svn resolve –accept working 1.txt</p>
 
-&lt;p&gt;3.使用1.txt.rNew作为最后提交的版本&lt;br&gt;
-$ svn resolve –accept theirs-full 1.txt&lt;/p&gt;
+<p>3.使用1.txt.rNew作为最后提交的版本<br>
+$ svn resolve –accept theirs-full 1.txt</p>
 
-&lt;p&gt;4.使用1.txt.mine作为最后提交的版本 &lt;br&gt;
-$ svn resolve –accept mine-full 1.txt&lt;/p&gt;
+<p>4.使用1.txt.mine作为最后提交的版本 <br>
+$ svn resolve –accept mine-full 1.txt</p>
 
-&lt;p&gt;5.使用1.txt.mine作为最后提交的版本 &lt;br&gt;
-$ svn resolve –accept theirs-conflict 1.txt&lt;/p&gt;
+<p>5.使用1.txt.mine作为最后提交的版本 <br>
+$ svn resolve –accept theirs-conflict 1.txt</p>
 
-&lt;h4 id=&quot;svnresolved&quot;&gt;svn resolved 删除工作副本中目录或文件的“冲突”状态&lt;/h4&gt;
+<h4 id="svnresolved">svn resolved 删除工作副本中目录或文件的“冲突”状态</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;resolved: 删除工作副本中目录或文件的“冲突”状态。
+<pre><code class="javascript">resolved: 删除工作副本中目录或文件的“冲突”状态。
 用法: resolved PATH...
 
   注意: 本子命令不会依语法来解决冲突或是删除冲突标记；它只是删除冲突相关的
@@ -1415,16 +1427,16 @@ $ svn resolve –accept theirs-conflict 1.txt&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1、当你解决了foo.c的冲突，并且准备提交，运行svn resolved让你的工作拷贝知道你已经完成了所有事情。&lt;br&gt;
-$ svn resolved foo.c&lt;/p&gt;
+<p>常用操作<br>
+1、当你解决了foo.c的冲突，并且准备提交，运行svn resolved让你的工作拷贝知道你已经完成了所有事情。<br>
+$ svn resolved foo.c</p>
 
-&lt;h4 id=&quot;svnrevert&quot;&gt;svn revert 将工作副本文件恢复到原始版本&lt;/h4&gt;
+<h4 id="svnrevert">svn revert 将工作副本文件恢复到原始版本</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;revert: 将工作副本文件恢复到原始版本(恢复大部份的本地修改)。
+<pre><code class="javascript">revert: 将工作副本文件恢复到原始版本(恢复大部份的本地修改)。
 用法: revert PATH...
 
   注意: 本子命令不会访问网络，它解除任何冲突的状态。
@@ -1449,23 +1461,23 @@ $ svn resolved foo.c&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1、丢弃对一个文件的修改：&lt;br&gt;
-$ svn revert foo.c&lt;/p&gt;
+<p>常用操作<br>
+1、丢弃对一个文件的修改：<br>
+$ svn revert foo.c</p>
 
-&lt;p&gt;2.如果你希望恢复一整个目录的文件，可以使用–recursive选项：&lt;br&gt;
-$ svn revert –recursive .&lt;/p&gt;
+<p>2.如果你希望恢复一整个目录的文件，可以使用–recursive选项：<br>
+$ svn revert –recursive .</p>
 
-&lt;p&gt;3.最后，你可以取消预定的操作：&lt;br&gt;
-$ svn add mistake.txt whoops&lt;br&gt;
-$ svn revert mistake.txt whoops&lt;/p&gt;
+<p>3.最后，你可以取消预定的操作：<br>
+$ svn add mistake.txt whoops<br>
+$ svn revert mistake.txt whoops</p>
 
-&lt;h4 id=&quot;svnstatus&quot;&gt;svn status 显示工作副本中目录与文件的状态&lt;/h4&gt;
+<h4 id="svnstatus">svn status 显示工作副本中目录与文件的状态</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;status (stat, st): 显示工作副本中目录与文件的状态。
+<pre><code class="javascript">status (stat, st): 显示工作副本中目录与文件的状态。
 用法: status [PATH...]
 
   未指定参数时，只显示本地修改的条目(没有网络访问)。
@@ -1545,7 +1557,7 @@ $ svn revert mistake.txt whoops&lt;/p&gt;
     svn status
      M      wc/bar.c
     !     C wc/qaz.c
-          &amp;gt;   local missing, incoming edit upon update
+          &gt;   local missing, incoming edit upon update
     D       wc/qax.c
 
 有效选项:
@@ -1572,12 +1584,12 @@ $ svn revert mistake.txt whoops&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;h4 id=&quot;svnswitch&quot;&gt;svn switch 更新工作副本至不同的URL&lt;/h4&gt;
+<h4 id="svnswitch">svn switch 更新工作副本至不同的URL</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;switch (sw): 更新工作副本至不同的URL。
+<pre><code class="javascript">switch (sw): 更新工作副本至不同的URL。
 用法:  1、switch URL[@PEGREV] [PATH]
        2、switch --relocate FROM TO [PATH...]
 
@@ -1633,19 +1645,19 @@ $ svn revert mistake.txt whoops&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1、如果你目前所在目录vendors分支到vendors-with-fix，你希望转移到那个分支：&lt;br&gt;
-$ svn switch http://svn.red-bean.com/repos/branches/vendors-with-fix .&lt;/p&gt;
+<p>常用操作<br>
+1、如果你目前所在目录vendors分支到vendors-with-fix，你希望转移到那个分支：<br>
+$ svn switch http://svn.red-bean.com/repos/branches/vendors-with-fix .</p>
 
-&lt;p&gt;2.为了跳转回来，只需要提供最初取出工作拷贝的版本库URL：&lt;br&gt;
-$ svn switch http://svn.red-bean.com/repos/trunk/vendors .&lt;/p&gt;
+<p>2.为了跳转回来，只需要提供最初取出工作拷贝的版本库URL：<br>
+$ svn switch http://svn.red-bean.com/repos/trunk/vendors .</p>
 
-&lt;h4 id=&quot;svnunlock&quot;&gt;svn unlock 解除工作副本或URL的锁定&lt;/h4&gt;
+<h4 id="svnunlock">svn unlock 解除工作副本或URL的锁定</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;unlock: 解除工作副本或URL的锁定。
+<pre><code class="javascript">unlock: 解除工作副本或URL的锁定。
 用法: unlock TARGET...
 
     使用 --force 终止锁定。
@@ -1665,22 +1677,22 @@ $ svn switch http://svn.red-bean.com/repos/trunk/vendors .&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
-&lt;p&gt;常用操作&lt;br&gt;
-1.解锁工作拷贝中的两个文件：&lt;br&gt;
-$ svn unlock tree.jpg house.jpg&lt;/p&gt;
+<p>常用操作<br>
+1.解锁工作拷贝中的两个文件：<br>
+$ svn unlock tree.jpg house.jpg</p>
 
-&lt;p&gt;2.解锁工作拷贝的一个被其他用户锁定的文件：&lt;br&gt;
-$ svn unlock tree.jpg&lt;/p&gt;
+<p>2.解锁工作拷贝的一个被其他用户锁定的文件：<br>
+$ svn unlock tree.jpg</p>
 
-&lt;p&gt;3.没有工作拷贝时解锁一个文件：&lt;br&gt;
-$ svn unlock http://svn.red-bean.com/repos/test/tree.jpg&lt;/p&gt;
+<p>3.没有工作拷贝时解锁一个文件：<br>
+$ svn unlock http://svn.red-bean.com/repos/test/tree.jpg</p>
 
-&lt;h4 id=&quot;svnupdate&quot;&gt;svn update 将版本库的修改合并到工作副本中&lt;/h4&gt;
+<h4 id="svnupdate">svn update 将版本库的修改合并到工作副本中</h4>
 
 
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;update (up): 将版本库的修改合并到工作副本中。
+<pre><code class="javascript">update (up): 将版本库的修改合并到工作副本中。
 用法: update [PATH...]
 
   如果没有指定版本，则将工作副本更新到 HEAD 版本。否则同步到 -r 选项所
@@ -1743,540 +1755,39 @@ $ svn unlock http://svn.red-bean.com/repos/test/tree.jpg&lt;/p&gt;
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;常用操作&lt;br&gt;
-1.获取你上次更新之后版本库的修改：&lt;br&gt;
-$ svn update&lt;/p&gt;
-
-&lt;p&gt;2.你也可以将工作拷贝更新到旧的修订版本&lt;br&gt;
-$ svn update -r30&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>页面中多 iframe 传值</title>
-   <link href="http://tom.preston-werner.com/2014/12/13/iframe-by-value.html"/>
-   <updated>2014-12-13T00:00:00+08:00</updated>
-   <id>http://tom.preston-werner.com/2014/12/13/iframe-by-value</id>
-   <content type="html">&lt;h3&gt;关于 iframe 传值&lt;/h3&gt;
-
-&lt;blockquote&gt;&lt;p&gt;如果一个页面中有多个 iframe 如何做到互相调用函数和传值。js 默认自带 只能子页面调用和修改父页面的函数或变量。没有 iframe 之间的调用，那么就要想一些办法&lt;/p&gt;&lt;/blockquote&gt;
-
-&lt;h4&gt;办法1：&lt;/h4&gt;
-
-&lt;p&gt;当 iframe 页面加载的时候在 window 保存在父页面的变量中&lt;/p&gt;
-
-&lt;p&gt;父页面：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var iframeObj = {};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;子页面（iframe）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;window.onload = function(){
-    top.window.iframeObj['iframe1'] = window;
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;如果我们要在一个 iframe 中调用另外一个 iframe 的时候可以这样做&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var iframe2 = top.window.iframeObj['iframe2'];
-iframe2.info();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4&gt;实例&lt;/h4&gt;
-
-&lt;iframe  frameborder=&quot;0&quot; scrolling=&quot;no&quot; src=&quot;/resource/iframebyvalue/demo1.html&quot; width=&quot;600&quot; height=&quot;200&quot;&gt;&lt;/iframe&gt;
-
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;h4&gt;方法2&lt;/h4&gt;
-
-&lt;p&gt;在子页面（iframe）里面监听 hash 的改变，通过 hash 来达到传值的目的&lt;/p&gt;
-
-&lt;p&gt;子页面（iframe）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var hash = location.hash;
-window.onload = function(){
-    setInterval(function(){
-        var tmpHash = location.hash;
-        if(hash != tmpHash &amp;amp;&amp;amp; tmpHash != ''){
-            hash = tmpHash;
-            var call = hash.slice(1, hash.length);
-            try{
-                eval(call+&quot;()&quot;);
-            }catch(e){
-
-            }
-        }
-    }, 100);
-};
-function callInfo(){
-    var iframe4 = top.window.document
-    iframe4 = iframe4.getElementById('iframe4')['contentDocument'];
-    iframe4.location.hash = '#callInfoRun';
-}
-function callInfoRun(){
-    alert('我是页面 3 的 callInfo 方法');
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4&gt;实例&lt;/h4&gt;
-
-&lt;iframe  frameborder=&quot;0&quot; scrolling=&quot;no&quot; src=&quot;/resource/iframebyvalue/demo2.html&quot; width=&quot;600&quot; height=&quot;200&quot;&gt;&lt;/iframe&gt;
-
-
-&lt;p&gt; 测试代码下载 &lt;a href=&quot;/resource/iframebyvalue/iframe.zip&quot;&gt;点击下载&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;如果你还有其他的方法请加 QQ 群讨论吧 239147101&lt;/li&gt;
-&lt;/ul&gt;
-
-</content>
- </entry>
- 
- <entry>
-   <title>Connect 中间件使用解析</title>
-   <link href="http://tom.preston-werner.com/2014/12/13/connect-using-the-analytical.html"/>
-   <updated>2014-12-13T00:00:00+08:00</updated>
-   <id>http://tom.preston-werner.com/2014/12/13/connect-using-the-analytical</id>
-   <content type="html">&lt;h3&gt;Connect 介绍&lt;/h3&gt;
-
-&lt;p&gt; Connect是一款高性能、易插拔、开发中间件简单的中间件框架。正是因为这些特点，它在 Node.js 开发框架中是最流行的框架，到目前为止 Connect 有已多达 &lt;a href=&quot;https://github.com/senchalabs/connect/wiki&quot;&gt;200&lt;/a&gt; 个中间件插件。并且著名的 Express 框架的基础架构也是依赖 Connect 中间件&lt;/p&gt;
-
-&lt;p&gt; 有人把 Connect 框架比作层层的过滤网。每个中间件在http处理过程中通过改写request或（和）response的数据、状态，实现了特定的功能。但是我自己认为 Connect 就像一个加工厂，进入某个路由的时候由这个路由所绑定的中间件对路由进行处理和加工，把最后的结果返回出去（出厂）。&lt;/p&gt;
-
-&lt;p&gt; &lt;strong&gt;我使用的版本的 2.9.0&lt;/strong&gt;
- 你可以通过 &lt;code&gt;npm install -g connect@2.9.0&lt;/code&gt; 进行安装（这个版本内置了基础的中间件，如果你使用更高版本是没有内置中间件的）&lt;/p&gt;
-
-&lt;h4&gt;写一个简单的 WEB 服务器&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var Connect = require('connect'),
-    app = Connect();
-
-app.use(function(req, res){
-    res.end('Hello World!');
-}).listen(3000);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;现在访问一下&lt;code&gt;http://localhost:3000/&lt;/code&gt; 页面上显示 Hello World!&lt;/p&gt;
-
-&lt;p&gt;也可以这样创建 WEB 服务器&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var Connect = require('connect'),
-    app = Connect(),
-    http = require('http');
-
-app.use(function(req, res){
-    res.end('Hello World Hello Node.js!');
-});
-http.createServer(app).listen(3000)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Connect 处理流程&lt;br&gt;
-&lt;img src=&quot;http://182.92.214.162/blog/images/javascript/connect-process.png&quot; alt=&quot;connect处理流程&quot;/&gt;
-&lt;br&gt;&lt;/p&gt;
-
-&lt;p&gt;Connect 提供了 WEB 开发的常用基本插件。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;bodyParser    // 请求内容解析中间件&lt;/li&gt;
-&lt;li&gt;multipart     // 文件上传中间件&lt;/li&gt;
-&lt;li&gt;cookieParser  // cookie 解析中间件&lt;/li&gt;
-&lt;li&gt;session       // session 会话中间件&lt;/li&gt;
-&lt;li&gt;static        // 静态文件处理中间件&lt;/li&gt;
-&lt;li&gt;vhost         // 虚拟二级域名映射中间件&lt;/li&gt;
-&lt;li&gt;favicon       // 网页图标中间件&lt;/li&gt;
-&lt;li&gt;等等一些列的中间件&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;h4&gt;对 Connect 源码分析&lt;/h4&gt;
-
-&lt;h5&gt;connect.js&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;/*!
- * Connect
- * Copyright(c) 2010 Sencha Inc.
- * Copyright(c) 2011 TJ Holowaychuk
- * MIT Licensed
- */
-
-/**
- * Module dependencies.
- */
-// 引入必须的模块
-var EventEmitter = require('events').EventEmitter
-  , proto = require('./proto')
-  , utils = require('./utils')
-  , path = require('path')
-  , basename = path.basename
-  , fs = require('fs');
-
-// node patches
-
-require('./patch');
-
-// expose createServer() as the module
-
-exports = module.exports = createServer;
-
-/**
- * Framework version.
- */
-
-exports.version = '2.7.11';
-
-/**
- * Expose mime module.
- */
-
-exports.mime = require('./middleware/static').mime;
-
-/**
- * Expose the prototype.
- */
-
-exports.proto = proto;
-
-/**
- * Auto-load middleware getters.
- */
-
-exports.middleware = {};
-
-/**
- * Expose utilities.
- */
-
-exports.utils = utils;
-
-/**
- * Create a new connect server.
- *
- * @return {Function}
- * @api public
- */
-// 创建服务 Connect()
-function createServer() {
-  // 这个函数会给 http.createServer 使用
-  function app(req, res, next){ app.handle(req, res, next); }
-  utils.merge(app, proto);    // 继承 proto
-  utils.merge(app, EventEmitter.prototype);   // 继承 事件
-  app.route = '/';    // 定义默认路由
-  app.stack = [];     // 定义处理函数队列
-  for (var i = 0; i &amp;lt; arguments.length; ++i) {
-    app.use(arguments[i]);
-  }
-  // 返回 app 函数，可以用他创建 WEB 服务，也能把他传递给 http.createServer(app)
-  return app;
-};
-
-/**
- * Support old `.createServer()` method.
- */
-// 兼容老的版本
-createServer.createServer = createServer;
-
-/**
- * Auto-load bundled middleware with getters.
- */
-// 加载中间件到 Connect 静态属性中
-fs.readdirSync(__dirname + '/middleware').forEach(function(filename){
-  if (!/\.js$/.test(filename)) return;
-  var name = basename(filename, '.js');
-  function load(){ return require('./middleware/' + name); }
-  exports.middleware.__defineGetter__(name, load);
-  exports.__defineGetter__(name, load);
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5&gt;proto.js&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;
-
-/*!
- * Connect - HTTPServer
- * Copyright(c) 2010 Sencha Inc.
- * Copyright(c) 2011 TJ Holowaychuk
- * MIT Licensed
- */
-
-/**
- * Module dependencies.
- */
-
-var http = require('http')
-  , utils = require('./utils')
-  , debug = require('debug')('connect:dispatcher');
-
-// prototype
-
-var app = module.exports = {};
-
-// environment
-
-var env = process.env.NODE_ENV || 'development';
-
-/**
- * Utilize the given middleware `handle` to the given `route`,
- * defaulting to _/_. This &quot;route&quot; is the mount-point for the
- * middleware, when given a value other than _/_ the middleware
- * is only effective when that segment is present in the request's
- * pathname.
- *
- * For example if we were to mount a function at _/admin_, it would
- * be invoked on _/admin_, and _/admin/settings_, however it would
- * not be invoked for _/_, or _/posts_.
- *
- * Examples:
- *
- *      var app = connect();
- *      app.use(connect.favicon());
- *      app.use(connect.logger());
- *      app.use(connect.static(__dirname + '/public'));
- *
- * If we wanted to prefix static files with _/public_, we could
- * &quot;mount&quot; the `static()` middleware:
- *
- *      app.use('/public', connect.static(__dirname + '/public'));
- *
- * This api is chainable, so the following is valid:
- *
- *      connect()
- *        .use(connect.favicon())
- *        .use(connect.logger())
- *        .use(connect.static(__dirname + '/public'))
- *        .listen(3000);
- *
- * @param {String|Function|Server} route, callback or server
- * @param {Function|Server} callback or server
- * @return {Server} for chaining
- * @api public
- */
-
-app.use = function(route, fn){
-  // default route to '/'
-
-  if ('string' != typeof route) {
-    fn = route;
-    route = '/';
-  }
-
-  // wrap sub-apps
-  // 如果 handle 是一个 Connect 则包装 Connect
-  if ('function' == typeof fn.handle) {
-    var server = fn;
-    fn.route = route;
-    fn = function(req, res, next){
-      server.handle(req, res, next);
-    };
-  }
-
-  // wrap vanilla http.Servers
-  if (fn instanceof http.Server) {
-    fn = fn.listeners('request')[0];
-  }
-
-  // strip trailing slash
-  /**
-   * 取消末尾斜线
-   */
-  if ('/' == route[route.length - 1]) {
-    route = route.slice(0, -1);
-  }
-
-  // add the middleware
-  debug('use %s %s', route || '/', fn.name || 'anonymous');
-  // 相关路由对应处理函数压入堆中
-  this.stack.push({ route: route, handle: fn });
-
-  return this;
-};
-
-/**
- * Handle server requests, punting them down
- * the middleware stack.
- *
- * @api private
- */
-// 执行路由对应的中间件
-app.handle = function(req, res, out) {
-  var stack = this.stack
-    , fqdn = ~req.url.indexOf('://')
-    , removed = ''
-    , slashAdded = false
-    , index = 0;
-  // 切换到下一个中间件
-  function next(err) {
-    var layer, path, status, c;
-
-    if (slashAdded) {
-      req.url = req.url.substr(1);
-      slashAdded = false;
-    }
-
-    req.url = removed + req.url;
-    req.originalUrl = req.originalUrl || req.url;
-    removed = '';
-
-    // next callback
-    layer = stack[index++];
-
-    // all done
-    // 所有 url 对应的路由处理完毕 http 头被发送
-    if (!layer || res.headerSent) {
-      // delegate to parent
-      if (out) return out(err);
-
-      // unhandled error
-      // 所有错误处理会在 handle 执行完毕
-      if (err) {
-        // default to 500
-        if (res.statusCode &amp;lt; 400) res.statusCode = 500;
-        debug('default %s', res.statusCode);
-
-        // respect err.status
-        if (err.status) res.statusCode = err.status;
-
-        // production gets a basic error message
-        var msg = 'production' == env
-          ? http.STATUS_CODES[res.statusCode]
-          : err.stack || err.toString();
-
-        // log to stderr in a non-test env
-        if ('test' != env) console.error(err.stack || err.toString());
-        if (res.headerSent) return req.socket.destroy();
-        res.setHeader('Content-Type', 'text/plain');
-        res.setHeader('Content-Length', Buffer.byteLength(msg));
-        if ('HEAD' == req.method) return res.end();
-        res.end(msg);
-      } else {
-        // 响应路由未找到，打印404
-        debug('default 404');
-        res.statusCode = 404;
-        res.setHeader('Content-Type', 'text/plain');
-        if ('HEAD' == req.method) return res.end();
-        res.end('Cannot ' + utils.escape(req.method) + ' ' + utils.escape(req.originalUrl));
-      }
-      return;
-    }
-
-    try {
-      path = utils.parseUrl(req).pathname;
-      if (undefined == path) path = '/';
-
-      // skip this layer if the route doesn't match.
-      // 如果当前访问的 path 和路由不匹配则把错误带入下一个 next 继续执行
-      if (0 != path.toLowerCase().indexOf(layer.route.toLowerCase())) return next(err);
-      // 同上
-      c = path[layer.route.length];
-      if (c &amp;amp;&amp;amp; '/' != c &amp;amp;&amp;amp; '.' != c) return next(err);
-
-      // Call the layer handler
-      // Trim off the part of the url that matches the route
-      // 获取路由外的 url
-      removed = layer.route;
-      req.url = req.url.substr(removed.length);
-
-      // Ensure leading slash
-      // 在 url 后添加 /
-      if (!fqdn &amp;amp;&amp;amp; '/' != req.url[0]) {
-        req.url = '/' + req.url;
-        slashAdded = true;
-      }
-
-      debug('%s %s : %s', layer.handle.name || 'anonymous', layer.route, req.originalUrl);
-      var arity = layer.handle.length;
-      // 根据处理函数的参数数量，传递不同的参数
-      if (err) {
-        if (arity === 4) {
-          layer.handle(err, req, res, next);
-        } else {
-          next(err);
-        }
-      } else if (arity &amp;lt; 4) {
-        layer.handle(req, res, next);
-      } else {
-        next();
-      }
-    } catch (e) {
-      next(e);
-    }
-  }
-  next();
-};
-
-/**
- * Listen for connections.
- *
- * This method takes the same arguments
- * as node's `http.Server#listen()`.
- *
- * HTTP and HTTPS:
- *
- * If you run your application both as HTTP
- * and HTTPS you may wrap them individually,
- * since your Connect &quot;server&quot; is really just
- * a JavaScript `Function`.
- *
- *      var connect = require('connect')
- *        , http = require('http')
- *        , https = require('https');
- *
- *      var app = connect();
- *
- *      http.createServer(app).listen(80);
- *      https.createServer(options, app).listen(443);
- *
- * @return {http.Server}
- * @api public
- */
-// 让 connect 拥有自带创建服务
-app.listen = function(){
-  var server = http.createServer(this);
-  return server.listen.apply(server, arguments);
-};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上面的只是对 Connect 进行一个浅析的解剖，如果再要深入的话，需要对 node.js 封装的 http 模块进行解析。如有错误欢迎斧正。&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Brackets 10款常用插件</title>
-   <link href="http://tom.preston-werner.com/2014/11/23/Brackets-10-common-plug-ins.html"/>
-   <updated>2014-11-23T00:00:00+08:00</updated>
-   <id>http://tom.preston-werner.com/2014/11/23/Brackets-10-common-plug-ins</id>
-   <content type="html">&lt;blockquote&gt;&lt;p&gt;收集常用的一些插件&lt;/p&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;1、显示你打开文件对应的图标 &lt;a href=&quot;https://github.com/ivogabe/Brackets-Icons&quot;&gt;https://github.com/ivogabe/Brackets-Icons&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://182.92.214.162/blog/images/tools/Brackets-Icons.png&quot; alt=&quot;Brackets-Icons&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;2、javascript 全局变量高亮 &lt;a href=&quot;https://github.com/ForbesLindesay/brackets-globals&quot;&gt;2、javascript 全局变量高亮 https://github.com/ForbesLindesay/brackets-globals&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://182.92.214.162/blog/images/tools/brackets-globals.png&quot; alt=&quot;brackets-globals&quot;/&gt;&lt;/p&gt;
-
-&lt;p&gt;3、皮肤插件 &lt;a href=&quot;https://github.com/MiguelCastillo/Brackets-Themes&quot;&gt;https://github.com/MiguelCastillo/Brackets-Themes&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;4、javascript 代码审查，建议所写的代码都检查一下 &lt;a href=&quot;https://github.com/markmcintyre/brackets-jslint&quot;&gt;https://github.com/markmcintyre/brackets-jslint&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;5、更改代理，Brackets安装扩展是被墙了，如果用gae，那么这个插件将会很好用 &lt;a href=&quot;https://github.com/ohnnyj/brackets-proxy&quot;&gt;https://github.com/ohnnyj/brackets-proxy&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;6、emmet 打代码飞起 &lt;a href=&quot;http://emmet.io/&quot;&gt;http://emmet.io/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;7、为你的编辑器增加工作空间管理 &lt;a href=&quot;https://github.com/thomasvalera/Brackets-Workspaces&quot;&gt;https://github.com/thomasvalera/Brackets-Workspaces&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;8、代码格式化 &lt;a href=&quot;https://github.com/drewhamlett/brackets-beautify&quot;&gt;https://github.com/drewhamlett/brackets-beautify&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;9、代码备份 &lt;a href=&quot;https://github.com/joemakev/brackets-backup&quot;&gt;https://github.com/joemakev/brackets-backup&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;10、代码快折叠  @See丶桑 同学提供&lt;a href=&quot;https://github.com/thehogfather/brackets-code-folding&quot;&gt;https://github.com/thehogfather/brackets-code-folding&lt;/a&gt;&lt;/p&gt;
-</content>
- </entry>
- 
- 
-</feed>
+</code></pre>
+
+<p>常用操作<br>
+1.获取你上次更新之后版本库的修改：<br>
+$ svn update</p>
+
+<p>2.你也可以将工作拷贝更新到旧的修订版本<br>
+$ svn update -r30</p>
+
+</div>
+
+<div id="related">
+  <h2>最近文章</h2>
+  <ul class="posts">
+    
+      <li><span>13 Dec 2014</span> &raquo; <a href="/2014/12/13/iframe-by-value.html">页面中多 iframe 传值</a></li>
+    
+      <li><span>13 Dec 2014</span> &raquo; <a href="/2014/12/13/connect-using-the-analytical.html">Connect 中间件使用解析</a></li>
+    
+      <li><span>23 Nov 2014</span> &raquo; <a href="/2014/11/23/Brackets-10-common-plug-ins.html">Brackets 10款常用插件</a></li>
+    
+  </ul>
+</div>
+  
+  <div class="footer"></div>
+<div class="power">  
+  Powered by <a href="http://github.com/" targe="_blank">Github</a> &nbsp;&amp;&amp;&nbsp; <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> 
+</div>
+</div>
+
+<a href="https://github.com/tudousi"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+<!-- Google Analytics end -->
+
+</body>
+</html>

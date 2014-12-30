@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframe4</title>
+</head>
+<body>
+    <h1>iframe4</h1>
+    <a onclick="callInfo()" href="javascript:;">方法2：调用iframe4 的 info</a>
+    <script>
+        var hash = location.hash;
+        window.onload = function(){
+            setInterval(function(){
+                var tmpHash = location.hash;
+                if(hash != tmpHash && tmpHash != ''){
+                    hash = tmpHash;
+                    var call = hash.slice(1, hash.length);
+                    try{
+                        eval(call+"()");
+                    }catch(e){
+                        
+                    }
+                }
+            }, 100);
+        };
+        function callInfo(){
+            var iframe4 = parent.window.document
+            iframe4 = iframe4.getElementById('iframe3')['contentDocument'];
+            iframe4.location.hash = '#callInfoRun';
+        }
+        function callInfoRun(){
+            alert('我是页面 4 的 callInfo 方法');
+        }
+    </script>
+</body>
+</html>

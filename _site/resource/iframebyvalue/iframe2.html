@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iframe2</title>
+</head>
+<body>
+    <h1>iframe2</h1>
+    <a onclick="callInfo()" href="javascript:;">调用Iframe1的info函数</a>
+    <script>
+        window.onload = function(){
+            parent.window.iframeObj['iframe2'] = window;
+        };
+        function info(){
+            alert('我是iframe2的info');
+        }
+        function callInfo(){
+            var iframe2 = parent.window.iframeObj['iframe1'];
+            iframe2.info();
+        }
+    </script>
+</body>
+</html>
