@@ -9,7 +9,7 @@ tags: [javascript]
 
 #### 办法1：
 
-当 iframe 页面加载的时候在 window 保存在父页面的变量中
+当 iframe 页面加载的时候将当前的 window 对象保存在父页面的变量中
 
 父页面：
 
