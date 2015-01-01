@@ -225,7 +225,34 @@ td.talk();
 
 <p>通过 Empty 这一层对象实例作为了中转，在修改 Programmer.prototype 的属性的时候就不会影响到 Person.prototype 了</p>
 
-<p>未完待续。。。</p>
+<p>写一个继承方法</p>
+
+<pre><code class="javascript">(function(){
+    function Person(){
+        console.log('Person constructor');
+    }
+    Person.prototype.talk = function(){
+        console.log('hello my name is tudou');
+    };
+    function Programmer(){
+        console.log('Programmer constructor');
+    }
+    // 使用 extend 方法继承
+    Programmer.prototype = extend(Person.prototype);
+    var p = new Person();
+    var td = new Programmer();
+    p.talk();   // hello my name is tudou
+    td.talk();  // hello my name is tudou
+})();
+
+function extend(extendObj){
+    var tmpObject = function(){};
+    tmpObject.prototype = extendObj;
+    var res = new tmpObject();
+    tmpObject.prototype = null;
+    return res;
+}
+</code></pre>
 
 </div>
 
