@@ -1,8 +1,9 @@
 ---
 layout: post
-title: [转]如何写好CSS？（OOCSS\DRY\SMACSS）
+title: 如何写好CSS？（OOCSS\DRY\SMACSS）[转]
 tags: [htmlcss]
 ---
+
 
 很久没有写博客了，一是刚入职比较忙，二是因为总有学到新的有趣的东西，停不下脚步来总结一下。最近出差到了帝都，反而能挤出些时间来写点什么了，也正好趁着出差做的这个项目讨论一下CSS理论。
 
