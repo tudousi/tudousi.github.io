@@ -38,12 +38,12 @@
 
 <p>问题就是在 IE8 以下，区块元素设置了 display:inline-block 仅仅是触发了 hasLayou，而元素本身还是区块元素。所以他们还是占一整行。（<a href="http://www.blueidea.com/tech/site/2006/3698.asp">hasLayout</a>）。</p>
 
-<p>我们已经知道问题，那么如何让 IE8 以下的浏览器也能实现 inline-block 捏。
-<code>css
-display:inline-block;
+<p>我们已经知道问题，那么如何让 IE8 以下的浏览器也能实现 inline-block 捏。</p>
+
+<pre><code class="css">display:inline-block;
 *+display:inline;
 zoom:1;
-</code></p>
+</code></pre>
 
 <p>*+display:inline; 让 IE8 以下的浏览器先转为内联元素，然后使用 zoom:1; 触发 hasLayou。这个兼容性还可以。</p>
 

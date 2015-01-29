@@ -4,7 +4,7 @@
  <title>蒋著[tudousi] - 博客</title>
  <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
  <link href="http://tom.preston-werner.com/"/>
- <updated>2015-01-29T18:05:41+08:00</updated>
+ <updated>2015-01-29T18:07:53+08:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>tudousi</name>
@@ -26,12 +26,12 @@
 
 &lt;p&gt;问题就是在 IE8 以下，区块元素设置了 display:inline-block 仅仅是触发了 hasLayou，而元素本身还是区块元素。所以他们还是占一整行。（&lt;a href=&quot;http://www.blueidea.com/tech/site/2006/3698.asp&quot;&gt;hasLayout&lt;/a&gt;）。&lt;/p&gt;
 
-&lt;p&gt;我们已经知道问题，那么如何让 IE8 以下的浏览器也能实现 inline-block 捏。
-&lt;code&gt;css
-display:inline-block;
+&lt;p&gt;我们已经知道问题，那么如何让 IE8 以下的浏览器也能实现 inline-block 捏。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;css&quot;&gt;display:inline-block;
 *+display:inline;
 zoom:1;
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;*+display:inline; 让 IE8 以下的浏览器先转为内联元素，然后使用 zoom:1; 触发 hasLayou。这个兼容性还可以。&lt;/p&gt;
 </content>
