@@ -4,13 +4,38 @@
  <title>蒋著[tudousi] - 博客</title>
  <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
  <link href="http://tom.preston-werner.com/"/>
- <updated>2015-01-26T16:27:03+08:00</updated>
+ <updated>2015-01-29T18:05:41+08:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>tudousi</name>
    <email>41871879@qq.com</email>
  </author>
 
+ 
+ <entry>
+   <title>IE display:inline-block 问题</title>
+   <link href="http://tom.preston-werner.com/2015/01/29/inline-block.html"/>
+   <updated>2015-01-29T00:00:00+08:00</updated>
+   <id>http://tom.preston-werner.com/2015/01/29/inline-block</id>
+   <content type="html">&lt;p&gt;display:inline-block 布局时使用挺多的，但是在 IE8 以下，并不好用。可以设置宽度但，是有个问题就是无法成为内联块（不能并排）。&lt;/p&gt;
+
+&lt;p&gt;IE8 以下看下面的例子，分析下原因：&lt;/p&gt;
+
+&lt;iframe style=&quot;width: 100%; height: 100px&quot; src=&quot;http://sandbox.runjs.cn/show/v8widfoi&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+
+&lt;p&gt;问题就是在 IE8 以下，区块元素设置了 display:inline-block 仅仅是触发了 hasLayou，而元素本身还是区块元素。所以他们还是占一整行。（&lt;a href=&quot;http://www.blueidea.com/tech/site/2006/3698.asp&quot;&gt;hasLayout&lt;/a&gt;）。&lt;/p&gt;
+
+&lt;p&gt;我们已经知道问题，那么如何让 IE8 以下的浏览器也能实现 inline-block 捏。
+&lt;code&gt;css
+display:inline-block;
+*+display:inline;
+zoom:1;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;*+display:inline; 让 IE8 以下的浏览器先转为内联元素，然后使用 zoom:1; 触发 hasLayou。这个兼容性还可以。&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>jqueryui 皮肤</title>

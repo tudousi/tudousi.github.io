@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>蒋著[tudousi] - 博客</title>
+   <title>IE display:inline-block 问题</title>
    <meta name="author" content="tudousi" />
 
    <!-- syntax highlighting CSS -->
@@ -23,44 +23,44 @@
     <a class="" href="/plugin.html">JS/JQ插件</a>
   </div>
   
-  <div id="home">
-  <h1>JAVASCRIPT</h1>
+  <div id="post">
+<h1>IE display:inline-block 问题</h1>
+<div class="copyright">
+	作者: 蒋著 | 可以转载, 但必须以超链接形式标明文章原始出处和作者信息及版权声明<br />
+	网址: http://createthink.net/2015/01/29/inline-block.html
+	</div>
+<p>display:inline-block 布局时使用挺多的，但是在 IE8 以下，并不好用。可以设置宽度但，是有个问题就是无法成为内联块（不能并排）。</p>
+
+<p>IE8 以下看下面的例子，分析下原因：</p>
+
+<iframe style="width: 100%; height: 100px" src="http://sandbox.runjs.cn/show/v8widfoi" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<p>问题就是在 IE8 以下，区块元素设置了 display:inline-block 仅仅是触发了 hasLayou，而元素本身还是区块元素。所以他们还是占一整行。（<a href="http://www.blueidea.com/tech/site/2006/3698.asp">hasLayout</a>）。</p>
+
+<p>我们已经知道问题，那么如何让 IE8 以下的浏览器也能实现 inline-block 捏。
+<code>css
+display:inline-block;
+*+display:inline;
+zoom:1;
+</code></p>
+
+<p>*+display:inline; 让 IE8 以下的浏览器先转为内联元素，然后使用 zoom:1; 触发 hasLayou。这个兼容性还可以。</p>
+
+</div>
+
+<div id="related">
+  <h2>最近文章</h2>
   <ul class="posts">
-    
-      <li><span>31 Dec 2014</span> &raquo; <a href="/2014/12/31/object-extend.html">javascript 对象继承</a></li>
-    
-      <li><span>29 Dec 2014</span> &raquo; <a href="/2014/12/29/iframe-by-value.html">页面中多 iframe 传值</a></li>
-    
-      <li><span>13 Dec 2014</span> &raquo; <a href="/2014/12/13/connect-using-the-analytical.html">Connect 中间件使用解析</a></li>
-    
-    <a href="/javascript.html">更多</a>
-  </ul>
-  
-  <h1>HTML/CSS</h1>
-  <ul class="posts">
-    
-      <li><span>29 Jan 2015</span> &raquo; <a href="/2015/01/29/inline-block.html">IE display:inline-block 问题</a></li>
     
       <li><span>19 Jan 2015</span> &raquo; <a href="/2015/01/19/jquery-ui.html">jqueryui 皮肤</a></li>
     
       <li><span>19 Jan 2015</span> &raquo; <a href="/2015/01/19/css-principle.html">如何写好CSS？（OOCSS\DRY\SMACSS）[转]</a></li>
     
-    <a href="/htmlcss.html">更多</a>
+      <li><span>31 Dec 2014</span> &raquo; <a href="/2014/12/31/object-extend.html">javascript 对象继承</a></li>
+    
   </ul>
-  
-  
-  <h1>开发工具</h1>
-  <ul class="posts">
-    
-      <li><span>26 Dec 2014</span> &raquo; <a href="/2014/12/26/svn-command.html">SVN 命令介绍</a></li>
-    
-      <li><span>23 Nov 2014</span> &raquo; <a href="/2014/11/23/Brackets-10-common-plug-ins.html">Brackets 10款常用插件</a></li>
-    
-    <a href="/tools.html">更多</a>
-  </ul>
-  
 </div>
-
   
   <div class="footer"></div>
 <div class="power">  
