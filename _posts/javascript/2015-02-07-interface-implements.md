@@ -1,6 +1,6 @@
 ---
 layout: post
-title: javascript 强制实现指定接口
+title: javascript 实现接口类
 tags: [javascript]
 ---
 
