@@ -131,33 +131,6 @@ function addForm(formInstance) {
 	// 实现接口
 	Interface.ensureImplements(formInstance, Composite, FormItem);
 }
-/* old
-// 创建新的实例交给工厂对象
-var BicycleFactory = {
-	createBicycle: function(model){
-		var bicycle;
-		switch(model){
-			case 'The Speedster':
-				bicycle = new Speedster();
-				break;
-			case 'The Lowrider':
-				bicycle = new Lowrider();
-				break;
-			case 'The Comfort Cruiser':
-			default:
-				bicycle = new ComfortCruiser();
-		}
-		// 对单车类进行检查，是否实现了所有的 Bicycle 接口
-		Interface.ensureImplements(bicycle, Bicycle);
-		// 创建一辆单车的时候需要组装
-		//bicycle.assemble();
-		// 出厂还需要清洗
-		//bicycle.wash();
-		// 出厂
-		return bicycle;
-	}
-};
-*/
 // 自行车基类
 var BicycleShop = function(){};
 BicycleShop.prototype = {
@@ -278,37 +251,6 @@ yourNewBike = californiaCruisers.createBicycle('The Speedster');
 yourNewBike.ride();
 // 单车坏了，可以进行修理
 yourNewBike.repair();
-
-
-/*
-// 老的生产单车到够买和使用方法
-// 创建一个单车商店
-var californiaCruisers = new BicycleShop();
-// 创建指定型号的单车
-yourNewBike = californiaCruisers.sellBicycle('The Speedster');
-// 用户拿到手就可以骑行。
-yourNewBike.ride();
-// 单车坏了，可以进行修理
-yourNewBike.repair();
-*/
-
-/*
-// 实现2个接口对象
-var Composite = new Interface('Composite', ['add', 'remove', 'getChild']);
-var FormItem = new Interface('FormItem', ['save']);
-//具体类
-var CompositeForm = function(id, method, action) {};
-CompositeForm.prototype = {
-	add: function(){console.log('add');},
-	remove: function(){console.log('remove');},
-	getChild: function(){console.log('getChild');},
-	save: function(){console.log('save');}
-}
-// 实例化类，开始检测接口
-var comObject = new CompositeForm()
-addForm(comObject);
-comObject.add();
-*/
 
 ```
 
