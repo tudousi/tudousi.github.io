@@ -41,4 +41,24 @@ This setting can be configured in the file "httpd-xampp.conf".
   ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
 </LocationMatch>
 ```
+
+如果出现
+
+```javascript
+Access forbidden!  You don’t have permission to access the requested object. It is either read-protected or not readable by the server.
+```
+这时可以找到apache的httpd.conf文件，找出<Directory />
+修改成如下：
+
+```javascript
+<Directory />
+    Options All
+    AllowOverride All
+    Order deny,allow
+    Allow from all
+</Directory>
+// mac执行 sudo chmod -R 777 /Applications/XAMPP/xamppfiles/htdocs
+```
+
+
 重启服务即可
