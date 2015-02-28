@@ -17,6 +17,7 @@ Access to the requested object is only available from the local network.
 This setting can be configured in the file "httpd-xampp.conf".
 ```
 
+```javascript
 根据提示，修改 httpd-xampp.conf 即可
 #
 # New XAMPP security concept
@@ -39,5 +40,5 @@ This setting can be configured in the file "httpd-xampp.conf".
     Allow from all
   ErrorDocument 403 /error/XAMPP_FORBIDDEN.html.var
 </LocationMatch>
-
+```
 重启服务即可
