@@ -1,10 +1,12 @@
 ---
-layout: post
-title: SVN 命令介绍
-tags: [tools]
+layout:     post
+title:      SVN 命令索引
+summary:    SVN 命令索引
+categories: tools
+tags:       [SVN命令]
 ---
-> SVN 命令介绍
 
+> SVN 命令介绍
 命令索引
 
 * [svn checkout](#svncheckout)
@@ -42,7 +44,7 @@ tags: [tools]
 
 <h4 id="svncheckout">svn checkout 从版本库签出工作副本</h4>
 
-```javascript
+{% highlight javascript %}
 checkout (co): 从版本库签出工作副本。
 使用: checkout URL[@REV]... [PATH]
 
@@ -74,7 +76,7 @@ checkout (co): 从版本库签出工作副本。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.取出一个工作拷贝到mine目录：<br>
 $ svn checkout file:///tmp/repos/test mine
@@ -87,7 +89,7 @@ $ svn checkout file:///tmp/repos/test file:///tmp/repos/quiz working-copies
 
 <h4 id="svnadd">svn add 添加到版本库</h4>
 
-```javascript
+{% highlight javascript %}
 add: 把文件和目录纳入版本控制，通过调度加到版本库。它们会在下一次提交时加入。
 用法: add 路径...
 
@@ -113,7 +115,7 @@ add: 把文件和目录纳入版本控制，通过调度加到版本库。它们
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.添加一个文件到工作拷贝:<br>
 $ svn add foo.c
@@ -130,7 +132,7 @@ $ svn add * –force
 
 <h4 id="svnblam">svn blam 追溯内容</h4>
 
-```javascript
+{% highlight javascript %}
 blame (praise, annotate, ann): 输出指定文件或URL的追溯内容，包含版本和作者信息。
 
 用法: blame 目标[@版本]...
@@ -174,14 +176,14 @@ blame (praise, annotate, ann): 输出指定文件或URL的追溯内容，包含�
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.如果你希望在测试版本库看到blame标记的readme.txt源代码：<br>
 $ svn blame http://svn.red-bean.com/repos/test/readme.txt
 
 <h4 id="svncat">svn cat 输出文件或内容</h4>
 
-```javascript
+{% highlight javascript %}
 cat: 输出指定文件或URL的内容。
 用法: cat 目标[@版本]...
 
@@ -208,14 +210,14 @@ cat: 输出指定文件或URL的内容。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-````
+{% endhighlight %}`
 常用操作<br>
 1.如果你希望不检出而察看版本库的readme.txt的内容：<br>
 $ svn cat foo.c
 
 <h4 id="svnchangelist">svn changelist 耦合文件与修改列表</h4>
 
-```javascript
+{% highlight javascript %}
 changelist (cl): 耦合(或解耦)文件与修改列表 CLNAME。
 使用: 1. changelist CLNAME TARGET...
       2. changelist --remove TARGET...
@@ -240,11 +242,11 @@ changelist (cl): 耦合(或解耦)文件与修改列表 CLNAME。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 
 <h4 id="svncleanup">svn cleanup 递归清理工作副本</h4>
 
-```javascript
+{% highlight javascript %}
 cleanup: 递归清理工作副本，删除锁，继续未完成操作，等等。
 
 用法: cleanup [路径...]
@@ -263,7 +265,7 @@ cleanup: 递归清理工作副本，删除锁，继续未完成操作，等等�
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.svn cleanup没有输出，没有太多的例子，如果你没有传递PATH，会使用“.”。<br>
 $ svn cleanup<br>
@@ -271,7 +273,7 @@ $ svn cleanup /path/to/working-copy
 
 <h4 id="svncommit">svn commit 提交到版本库</h4>
 
-```javascript
+{% highlight javascript %}
 commit (ci): 把工作副本的修改提交到版本库。
 用法: commit [路径...]
 
@@ -307,7 +309,7 @@ commit (ci): 把工作副本的修改提交到版本库。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.使用命令行提交一个包含日志信息的文件修改，当前目录（“.”）是没有说明的目标路径：<br>
 $ svn commit -m “added howto section.”
@@ -323,7 +325,7 @@ $ svn commit -m “removed file ‘c’.”
 
 <h4 id="svncopy">svn copy 版本库中复制数据</h4>
 
-```javascript
+{% highlight javascript %}
 copy (cp): 在工作副本或版本库中复制数据，保留历史。
 用法: copy SRC[@REV]... DST
 
@@ -371,7 +373,7 @@ copy (cp): 在工作副本或版本库中复制数据，保留历史。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.拷贝工作拷贝的一个项目（只是预定要拷贝—在提交之前不会影响版本库）：<br>
 $ svn copy foo.txt bar.txt
@@ -387,7 +389,7 @@ $ svn copy file:///tmp/repos/test/far-away file:///tmp/repos/test/over-there -m 
 
 <h4 id="svndelete">svn delete 删除文件和目录</h4>
 
-```javascript
+{% highlight javascript %}
 delete (del, remove, rm): 从版本库中删除文件和目录。
 用法: 1、delete PATH...
       2、delete URL...
@@ -423,7 +425,7 @@ delete (del, remove, rm): 从版本库中删除文件和目录。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.使用svn从工作拷贝删除文件只是预定要删除，当你提交，文件才会从版本库删除。<br>
 $ svn delete myfile
@@ -436,7 +438,7 @@ $ svn delete –force over-there
 
 <h4 id="svndiff">svn diff 对比查看</h4>
 
-```javascript
+{% highlight javascript %}
 diff (di): 显示两个版本或路径的差异。
 用法: 1. diff [-c M | -r N[:M]] [TARGET[@REV]...]
       2. diff [-r N[:M]] --old=OLD-TGT[@OLDREV] [--new=NEW-TGT[@NEWREV]] \
@@ -503,7 +505,7 @@ diff (di): 显示两个版本或路径的差异。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.比较BASE和你的工作拷贝（svn diff最经常的用法）：<br>
 $ svn diff COMMITTERS
@@ -531,7 +533,7 @@ $ svn diff -r 3000:3500 COMMITTERS
 
 <h4 id="svnexport">svn export 导出</h4>
 
-```javascript
+{% highlight javascript %}
 export: 产生一个无版本控制的目录树副本。
 用法: 1、export [-r REV] URL[@PEGREV] [PATH]
       2、export [-r REV] PATH1[@PEGREV] [PATH2]
@@ -577,7 +579,7 @@ export: 产生一个无版本控制的目录树副本。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.从你的工作拷贝导出（不会打印每一个文件和目录）：<br>
 $ svn export a-wc my-export
@@ -587,7 +589,7 @@ $ svn export file:///tmp/repos my-export
 
 <h4 id="svnimport">svn import 纳入版本控制</h4>
 
-```javascript
+{% highlight javascript %}
 import: 将未纳入版本控制的文件或目录树提交到版本库。
 用法: import [PATH] URL
 
@@ -624,7 +626,7 @@ import: 将未纳入版本控制的文件或目录树提交到版本库。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.这将本地目录myproj导入到版本库的trunk/misc，trunk/misc在导入之前不需要存在—svn import会递归的为你创建目录。<br>
 $ svn import -m “New import” myproj http://svn.red-bean.com/repos/trunk/misc
@@ -634,7 +636,7 @@ $ svn import -m “New import” myproj http://svn.red-bean.com/repos/trunk/misc
 
 <h4 id="svninfo">svn info 显示本地或远程条目的信息</h4>
 
-```javascript
+{% highlight javascript %}
 info: 显示本地或远程条目的信息。
 用法: info [TARGET[@REV]...]
 
@@ -670,7 +672,7 @@ info: 显示本地或远程条目的信息。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.svn info会展示工作拷贝所有项目的所有有用信息，它会显示文件的信息：<br>
 $ svn info foo.c
@@ -683,7 +685,7 @@ $ svn info http://svn.red-bean.com/repos/test/readme.doc
 
 <h4 id="svnlock">svn lock 锁定版本库中的路径</h4>
 
-```javascript
+{% highlight javascript %}
 lock: 锁定版本库中的路径，使得其他用户不能向其提交修改。
 用法: lock TARGET...
 
@@ -708,7 +710,7 @@ lock: 锁定版本库中的路径，使得其他用户不能向其提交修改�
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.在工作拷贝锁定两个文件：<br>
 $ svn lock tree.jpg house.jpg
@@ -722,7 +724,7 @@ $ svn lock http://svn.red-bean.com/repos/test/tree.jpg
 
 <h4 id="svnlog">svn log 查看日志</h4>
 
-```javascript
+{% highlight javascript %}
 log: 显示一组版本与/或文件的提交日志信息。
 用法: 1、log [PATH]
       2、log URL[@REV] [PATH...]
@@ -766,7 +768,7 @@ log: 显示一组版本与/或文件的提交日志信息。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.查看最近3个版本日志<br>
 svn log [PATH] -v -l3
@@ -788,7 +790,7 @@ $ cat mylog
 
 <h4 id="svnmerge">svn merge 将两个源差异应用至工作副本</h4>
 
-```javascript
+{% highlight javascript %}
 merge: 将两个源差异应用至工作副本。
 用法:  1. merge sourceURL1[@N] sourceURL2[@M] [WCPATH]
        2. merge sourceWCPATH1@N sourceWCPATH2@M [WCPATH]
@@ -862,7 +864,7 @@ merge: 将两个源差异应用至工作副本。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.将一个分支合并回主干（假定你有一份主干的工作拷贝，分支在修订版本250创建）：<br>
 $ svn merge -r 250:HEAD http://svn.red-bean.com/repos/branches/my-branch
@@ -875,7 +877,7 @@ $ svn merge -r 30:31 thhgttg.txt
 
 <h4 id="svnmergeinfo">svn mergeinfo 显示合并的相关信息</h4>
 
-```javascript
+{% highlight javascript %}
 mergeinfo: 显示合并的相关信息。
 用法: mergeinfo SOURCE[@REV] [TARGET[@REV]]
 
@@ -906,14 +908,14 @@ mergeinfo: 显示合并的相关信息。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.查看分支目录合并信息<br>
 $ svn mergeinfo branches/test
 
 <h4 id="svnmkdir">svn mkdir 创建纳入版本控制的新目录</h4>
 
-```javascript
+{% highlight javascript %}
 mkdir: 创建纳入版本控制的新目录。
 用法: 1、mkdir PATH...
       2、mkdir URL...
@@ -950,14 +952,14 @@ mkdir: 创建纳入版本控制的新目录。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.在工作副本创建一个目录：<br>
 $ svn mkdir newdir
 
 <h4 id="svnmove">svn move 移动或改名文件或目录</h4>
 
-```javascript
+{% highlight javascript %}
 move (mv, rename, ren): 在工作副本或版本库中移动或改名文件或目录。
 用法: move SRC... DST
 
@@ -1002,7 +1004,7 @@ move (mv, rename, ren): 在工作副本或版本库中移动或改名文件或�
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.移动工作拷bede一个文件：<br>
 $ svn move foo.c bar.c
@@ -1012,7 +1014,7 @@ $ svn move baz.c bat.c qux.c src
 
 <h4 id="svnpropdel">svn propdel 删除目录、文件或版本的属性</h4>
 
-```javascript
+{% highlight javascript %}
 propdel (pdel, pd): 删除目录、文件或版本的属性。
 用法: 1、propdel PROPNAME [PATH...]
       2、propdel PROPNAME --revprop -r REV [URL]
@@ -1047,7 +1049,7 @@ propdel (pdel, pd): 删除目录、文件或版本的属性。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.删除你的工作副本中一个文件的一个属性：<br>
 $ svn propdel svn:mime-type some-script
@@ -1057,7 +1059,7 @@ $ svn propdel –revprop -r 26 release-date
 
 <h4 id="svnpropedit">svn propedit 编辑属性</h4>
 
-```javascript
+{% highlight javascript %}
 propedit (pedit, pe): 使用外部编辑器编辑属性。
 用法: 1、propedit PROPNAME TARGET...
       2、propedit PROPNAME --revprop -r REV [TARGET]
@@ -1098,14 +1100,14 @@ propedit (pedit, pe): 使用外部编辑器编辑属性。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.svn propedit对修改多个值的属性非常简单：<br>
 $ svn propedit svn:keywords foo.c
 
 <h4 id="svnpropget">svn propget 显示目录、文件或版本的属性取值</h4>
 
-```javascript
+{% highlight javascript %}
 propget (pget, pg): 显示目录、文件或版本的属性取值。
 用法:  1、propget PROPNAME [TARGET[@REV]...]
        2、propget PROPNAME --revprop -r REV [URL]
@@ -1148,7 +1150,7 @@ propget (pget, pg): 显示目录、文件或版本的属性取值。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.检查工作副本的一个文件的一个属性：<br>
 $ svn propget svn:keywords foo.c
@@ -1158,7 +1160,7 @@ $ svn propget svn:log –revprop -r 20
 
 <h4 id="svnproplist">svn proplist 列出目录、文件或版本的所有属性</h4>
 
-```javascript
+{% highlight javascript %}
 proplist (plist, pl): 列出目录、文件或版本的所有属性。
 用法:  1、proplist [TARGET[@REV]...]
        2、proplist --revprop -r REV [TARGET]
@@ -1195,7 +1197,7 @@ proplist (plist, pl): 列出目录、文件或版本的所有属性。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.你可以使用proplist看到你工作拷贝的属性：<br>
 $ svn proplist foo.c
@@ -1205,7 +1207,7 @@ $ svn proplist –verbose foo.c
 
 <h4 id="svnpropset">svn propset 设定目录、文件或版本的属性</h4>
 
-```javascript
+{% highlight javascript %}
 propset (pset, ps): 设定目录、文件或版本的属性。
 用法: 1. propset PROPNAME PROPVAL PATH...
       2. propset PROPNAME --revprop -r REV PROPVAL [TARGET]
@@ -1289,7 +1291,7 @@ propset (pset, ps): 设定目录、文件或版本的属性。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.给文件设置MIME type属性:<br>
 $ svn propset svn:mime-type image/jpeg foo.jpg
@@ -1305,7 +1307,7 @@ $ svn propset –revprop -r 25 svn:log “Journaled about trip to New York.”
 
 <h4 id="svnresolve">svn resolve 解决工作副本中目录或文件的冲突</h4>
 
-```javascript
+{% highlight javascript %}
 resolve: 解决工作副本中目录或文件的冲突。
 用法: resolve --accept=ARG [PATH...]
 
@@ -1331,7 +1333,7 @@ resolve: 解决工作副本中目录或文件的冲突。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1、svn update后，1.txt文件出现冲突，选择base版本，即1.txt.rOld作为最后提交的版本<br>
 $ svn resolve –accept base
@@ -1350,7 +1352,7 @@ $ svn resolve –accept theirs-conflict 1.txt
 
 <h4 id="svnresolved">svn resolved 删除工作副本中目录或文件的“冲突”状态</h4>
 
-```javascript
+{% highlight javascript %}
 resolved: 删除工作副本中目录或文件的“冲突”状态。
 用法: resolved PATH...
 
@@ -1375,14 +1377,14 @@ resolved: 删除工作副本中目录或文件的“冲突”状态。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1、当你解决了foo.c的冲突，并且准备提交，运行svn resolved让你的工作拷贝知道你已经完成了所有事情。<br>
 $ svn resolved foo.c
 
 <h4 id="svnrevert">svn revert 将工作副本文件恢复到原始版本</h4>
 
-```javascript
+{% highlight javascript %}
 revert: 将工作副本文件恢复到原始版本(恢复大部份的本地修改)。
 用法: revert PATH...
 
@@ -1408,7 +1410,7 @@ revert: 将工作副本文件恢复到原始版本(恢复大部份的本地修�
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1、丢弃对一个文件的修改：<br>
 $ svn revert foo.c
@@ -1422,7 +1424,7 @@ $ svn revert mistake.txt whoops
 
 <h4 id="svnstatus">svn status 显示工作副本中目录与文件的状态</h4>
 
-```javascript
+{% highlight javascript %}
 status (stat, st): 显示工作副本中目录与文件的状态。
 用法: status [PATH...]
 
@@ -1530,11 +1532,11 @@ status (stat, st): 显示工作副本中目录与文件的状态。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 
 <h4 id="svnswitch">svn switch 更新工作副本至不同的URL</h4>
 
-```javascript
+{% highlight javascript %}
 switch (sw): 更新工作副本至不同的URL。
 用法:  1、switch URL[@PEGREV] [PATH]
        2、switch --relocate FROM TO [PATH...]
@@ -1591,7 +1593,7 @@ switch (sw): 更新工作副本至不同的URL。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1、如果你目前所在目录vendors分支到vendors-with-fix，你希望转移到那个分支：<br>
 $ svn switch http://svn.red-bean.com/repos/branches/vendors-with-fix .
@@ -1601,7 +1603,7 @@ $ svn switch http://svn.red-bean.com/repos/trunk/vendors .
 
 <h4 id="svnunlock">svn unlock 解除工作副本或URL的锁定</h4>
 
-```javascript
+{% highlight javascript %}
 unlock: 解除工作副本或URL的锁定。
 用法: unlock TARGET...
 
@@ -1622,7 +1624,7 @@ unlock: 解除工作副本或URL的锁定。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.解锁工作拷贝中的两个文件：<br>
 $ svn unlock tree.jpg house.jpg
@@ -1635,14 +1637,14 @@ $ svn unlock http://svn.red-bean.com/repos/test/tree.jpg
 
 <h4 id="svnupdate">svn update 将版本库的修改合并到工作副本中</h4>
 
-```javascript
+{% highlight javascript %}
 update (up): 将版本库的修改合并到工作副本中。
 用法: update [PATH...]
 
   如果没有指定版本，则将工作副本更新到 HEAD 版本。否则同步到 -r 选项所
   指定的版本。
 
-  每更新一项就输出一行信息，使用首字符来报告执行的动作。这些字符的含义是: 
+  每更新一项就输出一行信息，使用首字符来报告执行的动作。这些字符的含义是:
 
     A  已添加
     D  已删除
@@ -1699,11 +1701,10 @@ update (up): 将版本库的修改合并到工作副本中。
                                  FILE:SECTION:OPTION=[VALUE]
                              例如：
                                  servers:global:http-library=serf
-```
+{% endhighlight %}
 常用操作<br>
 1.获取你上次更新之后版本库的修改：<br>
 $ svn update
 
 2.你也可以将工作拷贝更新到旧的修订版本<br>
 $ svn update -r30
-

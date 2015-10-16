@@ -1,10 +1,13 @@
 ---
-layout: post
-title: start,stop,restart mysql 在 Linux 或者 OSX 命令行工具中
-tags: [tools]
+layout:     post
+title:      启动，停止，重启mysql
+summary:    start,stop,restart mysql 在 Linux 或者 OSX 命令行工具中
+categories: tools
+tags:       [start mysql mac linux]
 ---
 
-```javascript
+
+{% highlight javascript %}
 Linux 中
 /etc/init.d/mysqld start
 /etc/init.d/mysqld stop
@@ -22,9 +25,4 @@ OSX 中
 sudo /usr/local/mysql/support-files/mysql.server start
 sudo /usr/local/mysql/support-files/mysql.server stop
 sudo /usr/local/mysql/support-files/mysql.server restart
-
-
-```
-
-
-
+{% endhighlight %}

@@ -1,7 +1,9 @@
 ---
-layout: post
-title: 页面中多 iframe 传值
-tags: [javascript]
+layout:     post
+title:      页面中多 iframe 传值
+summary:    如果一个页面中有多个 iframe 如何做到互相调用函数和传值。js 默认自带 只能子页面调用和修改父页面的函数或变量。没有 iframe 之间的调用，那么就要想一些办法
+categories: javascript
+tags:       [iframe 传值]
 ---
 
 ### 关于 iframe 传值
@@ -13,32 +15,32 @@ tags: [javascript]
 
 父页面：
 
-```javascript
+{% highlight javascript %}
 var iframeObj = {};
-```
+{% endhighlight %}
 子页面（iframe）
 
-```javascript
+{% highlight javascript %}
 window.onload = function(){
     top.window.iframeObj['iframe1'] = window;
 };
-```
+{% endhighlight %}
 如果我们要在一个 iframe 中调用另外一个 iframe 的时候可以这样做
 
-```javascript
+{% highlight javascript %}
 var iframe2 = top.window.iframeObj['iframe2'];
 iframe2.info();
-```
+{% endhighlight %}
 #### 实例
 <iframe  frameborder="0" scrolling="no" src="/resource/iframebyvalue/demo1.html" width="600" height="200"></iframe>
- 
+
 <br>
 #### 方法2
 在子页面（iframe）里面监听 hash 的改变，通过 hash 来达到传值的目的
 
 子页面（iframe）
 
-```javascript
+{% highlight javascript %}
 var hash = location.hash;
 window.onload = function(){
     setInterval(function(){
@@ -62,13 +64,12 @@ function callInfo(){
 function callInfoRun(){
     alert('我是页面 3 的 callInfo 方法');
 }
-```
+{% endhighlight %}
 #### 实例
 <iframe  frameborder="0" scrolling="no" src="/resource/iframebyvalue/demo2.html" width="600" height="200"></iframe>
 
 ps: 感觉第二种实用性不是太高，有一个 100 毫秒的定时器，耗性能。
- 
+
  测试代码下载 [点击下载](/resource/iframebyvalue/iframe.zip)
- 
+
  * 如果你还有其他的方法请加 QQ 群讨论吧 239147101
- 

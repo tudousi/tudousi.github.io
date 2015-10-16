@@ -1,32 +1,24 @@
 ---
 layout: default
-title: 蒋著[tudousi] - 博客
 ---
 
-<div id="home">
-  <h1>JAVASCRIPT</h1>
-  <ul class="posts">
-    {% for post in site.tags.javascript limit:10 %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+<div class="home">
+
+  <div class="posts">
+    {% for post in paginator.posts %}
+      <div class="post py3">
+        <p class="post-meta">{{ post.date | date: site.date_format }}</p>
+        <a href="{{ post.url | prepend: site.baseurl }}" class="post-link"><h3 class="h1 post-title">{{ post.title }}</h3></a>
+        <p class="post-summary">
+          {% if post.summary %}
+            {{ post.summary }}
+          {% else %}
+            {{ post.excerpt }}
+          {% endif %}
+        </p>
+      </div>
     {% endfor %}
-    <a href="/javascript.html">更多</a>
-  </ul>
-  
-  <h1>HTML/CSS</h1>
-  <ul class="posts">
-    {% for post in site.tags.htmlcss limit:10 %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-    <a href="/htmlcss.html">更多</a>
-  </ul>
-  
-  
-  <h1>开发工具</h1>
-  <ul class="posts">
-    {% for post in site.tags.tools limit:10 %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-    <a href="/tools.html">更多</a>
-  </ul>
-  
+  </div>
+
+  {% include pagination.html %}
 </div>
