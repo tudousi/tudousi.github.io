@@ -3,8 +3,43 @@
   <channel>
     <title>createthink.net</title>
     <description>一个菜鸟的前端学习历程 html css javascript node node.js</description>
-    <link>http://createthink.com/</link>
-    <atom:link href="http://createthink.com/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://createthink.net/</link>
+    <atom:link href="http://createthink.net/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>总结和近期需要看的书</title>
+        <description>&lt;p&gt;今天做的事情并不多，时间匆匆又快接近年关了。如果时间是一副良药，那我已经无药可救了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;回想生活，就那样不多说。&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;回想工作（今年做了2份工作，学到很多东西。）&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;javascript 有一个深刻的进步，自我感觉我已近入门了。但是如果要达到新的高度需要更持久的学习。&lt;/li&gt;
+  &lt;li&gt;html/css 欧这对烂兄弟，对他们的掌握还是很有限。只能说能做出东西来，不能算好。&lt;/li&gt;
+  &lt;li&gt;node.js/mongodb 最近也有在一直学习，总的来说还可以。如果做网络编程还需要看HTTP协议。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;目标和如何提高（以前没总结和想过，只是在不停的学习。）&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;目标：3年内达到新的高度，对目前的状态进行突破。写一些有力度的应用，掌握大型应用的架构方法。&lt;/li&gt;
+  &lt;li&gt;提高：始终不停的学习具体在下面的近期学习计划。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;最近学习用书&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://item.jd.com/11686375.html&quot;&gt;javascript设计模式与开发实践&lt;/a&gt; ~ 任何程序都离不开设计模式，所以必须要学会&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://item.jd.com/11523857.html&quot;&gt;数据结构与算法JavaScript描述&lt;/a&gt; ~ 同上，会放到设计模式后面学习&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://docs.angularjs.cn/api&quot;&gt;angularjs&lt;/a&gt; ~ 或者同类型的框架。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://item.jd.com/1056089175.html&quot;&gt;HTML5+JavaScript动画基础&lt;/a&gt; ~ 点心&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nodejs.org/en/&quot;&gt;node.js&lt;/a&gt; ~ 点心&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;不能贪多了哈 :) ，就这样&lt;/p&gt;
+</description>
+        <pubDate>Fri, 16 Oct 2015 00:00:00 +0800</pubDate>
+        <link>http://createthink.net/tools/2015/10/16/need-to-look-book/</link>
+        <guid isPermaLink="true">http://createthink.net/tools/2015/10/16/need-to-look-book/</guid>
+      </item>
     
       <item>
         <title>启动，停止，重启mysql</title>
@@ -29,8 +64,8 @@
 
 </description>
         <pubDate>Sun, 08 Mar 2015 00:00:00 +0800</pubDate>
-        <link>http://createthink.com/tools/2015/03/08/start-stop-restart%20mysql/</link>
-        <guid isPermaLink="true">http://createthink.com/tools/2015/03/08/start-stop-restart%20mysql/</guid>
+        <link>http://createthink.net/tools/2015/03/08/start-stop-restart%20mysql/</link>
+        <guid isPermaLink="true">http://createthink.net/tools/2015/03/08/start-stop-restart%20mysql/</guid>
       </item>
     
       <item>
@@ -87,8 +122,8 @@
 &lt;p&gt;重启服务即可&lt;/p&gt;
 </description>
         <pubDate>Fri, 27 Feb 2015 00:00:00 +0800</pubDate>
-        <link>http://createthink.com/tools/2015/02/27/xampp-access-forbidden/</link>
-        <guid isPermaLink="true">http://createthink.com/tools/2015/02/27/xampp-access-forbidden/</guid>
+        <link>http://createthink.net/tools/2015/02/27/xampp-access-forbidden/</link>
+        <guid isPermaLink="true">http://createthink.net/tools/2015/02/27/xampp-access-forbidden/</guid>
       </item>
     
       <item>
@@ -306,8 +341,8 @@
     每个对象都有__proto__属性它是一个对象，它指向父对象的prototype属性。父对象的prototype属性有constructor和__proto__，其中constructor指向其构造函数，而__proto__则再次指向其父对象的prototype属性。一直到Object&lt;/p&gt;
 </description>
         <pubDate>Wed, 31 Dec 2014 00:00:00 +0800</pubDate>
-        <link>http://createthink.com/javascript/2014/12/31/object-extend/</link>
-        <guid isPermaLink="true">http://createthink.com/javascript/2014/12/31/object-extend/</guid>
+        <link>http://createthink.net/javascript/2014/12/31/object-extend/</link>
+        <guid isPermaLink="true">http://createthink.net/javascript/2014/12/31/object-extend/</guid>
       </item>
     
       <item>
@@ -381,8 +416,8 @@
 &lt;/ul&gt;
 </description>
         <pubDate>Mon, 29 Dec 2014 00:00:00 +0800</pubDate>
-        <link>http://createthink.com/javascript/2014/12/29/iframe-by-value/</link>
-        <guid isPermaLink="true">http://createthink.com/javascript/2014/12/29/iframe-by-value/</guid>
+        <link>http://createthink.net/javascript/2014/12/29/iframe-by-value/</link>
+        <guid isPermaLink="true">http://createthink.net/javascript/2014/12/29/iframe-by-value/</guid>
       </item>
     
       <item>
@@ -2061,8 +2096,8 @@ $ svn update&lt;/p&gt;
 $ svn update -r30&lt;/p&gt;
 </description>
         <pubDate>Fri, 26 Dec 2014 00:00:00 +0800</pubDate>
-        <link>http://createthink.com/tools/2014/12/26/svn-command/</link>
-        <guid isPermaLink="true">http://createthink.com/tools/2014/12/26/svn-command/</guid>
+        <link>http://createthink.net/tools/2014/12/26/svn-command/</link>
+        <guid isPermaLink="true">http://createthink.net/tools/2014/12/26/svn-command/</guid>
       </item>
     
   </channel>
