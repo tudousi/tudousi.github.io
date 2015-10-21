@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>express 4.0 - 概括（part1） &#8211; createthink.net</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Express 是一个简洁而灵活的 node.js Web应用框架, 提供一系列强大特性帮助你创建各种Web应用。Express 不对 node.js 已有的特性进行二次抽象，我们只是在它之上扩展了Web应用所需的功能。丰富的HTTP工具以及来自Connect框架的中间件随取随用，创建强健、友好的API变得快速又简单">
+    <meta name="author" content="tudousi">
+    <meta name="keywords" content="node发送邮件, node email">
+    <link rel="canonical" href="http://createthink.net/node/2015/10/21/express-part1/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for createthink.net" href="/feed.xml" />
+    <meta name="baidu-site-verification" content="3865RHLBYn" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201510220001" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Verifications -->
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="express 4.0 - 概括（part1）">
+    <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
+    <meta property="og:url" content="http://createthink.net/node/2015/10/21/express-part1/">
+    <meta property="og:site_name" content="createthink.net">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="express 4.0 - 概括（part1）" />
+    <meta name="twitter:description" content="Express 是一个简洁而灵活的 node.js Web应用框架, 提供一系列强大特性帮助你创建各种Web应用。Express 不对 node.js 已有的特性进行二次抽象，我们只是在它之上扩展了Web应用所需的功能。丰富的HTTP工具以及来自Connect框架的中间件随取随用，创建强健、友好的API变得快速又简单" />
+    <meta name="twitter:url" content="http://createthink.net/node/2015/10/21/express-part1/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://createthink.net" class="site-title">createthink.net</a>
+      <nav class="site-nav">
+        <a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>express 4.0 - 概括（part1）</h1>
+  <span class="post-meta">2015-10-21</span><br>
+  
+  <span class="post-meta small">
+  
+    1 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <h3 id="section">本文所涵盖的内容：</h3>
+<ol>
+  <li>Express 3.0 和 Express 4.0 区别</li>
+  <li>Express 简介</li>
+  <li>创建一个Express项目（使用官方生成器和自定义2种方式）</li>
+</ol>
+
+<p><span class="green">如果下文不特别制定Express 3.0, 那么Express就表示Express 4.0</span></p>
+
+<h3 id="express-30--express-40-">Express 3.0 和 Express 4.0 区别</h3>
+<p>嘿嘿自己去<a href="https://github.com/strongloop/express/wiki/Migrating-from-3.x-to-4.x">Express</a>看</p>
+
+<p>但是还是说点什么，不然这段太少了。</p>
+
+<p>Express 把一些中间件都抽离出来了，这样做是可以更方便的版本管理和单独修复bug。
+举个例子，比如我们在Express 3.0中要解析body和cookies是这样使用的</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="c1">//...省略其他代码</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">bodyParser</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="nx">cookieParser</span><span class="p">());</span></code></pre></div>
+
+<p>但是我们到了Express 4.0中就要这样</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cookie-parser&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;body-parser&#39;</span><span class="p">);</span>
+<span class="c1">//...省略其他代码</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="nx">extended</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}));</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieParser</span><span class="p">());</span></code></pre></div>
+
+<p>还有一个重大更改的地方就是Routes，Express 4.0中路由变得像一个小型的Express程序一样，他提供了.use .get .param 和 route API。后面再详细讲解</p>
+
+<h3 id="express-">Express 简介</h3>
+<blockquote>
+  <p>Express 是一个简洁而灵活的 node.js Web应用框架, 提供一系列强大特性帮助你创建各种Web应用。Express 不对 node.js 已有的特性进行二次抽象，我们只是在它之上扩展了Web应用所需的功能。丰富的HTTP工具以及来自Connect框架的中间件随取随用，创建强健、友好的API变得快速又简单</p>
+</blockquote>
+
+<p>上面的说话太官方了,简单来说如果你想做一个网站使用Express就对了，它功能全面绝对可以满足你。</p>
+
+<p>Express基础功能：</p>
+
+<ol>
+  <li>
+    <p>路由系统</p>
+  </li>
+  <li>
+    <p>模板系统</p>
+  </li>
+  <li>
+    <p>中间件（Express的灵魂）</p>
+  </li>
+  <li>
+    <p>静态资源服务</p>
+  </li>
+  <li>
+    <p>错误处理</p>
+  </li>
+</ol>
+
+<h3 id="express">创建一个Express项目（使用官方生成器）</h3>
+<p>Eexpress 4 和 3自带的生成工具稍微有些变化了。在4中需要安装express-generator@4包</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">express</span><span class="o">-</span><span class="nx">generator</span><span class="err">@</span><span class="mi">4</span>   <span class="c1">// 安装Express生成工具包</span></code></pre></div>
+
+<p>创建工程，express还有些参数可选具体请执行命令观看 express -h</p>
+
+<ol>
+  <li>
+    <p>如果你的控制台所在的目录是你项目的目录，你可以直接执行 express [options] 创建工程文件</p>
+  </li>
+  <li>
+    <p>如果你想创建一个新文件夹，并且新的工程在这个文件夹内你可以使用 express ./project [options] 创建工程</p>
+  </li>
+</ol>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 方式1 exress [options]</span>
+<span class="c1">// 方式2 express ./project [options]</span>
+<span class="nx">express</span> <span class="o">-</span><span class="nx">e</span>    <span class="c1">//我使用这个</span></code></pre></div>
+
+<p>安装Express所需要的模块</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">npm</span> <span class="nx">install</span></code></pre></div>
+
+<p>启动Express项目</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">npm</span> <span class="nx">start</span></code></pre></div>
+
+<p>等待一会Express所需要依赖的包文件就安装好了。执行 npm start 来启动Express程序，接着访问浏览器 http://localhost:3000/ 就可以看到网页渲染出了默认的欢迎界面了</p>
+
+<p>在我们平时写node程序时，启动node程序不都是用node xxx.js这里为什么使用npm start，这里提一下npm的一些知识，秘密就在于package.json文件中的scripts字段，看看官方的<a href="https://docs.npmjs.com/misc/scripts">文档</a>。npm 会在项目的 package.json 文件中寻找 scripts 区域，其中包括npm test和npm start等命令。其实npm test和npm start是npm run test和npm run start的简写。事实上，你可以使用npm run来运行scripts里的任何条目。</p>
+
+<h3 id="express-1">创建一个Express项目（自定义方式）</h3>
+<p>首先在你的工程目录创建2个文件</p>
+
+<ul>
+  <li>
+    <p>package.json</p>
+  </li>
+  <li>
+    <p>app.js</p>
+  </li>
+</ul>
+
+<p>package.json 内容如下</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// package.json</span>
+<span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;my-express&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;main&quot;</span><span class="o">:</span> <span class="s2">&quot;app.js&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;express&quot;</span><span class="o">:</span> <span class="s2">&quot;~4.0.0&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>在当前工程执行 npm install 安装Express模块</p>
+
+<p>app.js 内容如下</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span>     <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">port</span>    <span class="o">=</span>   <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>
+
+<span class="c1">// 定义路由</span>
+<span class="c1">// 创建一个默认的欢迎路由</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/welcome&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;hello, welcome!&#39;</span><span class="p">);</span>  
+<span class="p">});</span>
+
+<span class="c1">// 在这里创建其他路由</span>
+
+<span class="c1">// 开启服务</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;start on port &#39;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">);</span></code></pre></div>
+
+<p>执行命令 node app.js 开启服务，然后在浏览器访问 http://localhost:3000/welcome 可以看到欢迎文字。到此我们对Express安装和创建基本完成了。</p>
+
+<p>总结：</p>
+
+<p>Express 3.0已经是被淘汰了，大家不要使用了。现在网络上基本都是Express 4所以我们也要跟进。介绍了Express 4创建工程的2种方法和Express 3和Express 4的一些区别。</p>
+
+<p>下一章内容：</p>
+
+<ul>
+  <li>对Express 4的组成和模块进行大致的了解（并不是源码分析），只是了解用到的一些主要的模块。</li>
+  <li>对Express 4的路由进行学些，创建一个RESTful API 服务来体验下新版的Routes。</li>
+</ul>
+
+</article>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      &copy; 2015 <a href="http://createthink.net">createthink.net</a> with Help from <a href="http://jekyllrb.com/">Jekyll</a> and Theme crafted with by <a href="http://johnotander.com">John Otander</a>
+    </small>
+  </div>
+</footer>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?86487f6d309f8a041841232abb6ff18d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>
