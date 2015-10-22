@@ -7,6 +7,91 @@
     <atom:link href="http://createthink.net/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Node与PHP通信，打造一个ICON转换工具</title>
+        <description>&lt;h3 id=&quot;section&quot;&gt;本文所涵盖的内容&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;PHP把图片转换为.ico格式&lt;/li&gt;
+  &lt;li&gt;Node调用PHP协作完成图片转换&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;所需要的环境 1、PHP  2、Node&lt;/p&gt;
+
+&lt;h3 id=&quot;php&quot;&gt;PHP命令行调用&lt;/h3&gt;
+&lt;p&gt;在你的文件夹下面新建一个demo.php并输入如下内容&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;hello world!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;将控制台中得路径切换到当前demo.php所在目录并且执行命令 &lt;b&gt;php demo.php&lt;/b&gt;，你将会看到输出 hello world!。&lt;/p&gt;
+
+&lt;h3 id=&quot;php-1&quot;&gt;PHP图片格式转换&lt;/h3&gt;
+&lt;p&gt;要用PHP将图片转换为.ico格式我们需要使用到一个库&lt;a href=&quot;https://github.com/chrisbliss18/php-ico&quot;&gt;php-ico&lt;/a&gt;。将这个库下载下来并且解压，得到解压文件&lt;b&gt;class-php-ico.php&lt;/b&gt;将他放在我们的demo.php目录中，然后我们新建一个icon.php文件，代码如下&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;dirname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;__FILE__&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/class-php-ico.php&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 调用ico库&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$source&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;dirname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;__FILE__&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/tudou.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;// 待转换的图片路径&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$destination&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;dirname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;__FILE__&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/tudou.ico&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// 转化后的ico图片路径&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ico_lib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PHP_ICO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 转换图片&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ico_lib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save_ico&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$destination&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;                     &lt;span class=&quot;c1&quot;&gt;// 存储图片&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;我们在icon.php文件夹中执行命令 &lt;b&gt;php icon.php&lt;/b&gt;后可以在该目录看到一个生成好的.ico文件了。像下面图片一样，是不是很酷。&lt;br /&gt;
+&lt;img src=&quot;/resource/node-php-ico/img1.png&quot; alt=&quot;转换后ico图片&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;nodephp&quot;&gt;Node调用PHP完成图片转换&lt;/h3&gt;
+&lt;p&gt;我们完成了PHP得图片转换，接下来我们就得考虑如何使用Node调用PHP完成这样的工作了。&lt;/p&gt;
+
+&lt;p&gt;Node为我们提供了调用外部进程的命令，那就是 &lt;b&gt;child_process&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;这里就简单说下&lt;b&gt;child_process&lt;/b&gt;里的一个函数&lt;b&gt;exec&lt;/b&gt;，他的作用是在 shell 中执行一个命令并缓冲输出。第一个参数是字符串代表你要执行的shell命令，第二个参数是一个回调函数，当命令结束或者发生错误是调用。&lt;/p&gt;
+
+&lt;p&gt;回调函数有3个参数，第一个是Error对象实例，如果不包含错误将为null，第二个参数是shell执行完的输出信息，第三个参数是命令错误输出信息。&lt;/p&gt;
+
+&lt;p&gt;这里我们创建icon.js文件，引入child_process然后调用exec去调用shell执行我们的PHP代码进行图片格式的转换&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// icon.js&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;child_process&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;php icon.php&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在控制台中运行 &lt;b&gt;node icon.js&lt;/b&gt; 非常酷的一张.ico图片就出来了。&lt;/p&gt;
+
+&lt;p&gt;我们再对PHP程序进行一下改造让Node回调函数能够获取到我们转换后.ico图片的路径，这样我们的程序才有实用价值。把PHP代码增加一行打印出转换后的.ico路径&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;dirname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;__FILE__&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/class-php-ico.php&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 调用ico库&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$source&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;dirname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;__FILE__&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/tudou.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;           &lt;span class=&quot;c1&quot;&gt;// 待转换的图片路径&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$destination&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;dirname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;__FILE__&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/tudou.ico&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// 转化后的ico图片路径&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$ico_lib&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PHP_ICO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 转换图片&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ico_lib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save_ico&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$destination&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;                     &lt;span class=&quot;c1&quot;&gt;// 存储图片&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 新增代码 打印出.ico路径，这样Node回调函数就能捕获了&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$destination&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;再次执行&lt;b&gt;node icon.js&lt;/b&gt;，能看到控制台输出了.ico的完整路径。我们可以将他移动到我们的Apache目录等其他地方，供我们使用了。怎么样是不是很酷。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;tudoudeMacBook&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Pro&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tudou$&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;node&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;icon&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;js&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tudou&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Desktop&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;tudou&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ico&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;tudoudeMacBook&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Pro&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tudou$&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;总结：&lt;/h3&gt;
+
+&lt;p&gt;&lt;span class=&quot;red&quot;&gt;我们为什么要费尽周折的这样去调用PHP程序完成图片格式转换捏？&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;其实在Node中，对图片的操作很有限。而PHP经过这么多年的发展，已经有许多对图片操作的库我们可以调用，当Node某些方面不足时我们就能通过和其他程序和合作完成我们想要的功能。你是不是也想到了更多的注意 :)&lt;/p&gt;
+</description>
+        <pubDate>Fri, 23 Oct 2015 00:00:00 +0800</pubDate>
+        <link>http://createthink.net/node/2015/10/23/node-php-communicate/</link>
+        <guid isPermaLink="true">http://createthink.net/node/2015/10/23/node-php-communicate/</guid>
+      </item>
+    
+      <item>
         <title>express 4.0 - 概括（part1）</title>
         <description>&lt;h3 id=&quot;section&quot;&gt;本文所涵盖的内容：&lt;/h3&gt;
 &lt;ol&gt;
