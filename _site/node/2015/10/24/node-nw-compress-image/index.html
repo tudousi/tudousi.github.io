@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>使用nw.js完成一个PC端的图片压缩程序 &#8211; createthink.net</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="nw.js原名Node Webkit，是一个跨平台创建桌面应用程序框架。使用语言是HTML、CSS、javascript、node">
+    <meta name="author" content="tudousi">
+    <meta name="keywords" content="nw, nw.js">
+    <link rel="canonical" href="http://createthink.net/node/2015/10/24/node-nw-compress-image/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for createthink.net" href="/feed.xml" />
+    <meta name="baidu-site-verification" content="3865RHLBYn" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201510242205" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Verifications -->
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="使用nw.js完成一个PC端的图片压缩程序">
+    <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
+    <meta property="og:url" content="http://createthink.net/node/2015/10/24/node-nw-compress-image/">
+    <meta property="og:site_name" content="createthink.net">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="使用nw.js完成一个PC端的图片压缩程序" />
+    <meta name="twitter:description" content="nw.js原名Node Webkit，是一个跨平台创建桌面应用程序框架。使用语言是HTML、CSS、javascript、node" />
+    <meta name="twitter:url" content="http://createthink.net/node/2015/10/24/node-nw-compress-image/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://createthink.net" class="site-title">createthink.net</a>
+      <nav class="site-nav">
+        <a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>使用nw.js完成一个PC端的图片压缩程序</h1>
+  <span class="post-meta">2015-10-24</span><br>
+  
+  <span class="post-meta small">
+  
+    1 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <blockquote>
+  <p>nw.js原名Node Webkit，是一个跨平台创建桌面应用程序框架。使用语言是HTML、CSS、javascript、node</p>
+</blockquote>
+
+<p>文章所涵盖内容</p>
+
+<ul>
+  <li>
+    <p>nw.js 基本使用方法</p>
+  </li>
+  <li>
+    <p>node 压缩图片</p>
+  </li>
+  <li>
+    <p>打包（没法讲啊，我用osx打包后程序无法正常使用，如果你们是Win可以试试啊。）</p>
+  </li>
+</ul>
+
+<p>开始前来看看完成后的效果
+<img src="/resource/node-image-compress/demo.gif" alt="图片转换" /></p>
+
+<p>遗憾的是图片只压缩了4kb，压缩效率还是有点不满意呀！</p>
+
+<h3 id="section">第一步，安装基础环境</h3>
+<p>创建一个文件夹nw，在nw文件夹中创建2个文件夹css和js，再创建2个文件index.html和package.json。</p>
+
+<p>package.json 内容如下</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;compress-images&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;main&quot;</span><span class="o">:</span> <span class="s2">&quot;index.html&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;imagemin&quot;</span><span class="o">:</span> <span class="s2">&quot;~3.2.2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;gulp-rename&quot;</span><span class="o">:</span> <span class="s2">&quot;~1.2.2&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;window&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;图片压缩工具&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;toolbar&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s2">&quot;width&quot;</span><span class="o">:</span> <span class="mi">300</span><span class="p">,</span>
+        <span class="s2">&quot;height&quot;</span><span class="o">:</span> <span class="mi">300</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<ul>
+  <li>main 是程序起始页面</li>
+  <li>dependencies 是我们程序所要依赖的包，这里就是图片压缩的包</li>
+  <li>window 是程序的属性</li>
+</ul>
+
+<p>安装包</p>
+
+<ul>
+  <li>
+    <p><b>npm install -g nw</b> 安装nw的包，安装模式为全局的，这样我们可以在控制台中调用。还有就是这个安装过程要耐心和多试几次。哎，你懂</p>
+  </li>
+  <li>
+    <p><b>npm install</b> 安装我们package所依赖的包</p>
+  </li>
+</ul>
+
+<h3 id="section-1">第二步，搭建界面</h3>
+<p>先把html的布局代码写好，html代码如下</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;UTF-8&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>图片压缩工具<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;./css/base.css&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;file-box&quot;</span> <span class="na">id=</span><span class="s">&quot;file-box&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;p&gt;</span>拖动文件到这里开始压缩<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;./js/app.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre></div>
+
+<p>html中引入和base.css和app.js，同时要创建他们。</p>
+
+<p>base.css代码如下，其中haveFile是拖动文件后高亮的样式</p>
+
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="o">*</span> <span class="p">{</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="k">padding</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.file-box</span> <span class="p">{</span>
+    <span class="k">width</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="k">height</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="k">margin</span><span class="o">:</span> <span class="m">0</span> <span class="k">auto</span><span class="p">;</span>
+    <span class="k">margin-top</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+    <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>
+    <span class="k">line-height</span><span class="o">:</span> <span class="m">200px</span><span class="p">;</span>
+    <span class="k">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">20px</span><span class="p">;</span>
+    <span class="k">border</span><span class="o">:</span> <span class="m">2px</span> <span class="k">dashed</span> <span class="nb">black</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.file-box.haveFile</span> <span class="p">{</span>
+    <span class="k">background</span><span class="o">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">145</span><span class="o">,</span> <span class="m">183</span><span class="o">,</span> <span class="m">246</span><span class="o">,</span> <span class="m">0</span><span class="o">.</span><span class="m">5</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+
+<p>js代码先不写，我们让程序跑起来。你的控制台应该在当前目录中，在控制台中执行 <b>nw</b> ，系统会自动打开程序，就像下图
+<img src="/resource/node-image-compress/demo1.png" alt="图片转换" /></p>
+
+<h3 id="section-2">第三步，编写拖动和压缩相关的代码</h3>
+
+<p>先来完成拖动的代码，并且得到拖动的图片文件。代码如下</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">fileBox</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;file-box&#39;</span><span class="p">);</span>
+
+    <span class="c1">// 拖动进入目标</span>
+    <span class="nx">fileBox</span><span class="p">.</span><span class="nx">ondragenter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fileBox</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;file-box haveFile&#39;</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="c1">// 拖动离开目标</span>
+    <span class="nx">fileBox</span><span class="p">.</span><span class="nx">ondragleave</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">fileBox</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;file-box&#39;</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="c1">// 拖动中，这里必须阻止事件</span>
+    <span class="nx">fileBox</span><span class="p">.</span><span class="nx">ondragover</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="c1">// 拖动完成</span>
+    <span class="nx">fileBox</span><span class="p">.</span><span class="nx">ondrop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">files</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">dataTransfer</span><span class="p">.</span><span class="nx">files</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">files</span><span class="p">);</span>
+        <span class="nx">fileBox</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;file-box&#39;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>这里获取了ID为file-box的元素并且给他增加了HTML5拖动事件。当拖动文件在file-box元素上时，file-box会高亮背景。然后再拖动完成时，输出了拖动进来的文件</p>
+
+<p>这里可以执行 <b>nw</b> 命令拖动一个图片试试效果。程序右上角有调试工具</p>
+
+<p>接着增加一个处理图片压缩的函数，在这个函数里进行检测文件是否是图片，和图片的压缩<b class="red">我省略了代码，只展示不同的代码</b></p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// 拖动完成</span>
+    <span class="nx">fileBox</span><span class="p">.</span><span class="nx">ondrop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">files</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">dataTransfer</span><span class="p">.</span><span class="nx">files</span><span class="p">;</span>
+        <span class="nx">handleImage</span><span class="p">(</span><span class="nx">files</span><span class="p">);</span>
+        <span class="nx">fileBox</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;file-box&#39;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 处理图片</span>
+    <span class="kd">function</span> <span class="nx">handleImage</span><span class="p">(</span><span class="nx">files</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 检查拖动进来的是否都是图片</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">checkImage</span><span class="p">(</span><span class="nx">files</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">zip</span><span class="p">(</span><span class="nx">files</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">checkImage</span><span class="p">(</span><span class="nx">files</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">files</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="sr">/(gif)|(jpg)|(png)|(svg)|(jpeg)/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">files</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">type</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+<p>要压缩图片需要把图片压缩库加载进来，然后调用他进行压缩。</p>
+
+<p>在window.onload上面调用imagemin和gulp-rename库。</p>
+
+<ul>
+  <li>
+    <p>imagemin压缩图片</p>
+  </li>
+  <li>
+    <p>gulp-rename 重命名文件</p>
+  </li>
+</ul>
+
+<p>代码如下</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">Imagemin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;imagemin&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">rename</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp-rename&#39;</span><span class="p">);</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span></code></pre></div>
+
+<p>接着来实现zip函数，代码如下</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+  <span class="kd">function</span> <span class="nx">zip</span><span class="p">(</span><span class="nx">files</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">files</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="p">(</span><span class="nx">files</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+          <span class="kd">var</span> <span class="nx">extName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+          <span class="kd">var</span> <span class="nx">dir</span> <span class="o">=</span> <span class="p">(</span><span class="nx">files</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">path</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+
+          <span class="nx">dir</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+          <span class="nx">dir</span> <span class="o">=</span> <span class="nx">dir</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+          <span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_compress_.&#39;</span> <span class="o">+</span> <span class="nx">extName</span><span class="p">;</span>
+
+          <span class="k">new</span> <span class="nx">Imagemin</span><span class="p">()</span>
+              <span class="p">.</span><span class="nx">src</span><span class="p">(</span><span class="nx">files</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">path</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">rename</span><span class="p">(</span><span class="nx">name</span><span class="p">))</span>
+              <span class="p">.</span><span class="nx">dest</span><span class="p">(</span><span class="nx">dir</span><span class="p">)</span>
+              <span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">Imagemin</span><span class="p">.</span><span class="nx">jpegtran</span><span class="p">({</span><span class="nx">progressive</span><span class="o">:</span> <span class="kc">true</span><span class="p">}))</span>
+              <span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">files</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">files</span><span class="p">);</span>
+                  <span class="c1">// =&gt; {path: &#39;build/images/foo.jpg&#39;, contents: &lt;Buffer 89 50 4e ...&gt;}</span>
+              <span class="p">});</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">// ...  </span>
+<span class="p">};</span></code></pre></div>
+
+<p>他会对拖动进来的图片压缩，压缩后会当然目录生成新图片并且重命名为 filename + <em>compress</em>.jpg</p>
+
+<p>再次的执行我们熟悉的 <b>nw</b> 命令，拖动一张图片去试试吧，非常有意思。</p>
+
+<p>关于打包：其实土豆是打包成功了的，但是打出来的包无法正常使用。如果大家感兴趣可以去看看<a href="https://github.com/nwjs/nw-builder">nw-builder</a>这个打包程序，如果你打包的程序没问题不妨告诉我哈。</p>
+
+<p>总结：</p>
+
+<p>我们使用了node的图形压缩库和nw创建一个桌面程序，这个程序说实话并没有实用价值，都是研究性的。当然如果感兴趣的同学可以继续研究学习下去，打造更具实用性的桌面程序，比如有道词典。祝大家好运 :)</p>
+
+<p>如今移动端有像React Native这种框架，桌面端由nw.js这种框架，现在javascript要一统宇宙的感觉呀！！！</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      &copy; 2015 <a href="http://createthink.net">createthink.net</a> with Help from <a href="http://jekyllrb.com/">Jekyll</a> and Theme crafted with by <a href="http://johnotander.com">John Otander</a>
+    </small>
+  </div>
+</footer>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?86487f6d309f8a041841232abb6ff18d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>
