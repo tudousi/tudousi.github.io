@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      nginx反向代理node服务
-summary:    nginx反向代理node服务
+summary:    使用nginx做代理可以做负载均衡、静态文件处理、请求日志、压缩等工作，好处还是蛮多的。下面记录下我的搭建过程。
 categories: node
 tags:       [nginx反向代理node, node反向代理]
 ---
