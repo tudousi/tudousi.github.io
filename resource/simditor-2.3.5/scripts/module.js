@@ -20,15 +20,19 @@ var Module,
 Module = (function() {
   Module.extend = function(obj) {
     var key, val, _ref;
+    // 保证扩展对象必须是一个对象
     if (!((obj != null) && typeof obj === 'object')) {
       return;
     }
     for (key in obj) {
       val = obj[key];
-      if (key !== 'included' && key !== 'extended') {
+      if (key !== 'included' && key !== 'extended') {   // included、extended不进行扩展
         this[key] = val;
       }
     }
+    /**
+    * obj.extended 有传递就执行，作用域是当前this
+    */
     return (_ref = obj.extended) != null ? _ref.call(this) : void 0;
   };
 
@@ -45,7 +49,7 @@ Module = (function() {
     }
     return (_ref = obj.included) != null ? _ref.call(this) : void 0;
   };
-
+  // 连接子类锁依赖的类
   Module.connect = function(cls) {
     if (typeof cls !== 'function') {
       return;
@@ -69,7 +73,9 @@ Module = (function() {
   function Module(opts) {
     var cls, instance, instances, name, _base, _i, _len;
     this.opts = $.extend({}, this.opts, opts);
+    // 当前类所链接的类
     (_base = this.constructor)._connectedClasses || (_base._connectedClasses = []);
+    // 实例化链接类
     instances = (function() {
       var _i, _len, _ref, _results;
       _ref = this.constructor._connectedClasses;
@@ -84,7 +90,7 @@ Module = (function() {
       }
       return _results;
     }).call(this);
-    if (this._connected) {
+    if (this._connected) {  // 当前类作为其他类的链接类被连接后，再次实例化只是做参数的扩展
       this.opts = $.extend({}, this.opts, this._module.opts);
     } else {
       this._init();
