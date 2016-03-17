@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>网络加载的自我反思 &#8211; 再试，再失败，更好地失败</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="双11，恩，电商们也是打的火热。不理他们，反正也没钱买，就来分析下他们页面如何优化的吧。重要的是自我思考，我们该怎么做。">
+    <meta name="author" content="tudousi">
+    <meta name="keywords" content="analysis, website analysis">
+    <link rel="canonical" href="http://tudousi.github.io//javascript/2015/11/07/website-load-analysis/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for 再试，再失败，更好地失败" href="/feed.xml" />
+    <meta name="baidu-site-verification" content="3865RHLBYn" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201603180317" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Verifications -->
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="网络加载的自我反思">
+    <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
+    <meta property="og:url" content="http://tudousi.github.io//javascript/2015/11/07/website-load-analysis/">
+    <meta property="og:site_name" content="再试，再失败，更好地失败">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="网络加载的自我反思" />
+    <meta name="twitter:description" content="双11，恩，电商们也是打的火热。不理他们，反正也没钱买，就来分析下他们页面如何优化的吧。重要的是自我思考，我们该怎么做。" />
+    <meta name="twitter:url" content="http://tudousi.github.io//javascript/2015/11/07/website-load-analysis/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://tudousi.github.io/" class="site-title">再试，再失败，更好地失败</a>
+      <nav class="site-nav">
+        <a href="/mtb/">MTB</a>
+<a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>网络加载的自我反思</h1>
+  <span class="post-meta">2015-11-7</span><br>
+  
+  <span class="post-meta small">
+  
+    1 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <blockquote>
+  <p>今年的电商大战那是一个热闹，从实名举报到口水大战互相sibi好不热闹。。对于我这种穷人只能呵呵笑笑，继续工作哈。买不起总的干点什么吧？我就想到了分析他们如何处理和优化网站加载速度的。先说我是切图的，技术不牛x，更不是大神。下文只是我自己的理解，如果误导你了来成都土豆请你吃饭。</p>
+</blockquote>
+
+<p>下文只要我说到”分析”，您可以理解成”扯淡” :P</p>
+
+<p>这里我就只拿了天猫和京东来分析。</p>
+
+<p><a href="https://www.tmall.com/wow/act/14700/pre20151111?spm=875.7789098.2015002.1.FKsh8b&amp;acm=lb-zebra-17931-286929.1003.2.522430&amp;aldid=0YTKbFQP&amp;scm=1003.2.lb-zebra-17931-286929.ITEM_1444720109175_522430&amp;pos=1">天猫主会场</a></p>
+
+<p><a href="http://sale.jd.com/act/M7J62hoy1vugS.html?cpdad=1DLSUE">京东主会场</a></p>
+
+<p>如果你打开天猫的主会场，你会惊叹。”哇，太快了”。对的天猫1s左右就能”load”完毕。为啥”load”打上引号捏？因为他是懒加载。默认进来只是展示首屏的资源。</p>
+
+<p>如果打开京东的主会场，你会感叹。”什么鬼，我网络又出问题了吗？”。其实不是，只要是京东的图片资源加载很有问题。</p>
+
+<p>京东的网站因为图片请求资源问题导致整个网站长达恐怖的1m时间整个网页还没load完毕。:S 整个人都不好了。</p>
+
+<p>下面来分析对比他们2家网站。</p>
+
+<ol>
+  <li>加载速度</li>
+</ol>
+
+<p><b>从加载首屏来看，京东大概是2s-3s能正常展示首屏，天猫是1s。</b></p>
+
+<p><img src="/resource/load-analysis/jd-domcontentloaded.png" alt="京东DomLoad" /> 京东DOMContentLoaded速度
+<img src="/resource/load-analysis/tm-domcontentloaded.png" alt="天猫DomLoad" /> 天猫DOMContentLoaded速度</p>
+
+<p>明显京东比天猫慢了一半，为什么？不妨打开京东和天猫的源代码看一下。京东到body结尾是4062行代码，天猫则是1146行代码。明白了吧。肯定不能全部归咎于代码多少，还涉及到资源的加载。</p>
+
+<p>接着来看看load(window.onload)加载速度。天猫是1.8s左右，京东，因为图片资源问题1m+开外，有时候可能根本不会触发。所以如果你在京东工作，想要写这样的代码<b>window.onload</b>肯定是不好使的。</p>
+
+<ol>
+  <li>分析完基本的加载。可以再来分析他们的资源加载的策略</li>
+</ol>
+
+<p>先上天猫的，资源加载如下图</p>
+
+<p><img src="/resource/load-analysis/tm-res-load.png" alt="tm" /></p>
+
+<p>总是感觉很屌，截止到DOMContentLoaded所有的资源加载总数加起来也不过250kb（我加过），主要加载的资源就是：首页html、一个reset css文件、kissy js文件、index js文件、af_v1 js、gccpm js和必须得图片资源。这是这些资源都是当前网页必要的东西。后面的所有资源都是通过刚刚那个kissy里面的getScript函数动态创建标签加载的。</p>
+
+<p>可以再看下面的图</p>
+
+<p><img src="/resource/load-analysis/tm-res-load-1.png" alt="tm" /></p>
+
+<p>右边的timeline红框处是DOM加载完后通过kissy又加载了很多js。这些资源加载是不会影响页面展示的。所以天猫控制的很好。</p>
+
+<p>图片资源，天猫也都是懒加载，图片也控制的很好，图片不大超过30kb的都很少。CDN也相当给力每张图片的加载时间基本不超过50ms。</p>
+
+<ol>
+  <li>再来看看京东的。先上个DOMContentLoaded和load的图</li>
+</ol>
+
+<p><img src="/resource/load-analysis/jd-res-load.png" alt="tm" /></p>
+
+<p>:S 写不动了。睡觉明天有空再填坑。</p>
+
+<p>总结：</p>
+
+<p>先把总结写了，不然又忘了。想要网页加载快体验好，我理解就是资源的控制。首先html代码要控制压缩和gzip。但是最重要的是资源的加载，同步加载的资源能少则少。反正就是首屏的资源从加载到渲染最好不要好过3s是最好的感觉。</p>
+
+<p>其他的资源或者代码就让DOMContentLoaded后去加载吧。</p>
+
+<p>图片资源一定一定要控制越小越好很重要。</p>
+
+<p>在这个发展这么快用户耐心越来越少的年代。体验很重要。</p>
+
+<p>自我反思。在我的工作中就没处理好这些图片资源。有些png图片大到800kb 3s才加载完毕，加上渲染都4s开外了。我会加班处理好的。虽然做不到想他们那样好，但是起码做到我的最好吧，哈哈。</p>
+
+<p>、、</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      &copy; 2015 <a href="http://createthink.net">createthink.net</a> with Help from <a href="http://jekyllrb.com/">Jekyll</a> and Theme crafted with by <a href="http://johnotander.com">John Otander</a>
+    </small>
+  </div>
+</footer>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?86487f6d309f8a041841232abb6ff18d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+</html>

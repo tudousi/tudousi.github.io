@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>javascript 对象继承基础 &#8211; createthink.net</title>
+    <title>javascript 对象继承基础 &#8211; 再试，再失败，更好地失败</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="JavaScript 是基于原型的面向对象语言，并不像 JAVA、C++ 这种基于对象的语言。如果要理解 JavaScript 中的对象，理解原型 (prototype) 和构造函数 (constructor) 是非常重要的。">
     <meta name="author" content="tudousi">
     <meta name="keywords" content="javascript继承, javascript对象">
-    <link rel="canonical" href="http://createthink.net/javascript/2014/12/31/object-extend/">
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for createthink.net" href="/feed.xml" />
+    <link rel="canonical" href="http://tudousi.github.io//javascript/2014/12/31/object-extend/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for 再试，再失败，更好地失败" href="/feed.xml" />
     <meta name="baidu-site-verification" content="3865RHLBYn" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201601060013" type="text/css">
+    <link rel="stylesheet" href="/css/pixyll.css?201603180317" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -28,15 +28,15 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="javascript 对象继承基础">
     <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
-    <meta property="og:url" content="http://createthink.net/javascript/2014/12/31/object-extend/">
-    <meta property="og:site_name" content="createthink.net">
+    <meta property="og:url" content="http://tudousi.github.io//javascript/2014/12/31/object-extend/">
+    <meta property="og:site_name" content="再试，再失败，更好地失败">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     
     <meta name="twitter:title" content="javascript 对象继承基础" />
     <meta name="twitter:description" content="JavaScript 是基于原型的面向对象语言，并不像 JAVA、C++ 这种基于对象的语言。如果要理解 JavaScript 中的对象，理解原型 (prototype) 和构造函数 (constructor) 是非常重要的。" />
-    <meta name="twitter:url" content="http://createthink.net/javascript/2014/12/31/object-extend/" />
+    <meta name="twitter:url" content="http://tudousi.github.io//javascript/2014/12/31/object-extend/" />
 
     <!-- Icons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
@@ -62,7 +62,7 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="http://createthink.net" class="site-title">createthink.net</a>
+      <a href="http://tudousi.github.io/" class="site-title">再试，再失败，更好地失败</a>
       <nav class="site-nav">
         <a href="/mtb/">MTB</a>
 <a href="/about/">About</a>
@@ -105,24 +105,26 @@
 
 <p>JavaScript 中的构造函数不同于其他基于对象的语言，它是一个函数，比如： function Class(){} 这就是构造函数，可以看下 js 中的构造函数和其他语言的构造函数的区别</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// javascript</span>
-<span class="kd">function</span> <span class="nx">Person</span><span class="p">(){}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// javascript
+</span>
+<span class="kd">function</span> <span class="nx">Person</span><span class="p">(){}</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// java</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// java
+</span>
 <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="nf">Person</span><span class="o">(){}</span>
-<span class="o">}</span></code></pre></div>
+    <span class="kd">public</span> <span class="n">Person</span><span class="o">(){}</span>
+<span class="o">}</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// c++</span>
-<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-c--" data-lang="c++"><span class="c1">// c++
+</span><span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
     <span class="k">public</span><span class="o">:</span>
         <span class="n">Person</span><span class="p">(){}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">// php</span>
-<span class="x">class Person {</span>
-<span class="x">    function __construct(){}</span>
-<span class="x">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-php" data-lang="php">// php
+class Person {
+    function __construct(){}
+}</code></pre></figure>
 
 <p>好了扯得有点远，js 中的构造函数 (constructor) 是用来初始化对象的。</p>
 
@@ -143,16 +145,17 @@
 
 <p>下面的代码证明了 p 的对象实例属性 __proto__ 是指向构造函数 Person 的原型 (prototype)</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){}</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){}</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>  <span class="c1">// true</span></code></pre></div>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>  <span class="c1">// true</span></code></pre></figure>
 
 <h4 id="function-">函数 (function) 对象的原型链</h4>
 <p>在JavaScript中，函数（function）是一个特殊的对象，所有函数都是构造函数Function的实例，所以，函数的原型链与new操作符实例化对象的原型链会不同，先看下面代码：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{}</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// false</span>
-<span class="nx">alert</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// true</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{}</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// false
+</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// true</span></code></pre></figure>
 
 <p>在 js 中函数 (function) 是一个特殊的对象，所有的函数 (function) 都是构造函数 (Function) 的实例。</p>
 
@@ -170,128 +173,142 @@
 这里的 this 指向的是 new 出来的对象实例，所以构造函数会给对象实例添加一系列初始化的属性</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 版本1 构造函数初始化属性</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 版本1 构造函数初始化属性
+</span>
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello my name is:&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello my name is:'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
     <span class="p">};</span>
 <span class="p">}</span>
-<span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;tudou&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'tudou'</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
 <span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>
-<span class="c1">// 版本2 在原型是添加属性和方法</span>
+<span class="c1">// 版本2 在原型是添加属性和方法
+</span>
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello my name is:&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello my name is:'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="p">};</span>
-<span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;tudou&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
-<span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span></code></pre></div>
+<span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'tudou'</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span></code></pre></figure>
 
 <p>基本类讲完了，来看下在 js 中如何实现继承的，看下面代码：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Person constructor&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Person constructor'</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello my name is:&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello my name is:'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="kd">function</span> <span class="nx">Programmer</span><span class="p">(){</span>
-    <span class="c1">// 调用父类构造函数来初始化 Programmer 的属性</span>
+    <span class="c1">// 调用父类构造函数来初始化 Programmer 的属性
+</span>
     <span class="nx">Person</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Programmer constructor&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Programmer constructor'</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="c1">// 简单粗暴的把 Programmer 对象的原型属性指向 Person 的原型</span>
+<span class="c1">// 简单粗暴的把 Programmer 对象的原型属性指向 Person 的原型
+</span>
 <span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;i age is:&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'i age is:'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
 <span class="p">};</span>
-<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;tudou&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Programmer</span><span class="p">(</span><span class="s1">&#39;tudou&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>   <span class="c1">// i age is:22</span>
-<span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>  <span class="c1">// i age is:22</span></code></pre></div>
+<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'tudou'</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Programmer</span><span class="p">(</span><span class="s1">'tudou'</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<span class="nx">p</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>   <span class="c1">// i age is:22
+</span>
+<span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>  <span class="c1">// i age is:22</span></code></pre></figure>
 
 <p>上面代码是一种暴力继承，这样做不是最佳方法，作为一个君子，此方法不可用。有一个坏处：Programmer.talk 会覆盖 Person.talk。</p>
 
 <p>针对上面的优化继承方案</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 原型继承修改为</span>
-<span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 原型继承修改为
+</span>
+<span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span></code></pre></figure>
 
 <p>这样做的好处就是 Programmer.prototype 继承的是一个 Person 对象的实例，修改 Programmer.prototype 并不会影响到 Perons</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 优化继承</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 优化继承
+</span>
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">){</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Person constructor&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Person constructor'</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello my name is:&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello my name is:'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="kd">function</span> <span class="nx">Programmer</span><span class="p">(){</span>
-    <span class="c1">// 调用父类构造函数来初始化 Programmer 的属性</span>
+    <span class="c1">// 调用父类构造函数来初始化 Programmer 的属性
+</span>
     <span class="nx">Person</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Programmer constructor&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Programmer constructor'</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="c1">// 优化原型继承</span>
+<span class="c1">// 优化原型继承
+</span>
 <span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
 <span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;i age is:&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'i age is:'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span>
 <span class="p">};</span>
-<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;tudou&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Programmer</span><span class="p">(</span><span class="s1">&#39;tudou&#39;</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
-<span class="nx">p</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>   <span class="c1">// hello my name is:tudou</span>
-<span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>  <span class="c1">// i age is:22</span></code></pre></div>
+<span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">'tudou'</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Programmer</span><span class="p">(</span><span class="s1">'tudou'</span><span class="p">,</span> <span class="mi">22</span><span class="p">);</span>
+<span class="nx">p</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>   <span class="c1">// hello my name is:tudou
+</span>
+<span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>  <span class="c1">// i age is:22</span></code></pre></figure>
 
 <p>下面的继承其实没有什么问题，但是给 Programmer.prototype 赋值的时候会实例化 Person ，如果我们只想继承 Perons.prototype 就的使用一个空的对象作为代理，在把 Programmer.prototype 指向这个代理对象</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Person constructor&#39;</span><span class="p">);</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Person constructor'</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello my name is tudou&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello my name is tudou'</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="kd">function</span> <span class="nx">Programmer</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Programmer constructor&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Programmer constructor'</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="c1">// 再次优化继承</span>
+<span class="c1">// 再次优化继承
+</span>
 <span class="kd">function</span> <span class="nx">Empey</span><span class="p">(){}</span>
 <span class="nx">Empey</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 <span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Empey</span><span class="p">();</span>
 <span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;i age is 22&#39;</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'i age is 22'</span><span class="p">);</span>
 <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Programmer</span><span class="p">();</span>
 <span class="nx">p</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>
-<span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span></code></pre></div>
+<span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span></code></pre></figure>
 
 <p>通过 Empty 这一层对象实例作为了中转，在修改 Programmer.prototype 的属性的时候就不会影响到 Person.prototype 了</p>
 
 <p>写一个继承方法</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
     <span class="kd">function</span> <span class="nx">Person</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Person constructor&#39;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Person constructor'</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello my name is tudou&#39;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello my name is tudou'</span><span class="p">);</span>
     <span class="p">};</span>
     <span class="kd">function</span> <span class="nx">Programmer</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Programmer constructor&#39;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Programmer constructor'</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="c1">// 使用 extend 方法继承</span>
+    <span class="c1">// 使用 extend 方法继承
+</span>
     <span class="nx">Programmer</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
     <span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Programmer</span><span class="p">();</span>
-    <span class="nx">p</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>   <span class="c1">// hello my name is tudou</span>
-    <span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>  <span class="c1">// hello my name is tudou</span>
+    <span class="nx">p</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>   <span class="c1">// hello my name is tudou
+</span>
+    <span class="nx">td</span><span class="p">.</span><span class="nx">talk</span><span class="p">();</span>  <span class="c1">// hello my name is tudou
+</span>
 <span class="p">})();</span>
 
 <span class="kd">function</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">extendObj</span><span class="p">){</span>
@@ -300,7 +317,7 @@
     <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">tmpObject</span><span class="p">();</span>
     <span class="nx">tmpObject</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>总结：
     每个对象都有__proto__属性它是一个对象，它指向父对象的prototype属性。父对象的prototype属性有constructor和__proto__，其中constructor指向其构造函数，而__proto__则再次指向其父对象的prototype属性。一直到Object</p>

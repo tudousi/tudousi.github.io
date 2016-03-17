@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>XAMPP 访问 Access forbidden 问题 &#8211; createthink.net</title>
+    <title>XAMPP 访问 Access forbidden 问题 &#8211; 再试，再失败，更好地失败</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="当安装好 XAMPP 用 IP 进行访问的时候会出现以下的提示">
     <meta name="author" content="tudousi">
     <meta name="keywords" content="Access forbidden">
-    <link rel="canonical" href="http://createthink.net/tools/2015/02/27/xampp-access-forbidden/">
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for createthink.net" href="/feed.xml" />
+    <link rel="canonical" href="http://tudousi.github.io//tools/2015/02/27/xampp-access-forbidden/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for 再试，再失败，更好地失败" href="/feed.xml" />
     <meta name="baidu-site-verification" content="3865RHLBYn" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201601060013" type="text/css">
+    <link rel="stylesheet" href="/css/pixyll.css?201603180317" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -28,15 +28,15 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="XAMPP 访问 Access forbidden 问题">
     <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
-    <meta property="og:url" content="http://createthink.net/tools/2015/02/27/xampp-access-forbidden/">
-    <meta property="og:site_name" content="createthink.net">
+    <meta property="og:url" content="http://tudousi.github.io//tools/2015/02/27/xampp-access-forbidden/">
+    <meta property="og:site_name" content="再试，再失败，更好地失败">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     
     <meta name="twitter:title" content="XAMPP 访问 Access forbidden 问题" />
     <meta name="twitter:description" content="当安装好 XAMPP 用 IP 进行访问的时候会出现以下的提示" />
-    <meta name="twitter:url" content="http://createthink.net/tools/2015/02/27/xampp-access-forbidden/" />
+    <meta name="twitter:url" content="http://tudousi.github.io//tools/2015/02/27/xampp-access-forbidden/" />
 
     <!-- Icons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
@@ -62,7 +62,7 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="http://createthink.net" class="site-title">createthink.net</a>
+      <a href="http://tudousi.github.io/" class="site-title">再试，再失败，更好地失败</a>
       <nav class="site-nav">
         <a href="/mtb/">MTB</a>
 <a href="/about/">About</a>
@@ -81,8 +81,6 @@
         
 
 
-
-
 <div class="post-header mb2">
   <h1>XAMPP 访问 Access forbidden 问题</h1>
   <span class="post-meta">2015-02-27</span><br>
@@ -97,52 +95,52 @@
 <article class="post-content">
   <p>当安装好 XAMPP 用 IP 进行访问的时候会出现以下的提示</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Access</span> <span class="nx">forbidden</span><span class="o">!</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Access</span> <span class="nx">forbidden</span><span class="o">!</span>
 <span class="o">--------------------------------------------------------------------------------</span>
 
-<span class="nx">New</span> <span class="nx">XAMPP</span> <span class="nx">security</span> <span class="nx">concept</span><span class="o">:</span>
+<span class="nx">New</span> <span class="nx">XAMPP</span> <span class="nx">security</span> <span class="nx">concept</span><span class="err">:</span>
 
 <span class="nx">Access</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">requested</span> <span class="nx">object</span> <span class="nx">is</span> <span class="nx">only</span> <span class="nx">available</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">local</span> <span class="nx">network</span><span class="p">.</span>
 
-<span class="nx">This</span> <span class="nx">setting</span> <span class="nx">can</span> <span class="nx">be</span> <span class="nx">configured</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">file</span> <span class="s2">&quot;httpd-xampp.conf&quot;</span><span class="p">.</span></code></pre></div>
+<span class="nx">This</span> <span class="nx">setting</span> <span class="nx">can</span> <span class="nx">be</span> <span class="nx">configured</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">file</span> <span class="s2">"httpd-xampp.conf"</span><span class="p">.</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="err">根据提示，修改</span> <span class="nx">httpd</span><span class="o">-</span><span class="nx">xampp</span><span class="p">.</span><span class="nx">conf</span> <span class="err">即可</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="err">根据提示，修改</span> <span class="nx">httpd</span><span class="o">-</span><span class="nx">xampp</span><span class="p">.</span><span class="nx">conf</span> <span class="err">即可</span>
 <span class="err">#</span>
 <span class="err">#</span> <span class="nx">New</span> <span class="nx">XAMPP</span> <span class="nx">security</span> <span class="nx">concept</span>
 <span class="err">#</span>
-<span class="o">&lt;</span><span class="nx">LocationMatch</span> <span class="s2">&quot;^/(?i:(?:xampp|security|licenses|phpmyadmin|webalizer|server-status|server-info))&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">LocationMatch</span> <span class="s2">"^/(?i:(?:xampp|security|licenses|phpmyadmin|webalizer|server-status|server-info))"</span><span class="o">&gt;</span>
     <span class="nx">Require</span> <span class="nx">local</span>
   <span class="nx">ErrorDocument</span> <span class="mi">403</span> <span class="o">/</span><span class="nx">error</span><span class="o">/</span><span class="nx">XAMPP_FORBIDDEN</span><span class="p">.</span><span class="nx">html</span><span class="p">.</span><span class="kd">var</span>
-<span class="o">&lt;</span><span class="err">/LocationMatch&gt;</span>
-
+<span class="o">&lt;</span><span class="sr">/LocationMatch&gt;</span><span class="err">
+</span>
 <span class="err">修改为</span>
 
 <span class="err">#</span>
 <span class="err">#</span> <span class="nx">New</span> <span class="nx">XAMPP</span> <span class="nx">security</span> <span class="nx">concept</span>
 <span class="err">#</span>
-<span class="o">&lt;</span><span class="nx">LocationMatch</span> <span class="s2">&quot;^/(?i:(?:xampp|security|licenses|phpmyadmin|webalizer|server-status|server-info))&quot;</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nx">LocationMatch</span> <span class="s2">"^/(?i:(?:xampp|security|licenses|phpmyadmin|webalizer|server-status|server-info))"</span><span class="o">&gt;</span>
     <span class="err">#</span><span class="nx">Require</span> <span class="nx">local</span>
     <span class="nx">Options</span> <span class="nx">All</span>
     <span class="nx">AllowOverride</span> <span class="nx">All</span>
     <span class="nx">Order</span> <span class="nx">deny</span><span class="p">,</span><span class="nx">allow</span>
     <span class="nx">Allow</span> <span class="nx">from</span> <span class="nx">all</span>
   <span class="nx">ErrorDocument</span> <span class="mi">403</span> <span class="o">/</span><span class="nx">error</span><span class="o">/</span><span class="nx">XAMPP_FORBIDDEN</span><span class="p">.</span><span class="nx">html</span><span class="p">.</span><span class="kd">var</span>
-<span class="o">&lt;</span><span class="err">/LocationMatch&gt;</span></code></pre></div>
+<span class="o">&lt;</span><span class="sr">/LocationMatch&gt;</span></code></pre></figure>
 
 <p>如果出现</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Access</span> <span class="nx">forbidden</span><span class="o">!</span>  <span class="nx">You</span> <span class="nx">don</span><span class="err">’</span><span class="nx">t</span> <span class="nx">have</span> <span class="nx">permission</span> <span class="nx">to</span> <span class="nx">access</span> <span class="nx">the</span> <span class="nx">requested</span> <span class="nx">object</span><span class="p">.</span> <span class="nx">It</span> <span class="nx">is</span> <span class="nx">either</span> <span class="nx">read</span><span class="o">-</span><span class="kr">protected</span> <span class="nx">or</span> <span class="nx">not</span> <span class="nx">readable</span> <span class="nx">by</span> <span class="nx">the</span> <span class="nx">server</span><span class="p">.</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Access</span> <span class="nx">forbidden</span><span class="o">!</span>  <span class="nx">You</span> <span class="nx">don</span><span class="err">’</span><span class="nx">t</span> <span class="nx">have</span> <span class="nx">permission</span> <span class="nx">to</span> <span class="nx">access</span> <span class="nx">the</span> <span class="nx">requested</span> <span class="nx">object</span><span class="p">.</span> <span class="nx">It</span> <span class="nx">is</span> <span class="nx">either</span> <span class="nx">read</span><span class="o">-</span><span class="kr">protected</span> <span class="nx">or</span> <span class="nx">not</span> <span class="nx">readable</span> <span class="nx">by</span> <span class="nx">the</span> <span class="nx">server</span><span class="p">.</span></code></pre></figure>
 
 <p>这时可以找到apache的httpd.conf文件，找出<directory></directory>
 修改成如下：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">Directory</span> <span class="o">/&gt;</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">Directory</span> <span class="o">/&gt;</span>
     <span class="nx">Options</span> <span class="nx">All</span>
     <span class="nx">AllowOverride</span> <span class="nx">All</span>
     <span class="nx">Order</span> <span class="nx">deny</span><span class="p">,</span><span class="nx">allow</span>
     <span class="nx">Allow</span> <span class="nx">from</span> <span class="nx">all</span>
-<span class="o">&lt;</span><span class="err">/Directory&gt;</span>
-<span class="c1">// mac执行 sudo chmod -R 777 /Applications/XAMPP/xamppfiles/htdocs</span></code></pre></div>
+<span class="o">&lt;</span><span class="sr">/Directory&gt;</span><span class="err">
+</span><span class="c1">// mac执行 sudo chmod -R 777 /Applications/XAMPP/xamppfiles/htdocs</span></code></pre></figure>
 
 <p>重启服务即可</p>
 

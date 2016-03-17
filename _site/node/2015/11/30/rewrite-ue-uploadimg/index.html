@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>重写UMeditor图片上传功能 &#8211; 再试，再失败，更好地失败</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="UMeditor编辑器上传图片功能只能支持php、asp、.net和jsp。但是项目需要node版本的所以我写了个node版本的。">
+    <meta name="author" content="tudousi">
+    <meta name="keywords" content="UMeditor node 图片上传, UMeditor node">
+    <link rel="canonical" href="http://tudousi.github.io//node/2015/11/30/rewrite-ue-uploadimg/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for 再试，再失败，更好地失败" href="/feed.xml" />
+    <meta name="baidu-site-verification" content="3865RHLBYn" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201603180317" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Verifications -->
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="重写UMeditor图片上传功能">
+    <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
+    <meta property="og:url" content="http://tudousi.github.io//node/2015/11/30/rewrite-ue-uploadimg/">
+    <meta property="og:site_name" content="再试，再失败，更好地失败">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="重写UMeditor图片上传功能" />
+    <meta name="twitter:description" content="UMeditor编辑器上传图片功能只能支持php、asp、.net和jsp。但是项目需要node版本的所以我写了个node版本的。" />
+    <meta name="twitter:url" content="http://tudousi.github.io//node/2015/11/30/rewrite-ue-uploadimg/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://tudousi.github.io/" class="site-title">再试，再失败，更好地失败</a>
+      <nav class="site-nav">
+        <a href="/mtb/">MTB</a>
+<a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>重写UMeditor图片上传功能</h1>
+  <span class="post-meta">2015-11-30</span><br>
+  
+  <span class="post-meta small">
+  
+    1 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>这个是基于Express 4.x 和 multer 文件上传模块，给有需要的朋友参考哈。代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// routes/upload.js</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">multer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'multer'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="c1">// 其他信息配置</span>
+<span class="kd">var</span> <span class="nx">uploadDir</span> <span class="o">=</span> <span class="s1">'static/upload/'</span><span class="p">;</span>               <span class="c1">// 文件上传路径</span>
+<span class="c1">// 如果今天为目录名，不存在则要创建</span>
+<span class="kd">var</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">staticUrl</span> <span class="o">=</span> <span class="s1">'http://static.mysite.com/'</span><span class="p">;</span>    <span class="c1">// 静态资源服务器地址</span>
+
+<span class="nx">today</span> <span class="o">=</span> <span class="s1">''</span> <span class="o">+</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()</span> <span class="o">+</span> <span class="p">(</span><span class="nx">today</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">today</span><span class="p">.</span><span class="nx">getDate</span><span class="p">();</span>
+<span class="nx">uploadDir</span> <span class="o">+=</span> <span class="nx">today</span><span class="p">;</span>
+<span class="nx">fs</span><span class="p">.</span><span class="nx">exists</span><span class="p">(</span><span class="nx">uploadDir</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">exists</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">exists</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">mkdir</span><span class="p">(</span><span class="nx">uploadDir</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// 配置文件上传</span>
+<span class="kd">var</span> <span class="nx">storage</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">.</span><span class="nx">diskStorage</span><span class="p">({</span>
+    <span class="na">destination</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">uploadDir</span><span class="p">)</span>
+    <span class="p">},</span>
+    <span class="nx">filename</span><span class="err">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 取得文件后缀</span>
+        <span class="kd">var</span> <span class="nx">extName</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">originalname</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">);</span>
+        <span class="nx">extName</span> <span class="o">=</span> <span class="nx">extName</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+        <span class="c1">// 用上传的文件命名文件</span>
+        <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">getRandomName</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="o">+</span><span class="k">new</span> <span class="nb">Date</span><span class="p">())</span> <span class="o">+</span> <span class="s1">'.'</span> <span class="o">+</span> <span class="nx">extName</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+<span class="c1">// 创建上传文件函数</span>
+<span class="kd">var</span> <span class="nx">uploadConfig</span> <span class="o">=</span> <span class="nx">multer</span><span class="p">({</span>
+    <span class="na">storage</span><span class="p">:</span> <span class="nx">storage</span>
+<span class="p">});</span>
+
+<span class="c1">// 上传文件</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/uploadPackageImg'</span><span class="p">,</span> <span class="nx">uploadConfig</span><span class="p">.</span><span class="nx">array</span><span class="p">(</span><span class="s1">'upfile'</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/**
+        { fieldname: 'upfile',
+          originalname: '1FD6D2C6-A7F3-4651-901F-323E25965F2C.png',
+          encoding: '7bit',
+          mimetype: 'image/png',
+          destination: 'static/upload/20151129',
+          filename: 'pxnhyuyjuhzt1448812168507.png',
+          path: 'static/upload/20151129/pxnhyuyjuhzt1448812168507.png',
+          size: 58430 }
+    */</span>
+    <span class="kd">var</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">filename</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">virtualDir</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">destination</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>          <span class="c1">// 需要修正路径，因为我用nginx代理到static了，则需要剔除掉static目录</span>
+    <span class="nx">virtualDir</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+    <span class="nx">virtualDir</span> <span class="o">=</span> <span class="nx">virtualDir</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">'/'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">json</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">originalName</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">originalname</span><span class="p">,</span>
+        <span class="na">name</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">filename</span><span class="p">,</span>
+        <span class="na">url</span><span class="p">:</span> <span class="nx">staticUrl</span> <span class="o">+</span> <span class="nx">virtualDir</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="o">+</span> <span class="nx">file</span><span class="p">.</span><span class="nx">filename</span><span class="p">,</span>
+        <span class="na">size</span><span class="p">:</span> <span class="nx">file</span><span class="p">.</span><span class="nx">size</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'.'</span> <span class="o">+</span> <span class="nx">type</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="na">state</span><span class="p">:</span> <span class="s1">'SUCCESS'</span>
+    <span class="p">};</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">json</span><span class="p">));</span>
+<span class="p">});</span>
+
+
+<span class="kd">function</span> <span class="nx">getRandomName</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">chars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'a'</span><span class="p">,</span><span class="s1">'b'</span><span class="p">,</span><span class="s1">'c'</span><span class="p">,</span><span class="s1">'d'</span><span class="p">,</span><span class="s1">'e'</span><span class="p">,</span><span class="s1">'f'</span><span class="p">,</span><span class="s1">'g'</span><span class="p">,</span><span class="s1">'h'</span><span class="p">,</span><span class="s1">'i'</span><span class="p">,</span><span class="s1">'j'</span><span class="p">,</span><span class="s1">'k'</span><span class="p">,</span><span class="s1">'l'</span><span class="p">,</span><span class="s1">'m'</span><span class="p">,</span><span class="s1">'n'</span><span class="p">,</span><span class="s1">'o'</span><span class="p">,</span><span class="s1">'p'</span><span class="p">,</span><span class="s1">'q'</span><span class="p">,</span><span class="s1">'r'</span><span class="p">,</span><span class="s1">'s'</span><span class="p">,</span><span class="s1">'t'</span><span class="p">,</span><span class="s1">'u'</span><span class="p">,</span><span class="s1">'v'</span><span class="p">,</span><span class="s1">'w'</span><span class="p">,</span><span class="s1">'x'</span><span class="p">,</span><span class="s1">'y'</span><span class="p">,</span><span class="s1">'z'</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">length</span> <span class="o">=</span> <span class="mi">26</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+     <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">length</span><span class="p">);</span>
+         <span class="nx">res</span> <span class="o">+=</span> <span class="nx">chars</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+     <span class="p">}</span>
+     <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span></code></pre></figure>
+
+<p>app.js调用代码，绑定路由。</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 完整调用路径是：www.yourdomain.com/upload/uploadPackageImg</span>
+<span class="kd">var</span> <span class="nx">edit</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./routes/upload'</span><span class="p">);</span>            <span class="c1">// 编辑</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'/upload'</span><span class="p">,</span> <span class="nx">edit</span><span class="p">);</span></code></pre></figure>
+
+<p>UMeditor编辑器配置如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// 在141行处</span>
+<span class="p">,</span><span class="nx">imageUrl</span><span class="err">:</span><span class="s1">'/upload/uploadPackageImg'</span>           <span class="c1">//图片上传提交地址</span>
+<span class="p">,</span><span class="nx">imagePath</span><span class="err">:</span><span class="s1">''</span>                     <span class="c1">//图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置</span></code></pre></figure>
+
+<p>完成后的效果</p>
+
+<p><img src="/resource/ue-upload/uploadimg.gif" alt="uploadimg" /></p>
+
+<p>最后如果有啥配置有问题的可以Email给我哈。</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      &copy; 2015 <a href="http://createthink.net">createthink.net</a> with Help from <a href="http://jekyllrb.com/">Jekyll</a> and Theme crafted with by <a href="http://johnotander.com">John Otander</a>
+    </small>
+  </div>
+</footer>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?86487f6d309f8a041841232abb6ff18d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+</html>

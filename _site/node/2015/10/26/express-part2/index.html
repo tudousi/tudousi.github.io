@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>express 4.0 - RESTFul API（part2） &#8211; 再试，再失败，更好地失败</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="上一部分介绍了express的一些基础东西，这部分来写一个实例RESTFul API来深入学习Express">
+    <meta name="author" content="tudousi">
+    <meta name="keywords" content="express, restful">
+    <link rel="canonical" href="http://tudousi.github.io//node/2015/10/26/express-part2/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for 再试，再失败，更好地失败" href="/feed.xml" />
+    <meta name="baidu-site-verification" content="3865RHLBYn" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201603180317" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Verifications -->
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="express 4.0 - RESTFul API（part2）">
+    <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
+    <meta property="og:url" content="http://tudousi.github.io//node/2015/10/26/express-part2/">
+    <meta property="og:site_name" content="再试，再失败，更好地失败">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="express 4.0 - RESTFul API（part2）" />
+    <meta name="twitter:description" content="上一部分介绍了express的一些基础东西，这部分来写一个实例RESTFul API来深入学习Express" />
+    <meta name="twitter:url" content="http://tudousi.github.io//node/2015/10/26/express-part2/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://tudousi.github.io/" class="site-title">再试，再失败，更好地失败</a>
+      <nav class="site-nav">
+        <a href="/mtb/">MTB</a>
+<a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>express 4.0 - RESTFul API（part2）</h1>
+  <span class="post-meta">2015-10-26</span><br>
+  
+  <span class="post-meta small">
+  
+    4 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <h3 id="section">介绍</h3>
+<p>在<a href="http://createthink.net/node/2015/10/21/express-part1/">上一部分</a>介绍了express和学习了如何建立一个express项目。这部分就来完成一个restful API来深入学习express。</p>
+
+<p>我们这部分要学到到的有mongodb数据库操作，使用chrome插件Postman测试api接口和express新的路由系统。</p>
+
+<p>假设我们是一个咖啡种植者，我们会对我们仓库的咖啡豆进行<a href="http://baike.baidu.com/link?url=5wp0Jm5Ba_Fou1e2pn4Lyt6j9mCsRm1FYk_joMFXyGzBWJX4de4KBBr9XCVA98rTb9DeQODKqIeaHDNwMo7Gu_">CRUD</a>。</p>
+
+<p>我们的程序url不使用传统的url语义对咖啡豆进行CRUD，这里使用HTTP的动词对接口进行定义（GET、POST、PUT、DELETE）。</p>
+
+<p>我们的程序所有交互数据都统一使用JSON。</p>
+
+<h3 id="section-1">安装环境</h3>
+<p>确保环境都是正常的：1、mongodb 2、node</p>
+
+<p>mongodb：mac 下使用brew install mongodb安装，使用brew info mongodb查看启动命令。如果是Win直接官方<a href="https://www.mongodb.org/downloads">下载安装包</a>运行即可。</p>
+
+<h3 id="section-2">第一步</h3>
+<p>首先搭建express项目，创建一个文件夹，里面在创建如下文件夹和文件。</p>
+
+<ul>
+  <li>
+    <p>app</p>
+  </li>
+  <li>
+    <p>—models</p>
+  </li>
+  <li>
+    <p>——coffeeBeans.js        // 咖啡豆数据模型</p>
+  </li>
+  <li>
+    <p>package.json              // 程序配置文件</p>
+  </li>
+  <li>
+    <p>serve.js                  // 程序胶水和路由</p>
+  </li>
+</ul>
+
+<p>package.json文件内容如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+    <span class="s2">"name"</span><span class="err">:</span> <span class="s2">"node-restful-api"</span><span class="p">,</span>
+    <span class="s2">"main"</span><span class="err">:</span> <span class="s2">"server.js"</span><span class="p">,</span>
+    <span class="s2">"dependencies"</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s2">"express"</span><span class="err">:</span> <span class="s2">"~4.0.0"</span><span class="p">,</span>
+        <span class="s2">"mongoose"</span><span class="err">:</span> <span class="s2">"~3.6.13"</span><span class="p">,</span>
+        <span class="s2">"body-parser"</span><span class="err">:</span> <span class="s2">"~1.0.1"</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>在当前目录下执行 <b>npm install</b> 安装程序所要依赖的包。</p>
+
+<h3 id="section-3">创建一个程序的基础</h3>
+<p>express需要引入到我们的serve.js文件中来，因为需要靠他搭建http服务。还需要接受到客户端的请求和返回给客户端请求，那么就要依赖body-parse这个解析的模块。</p>
+
+<p>serve.js基础代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span>    <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>                <span class="c1">// 引入 express</span>
+<span class="kd">var</span> <span class="nx">app</span>        <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>                         <span class="c1">// 创建express程序</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>            <span class="c1">// 解析请求数据</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span> <span class="c1">// 解析提交的数据from方式</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>                         <span class="c1">// 解析提交的数据json方式</span>
+<span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>                <span class="c1">// 设置程序启动端口</span>
+<span class="c1">// 创建一个路由实例，这是express 4.0新增</span>
+<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="c1">// 绑定路由用来测试当然程序是否工作正常</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'hello,world!'</span> <span class="p">});</span>   
+<span class="p">});</span>
+<span class="c1">// 如何还有路由可以绑定在这里。</span>
+
+<span class="c1">// 注册路由，我们最后的路由实例都会交给app.use去注册</span>
+<span class="c1">// 注意我们现在的url地址为 http://localhost:3000/api</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'/api'</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+<span class="c1">// 开启服务监听端口</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'程序正启动在 '</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">' 端口。'</span><span class="p">);</span></code></pre></figure>
+
+<p>在当然目录使用 <b>node serve.js</b> 控制台则会提示 程序正启动在 3000 端口。表示启动成功。</p>
+
+<p>接着打开chrome插件Postman输入 http://localhost:3000/api 点击Send会看到如下信息
+<img src="/resource/node-express-part2/img1.png" alt="图片转换" /></p>
+
+<p>做的很好，很简单。继续往下吧。</p>
+
+<h3 id="section-4">第二部份</h3>
+<p>尽量简短点说，因为我发现我现在还没洗澡和洗衣服。ok。接着我们来定义数据库的模型。</p>
+
+<p>这里对mongodb数据库的操作我使用mongoose这个库，当然你也可以使用更原始的mongodb库，mongoose库只是对mongodb进行了orm的包装哈。</p>
+
+<p>mongodb数据库就像一个仓库。而咖啡豆就是仓库里放置的物品，我们需要把咖啡豆定义成一个<a href="http://mongoosejs.com/docs/api.html#model-js">模型</a>。他有大小颜色和产品，并且它还能增加、删除、修改和查询数量。</p>
+
+<p>在定义之前做点准备工作，就是使用node去连接mongodb数据库。代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mongoose</span>   <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>       <span class="c1">// 引入mongoose数据库包</span>
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost:27017/coffee'</span><span class="p">);</span>  <span class="c1">// 连接到数据库</span></code></pre></figure>
+
+<p>在这里使用 <b>node serve.js</b> 启动下服务，如果没有报错就可以继续</p>
+
+<p>定义coffeeBeans数据库模型，需要实例化mongoose.Schema对象创建一个新模型，然后使用mongoose.model进行模型注册。</p>
+
+<p>app/models/coffeeBeans.js代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mongoose</span>     <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>     <span class="c1">// 引入mongoose库</span>
+<span class="kd">var</span> <span class="nx">Schema</span>       <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">Schema</span><span class="p">;</span>         <span class="c1">// 获得Schema对象</span>
+
+<span class="kd">var</span> <span class="nx">coffeeBeans</span>   <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+    <span class="na">weight</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>                         <span class="c1">// 字段类型为数字</span>
+    <span class="na">color</span><span class="p">:</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="na">default</span><span class="p">:</span> <span class="s1">'puce'</span><span class="p">}</span>  <span class="c1">// 字段类型为字符串，默认值为puce</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'CoffeeBean'</span><span class="p">,</span> <span class="nx">coffeeBeans</span><span class="p">);</span>     <span class="c1">// 定义和导出模型</span></code></pre></figure>
+
+<p>在server.js中引入定义好的模型。目前所有代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span>    <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>                <span class="c1">// 引入 express</span>
+<span class="kd">var</span> <span class="nx">mongoose</span>   <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span>        <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>                         <span class="c1">// 创建express程序</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>            <span class="c1">// 解析请求数据</span>
+<span class="kd">var</span> <span class="nx">CoffeeBean</span>     <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./app/models/coffeeBeans'</span><span class="p">);</span>  <span class="c1">// 调用模型</span>
+
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost:27017/coffee'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span> <span class="c1">// 解析提交的数据from方式</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>                         <span class="c1">// 解析提交的数据json方式</span>
+<span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>                <span class="c1">// 设置程序启动端口</span>
+<span class="c1">// 创建一个路由实例，这是express 4.0新增</span>
+<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="c1">// 绑定路由用来测试当然程序是否工作正常</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span> <span class="na">message</span><span class="p">:</span> <span class="s1">'hello,world!'</span> <span class="p">});</span>
+<span class="p">});</span>
+<span class="c1">// 如何还有路由可以绑定在这里。</span>
+
+<span class="c1">// 注册路由，我们最后的路由实例都会交给app.use去注册</span>
+<span class="c1">// 注意我们现在的url地址为 http://localhost:3000/api</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'/api'</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+<span class="c1">// 开启服务监听端口</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'程序正启动在 '</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">' 端口。'</span><span class="p">);</span></code></pre></figure>
+
+<h3 id="section-5">第三部分</h3>
+<p>有了数据库模型，在来看看我们如何定义路由和我们想要的路由是怎么样的，和他们的分工</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">路由HTTP</th>
+      <th style="text-align: left">动词</th>
+      <th style="text-align: left">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">/api/coffee</td>
+      <td style="text-align: left">GET</td>
+      <td style="text-align: left">获取仓库所有的咖啡豆</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/api/coffee</td>
+      <td style="text-align: left">POST</td>
+      <td style="text-align: left">增加咖啡豆库存</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/api/coffee/:c_id</td>
+      <td style="text-align: left">POST</td>
+      <td style="text-align: left">获取指定库存的咖啡</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/api/coffee/:c_id</td>
+      <td style="text-align: left">PUT</td>
+      <td style="text-align: left">更新咖啡豆</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">/api/coffee/:c_id</td>
+      <td style="text-align: left">DELETE</td>
+      <td style="text-align: left">删除咖啡豆</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这里值有一个路由地址，所有的操作都包含在了HTTP动词中了，简单优雅。</p>
+
+<p>现在把所有的路由都创建起来让它们可以被访问到，操作和数据后面再来填充。代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span>    <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>                <span class="c1">// 引入 express</span>
+<span class="kd">var</span> <span class="nx">mongoose</span>   <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span>        <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>                         <span class="c1">// 创建express程序</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>            <span class="c1">// 解析请求数据</span>
+<span class="kd">var</span> <span class="nx">CoffeeBean</span>     <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./app/models/coffeeBeans'</span><span class="p">);</span>  <span class="c1">// 调用模型</span>
+
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost:27017/coffee'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span> <span class="c1">// 解析提交的数据from方式</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>                         <span class="c1">// 解析提交的数据json方式</span>
+<span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>                <span class="c1">// 设置程序启动端口</span>
+<span class="c1">// 创建一个路由实例，这是express 4.0新增</span>
+<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'/coffee'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 获取所有咖啡豆</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="na">message</span><span class="p">:</span> <span class="s1">'获取所有咖啡豆'</span><span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 新增咖啡豆库存</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="na">message</span><span class="p">:</span> <span class="s1">'新增咖啡豆库存'</span><span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 修改咖啡豆</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="na">message</span><span class="p">:</span> <span class="s1">'修改咖啡豆'</span><span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 删除咖啡豆</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="na">message</span><span class="p">:</span> <span class="s1">'删除咖啡豆'</span><span class="p">});</span>
+    <span class="p">});</span>
+
+<span class="c1">// 注册路由，我们最后的路由实例都会交给app.use去注册</span>
+<span class="c1">// 注意我们现在的url地址为 http://localhost:3000/api</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'/api'</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+<span class="c1">// 开启服务监听端口</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'程序正启动在 '</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">' 端口。'</span><span class="p">);</span></code></pre></figure>
+
+<h3 id="section-6">第四部分</h3>
+<p>读写数据库。编写业务逻辑让程序丰满起来。</p>
+
+<p>先来填充psot新增操作，代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 新增咖啡豆库存</span>
+
+    <span class="c1">// 创建咖啡豆模型实例</span>
+    <span class="kd">var</span> <span class="nx">coffee</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CoffeeBean</span><span class="p">({</span>
+        <span class="na">weight</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">weight</span><span class="p">,</span>        <span class="c1">// 保存从客户端获取的重量</span>
+        <span class="na">color</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">color</span>           <span class="c1">// 保存从客户端获取的颜色</span>
+    <span class="p">});</span>
+    <span class="nx">coffee</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'咖啡豆已入库存！'</span><span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">})</span></code></pre></figure>
+
+<p>用Postman测试下，已经成功增加了一颗咖啡豆。请注意要使用画红框的提交方式。
+<img src="/resource/node-express-part2/img2.png" alt="图片转换" />
+不错，现在程序流程正常，接着来编写get请求获取所有咖啡豆，get代码如下。没有什么特别的就是使用了mongoose模型的find方法</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 获取所有咖啡豆</span>
+    <span class="nx">CoffeeBean</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">coffee</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">coffee</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">})</span></code></pre></figure>
+
+<p>返回数据如下
+<img src="/resource/node-express-part2/img3.png" alt="图片转换" /></p>
+
+<p>非常好，添加获取都有了。那么跟着就来编写获取单个咖啡豆的代码</p>
+
+<p>还记得刚刚编写的
+router.route(‘/coffee’).get().post().put().delete()代码吗？后面的所有处理函数都是只针对 ‘/coffe’ 路由地址的，如果想要根据咖啡豆的id获取到某个咖啡豆，需要使用这样的格式 ‘/coffee/:c_id’，这个c_id是客户端传递过来的id参数。</p>
+
+<p>所以需要重新绑定一个新的路由地址针对 ‘/coffee/:c_id’ 这样的路由进行绑定方法。下面是完整的代码</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">express</span>    <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>                <span class="c1">// 引入 express</span>
+<span class="kd">var</span> <span class="nx">mongoose</span>   <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongoose'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">app</span>        <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>                         <span class="c1">// 创建express程序</span>
+<span class="kd">var</span> <span class="nx">bodyParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'body-parser'</span><span class="p">);</span>            <span class="c1">// 解析请求数据</span>
+<span class="kd">var</span> <span class="nx">CoffeeBean</span>     <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./app/models/coffeeBeans'</span><span class="p">);</span>  <span class="c1">// 调用模型</span>
+
+<span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s1">'mongodb://localhost:27017/coffee'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">urlencoded</span><span class="p">({</span> <span class="na">extended</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}));</span> <span class="c1">// 解析提交的数据from方式</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">bodyParser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>                         <span class="c1">// 解析提交的数据json方式</span>
+<span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="mi">3000</span><span class="p">;</span>                <span class="c1">// 设置程序启动端口</span>
+<span class="c1">// 创建一个路由实例，这是express 4.0新增</span>
+<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'/coffee'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 获取所有咖啡豆</span>
+        <span class="nx">CoffeeBean</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">coffee</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">coffee</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 新增咖啡豆库存</span>
+        <span class="c1">// 创建咖啡豆模型实例</span>
+        <span class="kd">var</span> <span class="nx">coffee</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CoffeeBean</span><span class="p">({</span>
+            <span class="na">weight</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">weight</span><span class="p">,</span>        <span class="c1">// 保存从客户端获取的重量</span>
+            <span class="na">color</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">color</span>           <span class="c1">// 保存从客户端获取的颜色</span>
+        <span class="p">});</span>
+        <span class="nx">coffee</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'咖啡豆已入库存！'</span><span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 修改咖啡豆</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="na">message</span><span class="p">:</span> <span class="s1">'修改咖啡豆'</span><span class="p">});</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 删除咖啡豆</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="na">message</span><span class="p">:</span> <span class="s1">'删除咖啡豆'</span><span class="p">});</span>
+    <span class="p">});</span>
+<span class="c1">// 绑定新路由，针对 http://localhost:3000/api/coffee/c_id这样的地址</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'/coffee/:c_id'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 获取get传递的参数，然后使用mongoose模型的findById方法查找mongodb指定的_id数据</span>
+        <span class="nx">CoffeeBean</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">c_id</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">coffee</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">coffee</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">})</span>
+<span class="c1">// 注册路由，我们最后的路由实例都会交给app.use去注册</span>
+<span class="c1">// 注意我们现在的url地址为 http://localhost:3000/api</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">'/api'</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+<span class="c1">// 开启服务监听端口</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'程序正启动在 '</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">' 端口。'</span><span class="p">);</span></code></pre></figure>
+
+<p>ok，ok 继续编写修改咖啡豆属性的代码，代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// ...</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'/coffee/:c_id'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">CoffeeBean</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">c_id</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">coffee</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">weight</span><span class="p">)</span> <span class="nx">coffee</span><span class="p">.</span><span class="nx">weight</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">weight</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">color</span><span class="p">)</span> <span class="nx">coffee</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">weight</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">color</span><span class="p">)</span>
+                <span class="nx">coffee</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'咖啡豆修改成功！'</span><span class="p">});</span>
+                <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="c1">// ...</span></code></pre></figure>
+
+<p>省略掉了其他的代码，继续用Postman测试下。可以看到颜色已经修改成了Brown。<span class="green">注意提交格式</span>
+<img src="/resource/node-express-part2/img4.png" alt="图片转换" /></p>
+
+<p>好了，好了，请坚持一下，就要完成这个作品了。接着来编写删除咖啡豆的代码，代码如下</p>
+
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// ...</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="s1">'/coffee/:c_id'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 调用了mongoose模型的删除方法删除了指定_id值得数据</span>
+        <span class="nx">CoffeeBean</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span><span class="na">_id</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">c_id</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">coffee</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span><span class="s1">'message'</span><span class="p">:</span> <span class="s1">'咖啡豆删除成功！'</span><span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="c1">// ...</span></code></pre></figure>
+
+<p>记得启动服务测试一下。已经查不到数据很好，就是我想要的结果。
+<img src="/resource/node-express-part2/img5.png" alt="图片转换" /></p>
+
+<h3 id="express">关于express路由</h3>
+<p>在<a href="http://www.expressjs.com.cn/4x/api.html#router">官方文档</a>上可以看到路由是单独的一个功能提了出来。它就像一个express对象一样，可以单独被实例化。</p>
+
+<p>var router = express.Router(); 这样就能创建一个路由实例。</p>
+
+<p>router支持HTTP动词和链式进行绑定处理函数，比如 router.get().post().put().delete()。</p>
+
+<p>router也支持对路由参数进行校验，比如router.param(‘c_id’, callback) 像这样就可以在callback中对c_id做一些合法性和校验。</p>
+
+<p>最后需要把我们自定义的router绑定到express程序上，app.use(‘/api’, router) 像这样。那么这个路由地址的根地址都是基于/api的。</p>
+
+<h3 id="section-7">总结</h3>
+<p>切了一天图了，我现在脑子不是很清醒，如果有错误和不对的请留言告知我，谢了。:)</p>
+
+<p>我们自定义了一个express程序。它会处理咖啡豆的一些CRUD，数据库使用了<a href="https://www.mongodb.org/">mongodb</a>，对数据库的操作使用了<a href="http://mongoosejs.com/">mongoose</a>库。并且使用了express 4.0灵活的路由系统创建了一个RESTFul API的基础版本。</p>
+
+<p>关于这个程序也可以继续扩充，发现了吗？它还身份验证功能。我们的程序不是谁都能使用的，只有经过身份验证才能正常调用接口。
+推荐一个非常好用的身份验证库<a href="http://passportjs.org/">Passport</a>。好了本部分结束。</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      &copy; 2015 <a href="http://createthink.net">createthink.net</a> with Help from <a href="http://jekyllrb.com/">Jekyll</a> and Theme crafted with by <a href="http://johnotander.com">John Otander</a>
+    </small>
+  </div>
+</footer>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?86487f6d309f8a041841232abb6ff18d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+</html>

@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>页面中多 iframe 传值 &#8211; createthink.net</title>
+    <title>页面中多 iframe 传值 &#8211; 再试，再失败，更好地失败</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="如果一个页面中有多个 iframe 如何做到互相调用函数和传值。js 默认自带 只能子页面调用和修改父页面的函数或变量。没有 iframe 之间的调用，那么就要想一些办法">
     <meta name="author" content="tudousi">
     <meta name="keywords" content="iframe 传值">
-    <link rel="canonical" href="http://createthink.net/javascript/2014/12/29/iframe-by-value/">
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for createthink.net" href="/feed.xml" />
+    <link rel="canonical" href="http://tudousi.github.io//javascript/2014/12/29/iframe-by-value/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for 再试，再失败，更好地失败" href="/feed.xml" />
     <meta name="baidu-site-verification" content="3865RHLBYn" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201601060013" type="text/css">
+    <link rel="stylesheet" href="/css/pixyll.css?201603180317" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -28,15 +28,15 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="页面中多 iframe 传值">
     <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
-    <meta property="og:url" content="http://createthink.net/javascript/2014/12/29/iframe-by-value/">
-    <meta property="og:site_name" content="createthink.net">
+    <meta property="og:url" content="http://tudousi.github.io//javascript/2014/12/29/iframe-by-value/">
+    <meta property="og:site_name" content="再试，再失败，更好地失败">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     
     <meta name="twitter:title" content="页面中多 iframe 传值" />
     <meta name="twitter:description" content="如果一个页面中有多个 iframe 如何做到互相调用函数和传值。js 默认自带 只能子页面调用和修改父页面的函数或变量。没有 iframe 之间的调用，那么就要想一些办法" />
-    <meta name="twitter:url" content="http://createthink.net/javascript/2014/12/29/iframe-by-value/" />
+    <meta name="twitter:url" content="http://tudousi.github.io//javascript/2014/12/29/iframe-by-value/" />
 
     <!-- Icons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
@@ -62,7 +62,7 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="http://createthink.net" class="site-title">createthink.net</a>
+      <a href="http://tudousi.github.io/" class="site-title">再试，再失败，更好地失败</a>
       <nav class="site-nav">
         <a href="/mtb/">MTB</a>
 <a href="/about/">About</a>
@@ -79,8 +79,6 @@
     <div class="post p2 p-responsive wrap" role="main">
       <div class="measure">
         
-
-
 
 
 <div class="post-header mb2">
@@ -106,18 +104,18 @@
 
 <p>父页面：</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">iframeObj</span> <span class="o">=</span> <span class="p">{};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">iframeObj</span> <span class="o">=</span> <span class="p">{};</span></code></pre></figure>
 
 <p>子页面（iframe）</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">top</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">iframeObj</span><span class="p">[</span><span class="s1">&#39;iframe1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">window</span><span class="p">;</span>
-<span class="p">};</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">top</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">iframeObj</span><span class="p">[</span><span class="s1">'iframe1'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">window</span><span class="p">;</span>
+<span class="p">};</span></code></pre></figure>
 
 <p>如果我们要在一个 iframe 中调用另外一个 iframe 的时候可以这样做</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">iframe2</span> <span class="o">=</span> <span class="nx">top</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">iframeObj</span><span class="p">[</span><span class="s1">&#39;iframe2&#39;</span><span class="p">];</span>
-<span class="nx">iframe2</span><span class="p">.</span><span class="nx">info</span><span class="p">();</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">iframe2</span> <span class="o">=</span> <span class="nx">top</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">iframeObj</span><span class="p">[</span><span class="s1">'iframe2'</span><span class="p">];</span>
+<span class="nx">iframe2</span><span class="p">.</span><span class="nx">info</span><span class="p">();</span></code></pre></figure>
 
 <h4 id="section-1">实例</h4>
 <iframe frameborder="0" scrolling="no" src="/resource/iframebyvalue/demo1.html" width="600" height="200"></iframe>
@@ -128,15 +126,15 @@
 
 <p>子页面（iframe）</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">;</span>
 <span class="nb">window</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
         <span class="kd">var</span> <span class="nx">tmpHash</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">hash</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">hash</span> <span class="o">!=</span> <span class="nx">tmpHash</span> <span class="o">&amp;&amp;</span> <span class="nx">tmpHash</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">hash</span> <span class="o">!=</span> <span class="nx">tmpHash</span> <span class="o">&amp;&amp;</span> <span class="nx">tmpHash</span> <span class="o">!=</span> <span class="s1">''</span><span class="p">){</span>
             <span class="nx">hash</span> <span class="o">=</span> <span class="nx">tmpHash</span><span class="p">;</span>
             <span class="kd">var</span> <span class="nx">call</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
             <span class="k">try</span><span class="p">{</span>
-                <span class="nb">eval</span><span class="p">(</span><span class="nx">call</span><span class="o">+</span><span class="s2">&quot;()&quot;</span><span class="p">);</span>
+                <span class="nb">eval</span><span class="p">(</span><span class="nx">call</span><span class="o">+</span><span class="s2">"()"</span><span class="p">);</span>
             <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
 
             <span class="p">}</span>
@@ -145,12 +143,12 @@
 <span class="p">};</span>
 <span class="kd">function</span> <span class="nx">callInfo</span><span class="p">(){</span>
     <span class="kd">var</span> <span class="nx">iframe4</span> <span class="o">=</span> <span class="nx">top</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nb">document</span>
-    <span class="nx">iframe4</span> <span class="o">=</span> <span class="nx">iframe4</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;iframe4&#39;</span><span class="p">)[</span><span class="s1">&#39;contentDocument&#39;</span><span class="p">];</span>
-    <span class="nx">iframe4</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="s1">&#39;#callInfoRun&#39;</span><span class="p">;</span>
+    <span class="nx">iframe4</span> <span class="o">=</span> <span class="nx">iframe4</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'iframe4'</span><span class="p">)[</span><span class="s1">'contentDocument'</span><span class="p">];</span>
+    <span class="nx">iframe4</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="s1">'#callInfoRun'</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kd">function</span> <span class="nx">callInfoRun</span><span class="p">(){</span>
-    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;我是页面 3 的 callInfo 方法&#39;</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
+    <span class="nx">alert</span><span class="p">(</span><span class="s1">'我是页面 3 的 callInfo 方法'</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
 
 <h4 id="section-2">实例</h4>
 <iframe frameborder="0" scrolling="no" src="/resource/iframebyvalue/demo2.html" width="600" height="200"></iframe>

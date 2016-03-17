@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>javascript事件 &#8211; 再试，再失败，更好地失败</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="sy">
+    <meta name="author" content="tudousi">
+    <meta name="keywords" content="event 事件">
+    <link rel="canonical" href="http://tudousi.github.io//javascript/2016/03/17/javascript-event/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for 再试，再失败，更好地失败" href="/feed.xml" />
+    <meta name="baidu-site-verification" content="3865RHLBYn" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201603180317" type="text/css">
+
+    <!-- Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    
+
+    <!-- Verifications -->
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="javascript事件">
+    <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
+    <meta property="og:url" content="http://tudousi.github.io//javascript/2016/03/17/javascript-event/">
+    <meta property="og:site_name" content="再试，再失败，更好地失败">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="javascript事件" />
+    <meta name="twitter:description" content="sy" />
+    <meta name="twitter:url" content="http://tudousi.github.io//javascript/2016/03/17/javascript-event/" />
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://tudousi.github.io/" class="site-title">再试，再失败，更好地失败</a>
+      <nav class="site-nav">
+        <a href="/mtb/">MTB</a>
+<a href="/about/">About</a>
+<a href="/contact/">Contact</a>
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>javascript事件</h1>
+  <span class="post-meta">2016-03-17</span><br>
+  
+  <span class="post-meta small">
+  
+    1 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <blockquote>
+  <p>web程序中事件是一种通信机制，鼠标事件和键盘事件是我们直观感受到的事件。javascript中<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event">事件</a>有非常多中，常用的有键盘事件、鼠标事件、触摸事件和自定义事件，这里来了解一下基础本的事件流概念。</p>
+</blockquote>
+
+<p>关于javascript事件机制的概念可以参考阮一峰的<a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html">JavaScript 运行机制详解：再谈Event Loop</a></p>
+
+<h3 id="event-flow">事件流(event flow)</h3>
+
+<p>在了解了事件机制的基本概念后，再来了解一下事件流。想象一下当用户点击了一个页面上的元素，事件是怎么样被触发的呢？因为网页中的元素可以被嵌套和叠加，所以事件不能只在当前元素触发事件。它要触发的肯定是这个元素在DOM树中所对应的这条路径上所有元素的对应事件。像这样的事件发生的路径和方法我们可以叫它 <strong>事件流(event flow)</strong></p>
+
+<h3 id="section">事件发生时有3个阶段</h3>
+
+<ol>
+  <li>
+    <p>捕获阶段(Captrue Phase)</p>
+
+    <p>在这个阶段的事件是从Window一直向下传递直到事件到达目标(点击的元素)的父元素(这个阶段所涉及的元素的事件被执行)</p>
+  </li>
+  <li>
+    <p>目标阶段(Target Phase)</p>
+
+    <p>当前事件处于目标(点击的元素)元素上，也就是target等于currentTarget时就是目标阶段。此后事件将从这个元素向父元素开始冒泡进。(在目标元素上的捕获和冒泡都会被执行)</p>
+  </li>
+  <li>
+    <p>冒泡阶段(Bubbling Phase)</p>
+
+    <p>从目标阶段元素的父元素开始依次开始向上冒泡事件，直到到达Window时结束。(这个阶段所涉及的元素的事件被执行)</p>
+  </li>
+</ol>
+
+<p><img src="/resource/event/phase.png" alt="phase" /></p>
+<p class="tac">事件3个阶段</p>
+
+<h3 id="section-1">为了对这3个阶段更进一步的理解，来看一下下面的例子</h3>
+
+<p><a class="jsbin-embed" href="http://jsbin.com/yanubi/45/embed?html,js,output">event phase demo</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.11"></script></p>
+
+<p>如果你在非ie8-浏览器中点击e3元素会在控制台输出如下内容</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">e1</span><span class="o">-&gt;</span><span class="err">捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">false</span>
+<span class="nx">e2</span><span class="o">-&gt;</span><span class="err">捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">false</span>
+<span class="nx">e3</span><span class="o">-&gt;</span><span class="err">不捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">true</span>
+<span class="nx">e3</span><span class="o">-&gt;</span><span class="err">捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">true</span>
+<span class="nx">e2</span><span class="o">-&gt;</span><span class="err">不捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">false</span>
+<span class="nx">e1</span><span class="o">-&gt;</span><span class="err">不捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">false</span>
+</code></pre>
+</div>
+
+<p>从输出可以看出来，前面1、2、3是绑定在捕获阶段所执行的代码，而4、5、6是绑定在冒泡阶段所执行的代码，其中3、4事件也是同时处于目标阶段的。还有一个小点就是<strong>ie8-是不支持事件捕获类型的</strong>，所以你所绑定的捕获事件会在处于目标阶段执行。</p>
+
+<h3 id="dom0">DOM0级是啥样？</h3>
+
+<p>还有一个地方值得注意的就是使用DOM0级给元素绑定事件会怎么样？这里我再写一个DEMO来展示一下。</p>
+
+<p><a class="jsbin-embed" href="http://jsbin.com/xodecuj/embed">event phase on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.11"></script></p>
+
+<p>点击e2元素，输出如下</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nx">e1</span><span class="o">-&gt;</span><span class="err">捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">false</span>
+<span class="nx">e2</span><span class="o">-&gt;</span><span class="err">捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">false</span>
+<span class="nx">e3</span><span class="o">-&gt;</span><span class="err">不捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">true</span>
+<span class="nx">e3</span><span class="o">-&gt;</span><span class="err">捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">true</span>
+<span class="nx">e2</span><span class="o">-&gt;</span><span class="err">不捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">false</span>
+<span class="nx">DOM0</span><span class="err">级绑定事件执行</span> <span class="nx">e2</span>
+<span class="nx">e1</span><span class="o">-&gt;</span><span class="err">不捕获事件被执行</span> <span class="err">是否在目标阶段</span><span class="o">-&gt;</span> <span class="kc">false</span>
+</code></pre>
+</div>
+
+<p>从例子输出可以看得出来，DOM0级绑定并不会对DOM2级的绑定在执行上造成冲突或覆盖什么的。那么他们有什么不同？这里我列举了几个不同的地方</p>
+
+<ol>
+  <li>没有事件捕获，它是直接从当前元素开始冒泡</li>
+  <li>没有当前元素(currentTarget)，只有目标元素(target)，这就意味着它无法完成事件代理的工作</li>
+</ol>
+
+<p><a class="jsbin-embed" href="http://jsbin.com/newuhi/embed">event phase 2 on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.11"></script></p>
+
+<p>上面是传统DOM0级绑定方法。这种方法现在已经就不用了。</p>
+
+<h3 id="section-2">事件终止</h3>
+
+<p>w3c标准提供了<code class="highlighter-rouge">stopPropagation</code>函数来终止事件捕获和冒泡，注意处于目标的捕获和非捕获的事件都会被执行。另外ie使用<code class="highlighter-rouge">window.event.cancelBubble = true;</code>来终止事件冒泡。注意使用DOM0级方式绑定的事件同样可以终止事件的捕获和冒泡</p>
+
+<h3 id="section-3">参考文档</h3>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event">https://developer.mozilla.org/zh-CN/docs/Web/API/Event</a></p>
+
+<p><a href="https://www.w3.org/TR/DOM-Level-3-Events/#event-flow">https://www.w3.org/TR/DOM-Level-3-Events/#event-flow</a></p>
+
+<h3 id="section-4">其他</h3>
+
+<p>接下来会了解一下事件的类型、事件参数以及自定义事件。还会再分析一下JQuery是如何对事件进行处理的。 毕竟土豆也还很菜有啥问题和错误请告诉土豆哦 :)</p>
+
+</article>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      &copy; 2015 <a href="http://createthink.net">createthink.net</a> with Help from <a href="http://jekyllrb.com/">Jekyll</a> and Theme crafted with by <a href="http://johnotander.com">John Otander</a>
+    </small>
+  </div>
+</footer>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?86487f6d309f8a041841232abb6ff18d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</body>
+</html>

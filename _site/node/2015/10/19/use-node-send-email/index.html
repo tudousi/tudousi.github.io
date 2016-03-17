@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>使用node发送email &#8211; createthink.net</title>
+    <title>使用node发送email &#8211; 再试，再失败，更好地失败</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="使用node发送email，我们使用Nodemailer模块。他是一个简单快捷发送email的模块">
     <meta name="author" content="tudousi">
     <meta name="keywords" content="node发送邮件, node email">
-    <link rel="canonical" href="http://createthink.net/node/2015/10/19/use-node-send-email/">
-    <link rel="alternate" type="application/rss+xml" title="RSS Feed for createthink.net" href="/feed.xml" />
+    <link rel="canonical" href="http://tudousi.github.io//node/2015/10/19/use-node-send-email/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for 再试，再失败，更好地失败" href="/feed.xml" />
     <meta name="baidu-site-verification" content="3865RHLBYn" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/pixyll.css?201601060013" type="text/css">
+    <link rel="stylesheet" href="/css/pixyll.css?201603180317" type="text/css">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
@@ -28,15 +28,15 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="使用node发送email">
     <meta property="og:description" content="一个菜鸟的前端学习历程 html css javascript node node.js">
-    <meta property="og:url" content="http://createthink.net/node/2015/10/19/use-node-send-email/">
-    <meta property="og:site_name" content="createthink.net">
+    <meta property="og:url" content="http://tudousi.github.io//node/2015/10/19/use-node-send-email/">
+    <meta property="og:site_name" content="再试，再失败，更好地失败">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     
     <meta name="twitter:title" content="使用node发送email" />
     <meta name="twitter:description" content="使用node发送email，我们使用Nodemailer模块。他是一个简单快捷发送email的模块" />
-    <meta name="twitter:url" content="http://createthink.net/node/2015/10/19/use-node-send-email/" />
+    <meta name="twitter:url" content="http://tudousi.github.io//node/2015/10/19/use-node-send-email/" />
 
     <!-- Icons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
@@ -62,7 +62,7 @@
     <header class="site-header px2 px-responsive">
   <div class="mt2 wrap">
     <div class="measure">
-      <a href="http://createthink.net" class="site-title">createthink.net</a>
+      <a href="http://tudousi.github.io/" class="site-title">再试，再失败，更好地失败</a>
       <nav class="site-nav">
         <a href="/mtb/">MTB</a>
 <a href="/about/">About</a>
@@ -79,8 +79,6 @@
     <div class="post p2 p-responsive wrap" role="main">
       <div class="measure">
         
-
-
 
 
 <div class="post-header mb2">
@@ -116,13 +114,13 @@
 
 <p>package.json 内容如下</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;send-email-serve&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;dependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;nodemailer&quot;</span><span class="o">:</span> <span class="s2">&quot;^1.8.0&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;nodemailer-wellknown&quot;</span><span class="o">:</span> <span class="s2">&quot;^0.1.7&quot;</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">{</span>
+    <span class="s2">"name"</span><span class="err">:</span> <span class="s2">"send-email-serve"</span><span class="p">,</span>
+    <span class="s2">"dependencies"</span><span class="err">:</span> <span class="p">{</span>
+        <span class="s2">"nodemailer"</span><span class="err">:</span> <span class="s2">"^1.8.0"</span><span class="p">,</span>
+        <span class="s2">"nodemailer-wellknown"</span><span class="err">:</span> <span class="s2">"^0.1.7"</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>在这个目录我们执行命令 npm install 去安装依赖的模块。
 nodemailer模块是我们要发送email所用到的模块，nodemailer-wellknown模块包含各个邮件服务器配置模块，后面我们会用到的。</p>
@@ -130,80 +128,80 @@ nodemailer模块是我们要发送email所用到的模块，nodemailer-wellknown
 <h3 id="section-1">引入模块</h3>
 <p>把我们需要依赖的模块先调用进来</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">//（server.js）</span>
-<span class="kd">var</span> <span class="nx">nodemailer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;nodemailer&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">wellknown</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;nodemailer-wellknown&#39;</span><span class="p">);</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">//（server.js）</span>
+<span class="kd">var</span> <span class="nx">nodemailer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'nodemailer'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">wellknown</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'nodemailer-wellknown'</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="section-2">配置邮件服务器</h3>
 <p>这里就是用QQ作为例子吧，这里user就填写你的QQ账号，pass填写QQ密码。这里的wellknown会创建一个邮件服务器的<a href="https://github.com/andris9/nodemailer-wellknown/blob/master/services.json">配置</a>。</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// server.js</span>
-<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">wellknown</span><span class="p">(</span><span class="s1">&#39;qq&#39;</span><span class="p">);</span>
-<span class="nx">config</span><span class="p">.</span><span class="nx">service</span> <span class="o">=</span> <span class="s1">&#39;qq&#39;</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// server.js</span>
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">wellknown</span><span class="p">(</span><span class="s1">'qq'</span><span class="p">);</span>
+<span class="nx">config</span><span class="p">.</span><span class="nx">service</span> <span class="o">=</span> <span class="s1">'qq'</span><span class="p">;</span>
 <span class="nx">config</span><span class="p">.</span><span class="nx">auth</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
-    <span class="nx">pass</span><span class="o">:</span> <span class="s1">&#39;pass&#39;</span><span class="p">,</span>
-<span class="p">};</span></code></pre></div>
+    <span class="na">user</span><span class="p">:</span> <span class="s1">'user'</span><span class="p">,</span>
+    <span class="na">pass</span><span class="p">:</span> <span class="s1">'pass'</span><span class="p">,</span>
+<span class="p">};</span></code></pre></figure>
 
 <h3 id="smtp">创建SMTP传输协议</h3>
 <p>传入我们的配置文件对象，会得到一个SMTP对象</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// server.js</span>
-<span class="kd">var</span> <span class="nx">transporter</span> <span class="o">=</span> <span class="nx">nodemailer</span><span class="p">.</span><span class="nx">createTransport</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// server.js</span>
+<span class="kd">var</span> <span class="nx">transporter</span> <span class="o">=</span> <span class="nx">nodemailer</span><span class="p">.</span><span class="nx">createTransport</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span></code></pre></figure>
 
 <h3 id="section-3">配置发送邮件的信息</h3>
 <p>这里比较有意思，你要发送所有的邮件相关信息都会在这里配置。我们来看看。</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// server.js</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// server.js</span>
 <span class="kd">var</span> <span class="nx">mailOptions</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">from</span><span class="o">:</span> <span class="s1">&#39;easyform ✔ &lt;41871879@qq.com&gt;&#39;</span><span class="p">,</span>       <span class="c1">// 发件人地址</span>
-    <span class="nx">to</span><span class="o">:</span> <span class="s1">&#39;easyform_oops@163.com&#39;</span><span class="p">,</span>                <span class="c1">// 接受者地址列表</span>
-    <span class="nx">subject</span><span class="o">:</span> <span class="s1">&#39;Hi,i\&#39;m tudou&#39;</span><span class="p">,</span>                   <span class="c1">// 电子邮件的主题</span>
-    <span class="nx">html</span><span class="o">:</span> <span class="s1">&#39;&lt;b&gt;Hello, World! i\&#39;m tudou &lt;/b&gt;&#39;</span><span class="p">,</span>   <span class="c1">// html body</span>
-<span class="p">};</span></code></pre></div>
+    <span class="na">from</span><span class="p">:</span> <span class="s1">'easyform ✔ &lt;41871879@qq.com&gt;'</span><span class="p">,</span>       <span class="c1">// 发件人地址</span>
+    <span class="na">to</span><span class="p">:</span> <span class="s1">'easyform_oops@163.com'</span><span class="p">,</span>                <span class="c1">// 接受者地址列表</span>
+    <span class="na">subject</span><span class="p">:</span> <span class="s1">'Hi,i\'m tudou'</span><span class="p">,</span>                   <span class="c1">// 电子邮件的主题</span>
+    <span class="na">html</span><span class="p">:</span> <span class="s1">'&lt;b&gt;Hello, World! i\'m tudou &lt;/b&gt;'</span><span class="p">,</span>   <span class="c1">// html body</span>
+<span class="p">};</span></code></pre></figure>
 
 <p>这里需要注意的时from的地址必须和user地址相同，我们这里就准备给easyform_oops@163.com发送一份邮件。这里我是用的时html格式，你也可以是用普通文本格式(text:’’)</p>
 
 <h3 id="section-4">发送邮件</h3>
 <p>关键的就来了，我们这里调用了sendMail方法发送了一份邮件，第一个参数是我们上面配置好的邮件属性，第二个就是回调函数。</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// server.js</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// server.js</span>
 <span class="nx">transporter</span><span class="p">.</span><span class="nx">sendMail</span><span class="p">(</span><span class="nx">mailOptions</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">info</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Message sent: &#39;</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">response</span><span class="p">);</span>
-<span class="p">});</span></code></pre></div>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Message sent: '</span> <span class="o">+</span> <span class="nx">info</span><span class="p">.</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">});</span></code></pre></figure>
 
 <p>关于回调函数中得info信息，大家可以看<a href="https://github.com/andris9/Nodemailer#sending-mail">这里</a></p>
 
 <h3 id="section-5">发送邮件</h3>
 <p>在你当前代码所在的目录执行命令 node server.js 如果你的配置没有问题，将会看到如下信息</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Message</span> <span class="nx">sent</span><span class="o">:</span> <span class="mi">250</span> <span class="nx">Ok</span><span class="o">:</span> <span class="nx">queued</span> <span class="nx">as</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Message</span> <span class="nx">sent</span><span class="err">:</span> <span class="mi">250</span> <span class="nx">Ok</span><span class="err">:</span> <span class="nx">queued</span> <span class="nx">as</span></code></pre></figure>
 
 <p>这就代表你的邮件发送成功。</p>
 
 <h3 id="section-6">抄送和密送</h3>
 <p>下面我们来看下抄送和密送如何发送，其实很简单，只需要你在mailOptions配置好相关参数即可，在mailOptions配置中增加如下2个属性。</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mailOptions</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mailOptions</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">// ......</span>
-    <span class="nx">cc</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;email address&#39;</span><span class="p">],</span>  <span class="c1">// 抄送，接收该邮件的副本的收件人</span>
-    <span class="nx">bcc</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;email address&#39;</span><span class="p">],</span> <span class="c1">// 密送，收件人不出现在邮件头中</span>
-<span class="p">}</span></code></pre></div>
+    <span class="na">cc</span><span class="p">:</span> <span class="p">[</span><span class="s1">'email address'</span><span class="p">],</span>  <span class="c1">// 抄送，接收该邮件的副本的收件人</span>
+    <span class="na">bcc</span><span class="p">:</span> <span class="p">[</span><span class="s1">'email address'</span><span class="p">],</span> <span class="c1">// 密送，收件人不出现在邮件头中</span>
+<span class="p">}</span></code></pre></figure>
 
 <p>他们也可以定义多个和不通的格式，具体请看<a href="https://github.com/andris9/Nodemailer#address-formatting">Address Formatting</a></p>
 
 <h3 id="section-7">附件</h3>
 <p>你想要发送附件，天啊，简单到发指。通用也是修改mailOptions配置。</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mailOptions</span> <span class="o">=</span> <span class="p">{</span>
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mailOptions</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">// ......</span>
-    <span class="nx">attachments</span><span class="o">:</span> <span class="p">[{</span>
-        <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;C:/coupon-4.png&#39;</span><span class="p">,</span>
+    <span class="na">attachments</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">path</span><span class="p">:</span> <span class="s1">'C:/coupon-4.png'</span><span class="p">,</span>
     <span class="p">}]</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span></code></pre></figure>
 
 <p>这里我使用了最简单的参数发送了c盘coupon-4.png这样一个图片附件。他们的调用格式还有很多种。具体请看<a href="https://github.com/andris9/Nodemailer#attachments">attachments</a></p>
 

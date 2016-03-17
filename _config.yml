@@ -1,10 +1,10 @@
 # Site settings
-title:       createthink.net
+title:       再试，再失败，更好地失败
 email:       41871879@qq.com
 author:      tudousi
 description: "一个菜鸟的前端学习历程 html css javascript node node.js"
 baseurl:     ""
-url:         "http://createthink.net"
+url:         "http://tudousi.github.io/"
 date_format: "%Y-%m-%-d"
 
 # Google services
@@ -57,3 +57,4 @@ permalink:    pretty
 paginate:     4
 sass:
   compressed: true
+gems: [jekyll-paginate]
