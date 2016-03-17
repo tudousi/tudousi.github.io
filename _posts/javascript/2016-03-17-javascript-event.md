@@ -1,12 +1,12 @@
 ---
 layout:     post
 title:      javascript事件
-summary:    web程序中事件是一种通信机制，鼠标事件和键盘事件是我们直观感受到的事件。javascript中事件有非常多中，常用的有键盘事件、鼠标事件、触摸事件和自定义事件，这里来了解一下基础本的事件流概念。
+summary:    web程序中事件是一种通信机制，鼠标事件和键盘事件是我们直观感受到的事件。javascript中事件有非常多中，常用的有键盘事件、鼠标事件、触摸事件和自定义事件，这里来了解一下事件流概念。
 categories: javascript
 tags:       [event 事件]
 ---
 
-> web程序中事件是一种通信机制，鼠标事件和键盘事件是我们直观感受到的事件。javascript中[事件](https://developer.mozilla.org/zh-CN/docs/Web/API/Event)有非常多中，常用的有键盘事件、鼠标事件、触摸事件和自定义事件，这里来了解一下基础本的事件流概念。
+> web程序中事件是一种通信机制，鼠标事件和键盘事件是我们直观感受到的事件。javascript中[事件](https://developer.mozilla.org/zh-CN/docs/Web/API/Event)有非常多中，常用的有键盘事件、鼠标事件、触摸事件和自定义事件，这里来了解一下事件流概念。
 
 关于javascript事件机制的概念可以参考阮一峰的[JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
 
